@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapBiomas - Uso e ocupação do solo nas escolas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        :root {
+            --light-blue: #7BD4DE;
+            --blue: #5CBFD1;
+            --mint: #98D7B6;
+            --green: #7BC8A5;
+            --yellow: #E3DE73;
+            --orange: #F5A742;
+        }
+        
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .bg-brand-blue { background-color: var(--blue); }
+        .bg-brand-mint { background-color: var(--mint); }
+        .hover\:bg-brand-blue:hover { background-color: var(--blue); }
+        
+        .logo-container {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo-image {
+            width: 240px;
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .subtitle {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            text-align: center;
+            color: #666;
+            padding: 0 1rem;
+        }
+
+        .about-content {
+            padding: 2rem;
+            text-align: justify;
+            display: none;
+            overflow-y: auto;
+            height: calc(100vh - 82px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="bg-white shadow-lg text-gray-800 w-72 flex-shrink-0">
+            <div class="logo-container">
+                <img src="https://brasil.mapbiomas.org/wp-content/uploads/sites/4/2024/03/mapbiomas-brasil.png" alt="MapBiomas Logo" class="logo-image" />
+                <p class="subtitle">
+                    Uso e ocupação do solo nas escolas de ensino infantil e fundamental das capitais brasileiras
+                </p>
+            </div>
+            <nav class="mt-6 px-4">
+                <a href="#" class="block py-3 px-4 rounded-lg mb-2 bg-brand-mint text-white">
+                    <i class="fas fa-table mr-2"></i>Visualizar Dados
+                </a>
+                <a href="#about" class="block py-3 px-4 rounded-lg mb-2 text-gray-600 hover:bg-gray-100 transition duration-200">
+                    <i class="fas fa-info-circle mr-2"></i>Sobre o Projeto
+                </a>
+                <a href="#" onclick="openTechnicalNote()" class="block py-3 px-4 rounded-lg mb-2 text-gray-600 hover:bg-gray-100 transition duration-200">
+                    <i class="fas fa-book mr-2"></i>Acesse a Nota Técnica completa
+                </a>
+                <a href="#" onclick="openVectorData()" class="block py-3 px-4 rounded-lg mb-2 text-gray-600 hover:bg-gray-100 transition duration-200">
+                    <i class="fas fa-map-location-dot mr-2"></i>Acesse os dados vetoriais das escolas
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm p-6 flex justify-end items-center">
+                <div class="flex space-x-4">
+                    <button onclick="downloadCSV()" class="bg-brand-mint hover:bg-green text-white px-6 py-2 rounded-lg transition duration-200 shadow-sm">
+                        <i class="fas fa-file-csv mr-2"></i>Baixar CSV
+                    </button>
+                    <button onclick="downloadXLSX()" class="bg-brand-blue hover:bg-blue text-white px-6 py-2 rounded-lg transition duration-200 shadow-sm flex items-center">
+                        <i class="fas fa-file-excel mr-2"></i>
+                        <span id="xlsxBtnText">Baixar XLSX</span>
+                        <div id="xlsxSpinner" class="hidden ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- About Content -->
+            <div id="aboutContent" class="about-content">
+                <!-- Content will be dynamically added here -->
+            </div>
+
+            <!-- Embedded Google Sheet -->
+            <div class="flex-1 p-6">
+                <div class="bg-white rounded-xl shadow-sm h-full overflow-hidden">
+                    <iframe 
+                        id="sheet-frame"
+                        class="w-full h-full"
+                        src="https://docs.google.com/spreadsheets/d/1grtphKIGOPt8QzUp2Y-2xvBVxU28nkmQmtu2AHkIGIU/edit?usp=sharing"
+                        frameborder="0">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SHEET_ID = '1grtphKIGOPt8QzUp2Y-2xvBVxU28nkmQmtu2AHkIGIU';
+        const SHEET_NUMBER = 0;
+        const CSV_EXPORT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_NUMBER}`;
+        const XLSX_EXPORT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=xlsx&gid=${SHEET_NUMBER}`;
+
+        // Add these variables at the top of your script
+        let TECHNICAL_NOTE_URL = ''; // URL to be defined later
+        let VECTOR_DATA_URL = ''; // URL to be defined later
+
+        // Initialize the about content when the page loads
+        window.addEventListener('DOMContentLoaded', (event) => {
+            setAboutContent(`
+                <div class="max-w-4xl mx-auto p-8 text-gray-700">
+                    <h2 class="text-2xl font-semibold mb-6 text-center">Sobre o Projeto</h2>
+                    
+                    <p class="mb-6 text-justify">
+                        Atualmente, os dados oficiais divulgados pelo Instituto nacional de Pesquisas e Estudos Educacionais Anísio Teixeira (INEP) no censo escolar brasileiro (2023) trazem apenas a informação autodeclarada de cada escola sobre a presença ou ausência de áreas verdes na unidade escolar, não especificando a área ocupada ou sua proporção em relação ao total da área das escolas.
+                    </p>
+
+                    <p class="mb-6 text-justify">
+                        Visando complementar os dados fornecidos pelo INEP, foi feito o levantamento do total de áreas verdes existentes dentro dos limites das escolas de ensino infantil e fundamental para todas as capitais brasileiras, configurando um universo de total de 20.635 unidades escolares mapeadas, utilizando classificação de imagens Planet 4 metros de resolução) para o ano de 2023. Além disso, foram calculados a quantidade e a área ocupada por praças e parques (existentes no Open Street Map), além das áreas verdes extraídas por classificação de imagens, para os entornos imediatos de 500 e 1000m das escolas analisadas.
+                    </p>
+
+                    <p class="mb-6 text-justify">
+                        Também foram adicionados dados provenientes do censo escolar (incluindo informações de raça e gênero dos alunos matriculados), dados sobre a localização das escolas em favelas ou nas proximidades imediatas de 500 e 1000m de cada uma das favelas das capitais, informações sobre a localização em áreas de risco por cruzamento com o estudo BATER (2018) e sobre a variação da temperatura local de cada escola em relação à média da cidade em que se encontra (para o ano de 2023).
+                    </p>
+
+                    <p class="mb-6 text-justify">
+                        Os dados mostram que existe uma média de 921 m² de área verde por escola de ensino infantil e fundamental nas capitais brasileiras, no entanto, 37.4% das escolas avaliadas não possuem nenhuma área verde identificável. Além disso, 6,5% das escolas mapeadas estão inseridas em alguma área de risco identificada pelo BATER/IBGE e aproximadamente 64% das escolas avaliadas estão em locais com temperatura de superfície pelo menos 1ºC acima da média do perímetro urbano no qual se localizam, no ano de 2023.
+                    </p>
+
+                    <p class="mb-6 text-justify">
+                        Espera-se que esta base de dados seja útil para o trabalho de analistas e tomadores de decisões sobre a necessidade de evolução das políticas públicas para melhor qualidade de vida e acesso à natureza nas escolas brasileiras.
+                    </p>
+                </div>
+            `);
+        });
+
+        function openTechnicalNote() {
+            if (TECHNICAL_NOTE_URL) {
+                window.open(TECHNICAL_NOTE_URL, '_blank');
+            }
+        }
+
+        function openVectorData() {
+            if (VECTOR_DATA_URL) {
+                window.open(VECTOR_DATA_URL, '_blank');
+            }
+        }
+
+        async function downloadCSV() {
+            try {
+                const link = document.createElement('a');
+                link.href = CSV_EXPORT_URL;
+                link.download = 'mapbiomas-escolas-dados.csv';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (error) {
+                console.error('Erro ao baixar CSV:', error);
+                alert('Erro ao baixar CSV. Por favor, tente novamente.');
+            }
+        }
+
+        function setXLSXLoading(isLoading) {
+            const spinner = document.getElementById('xlsxSpinner');
+            const btnText = document.getElementById('xlsxBtnText');
+            if (isLoading) {
+                spinner.classList.remove('hidden');
+                btnText.textContent = 'Baixando...';
+            } else {
+                spinner.classList.add('hidden');
+                btnText.textContent = 'Baixar XLSX';
+            }
+        }
+
+        async function downloadXLSX() {
+            try {
+                setXLSXLoading(true);
+                const link = document.createElement('a');
+                link.href = XLSX_EXPORT_URL;
+                link.download = 'mapbiomas-escolas-dados.xlsx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (error) {
+                console.error('Erro ao baixar XLSX:', error);
+                alert('Erro ao baixar XLSX. Por favor, tente novamente.');
+            } finally {
+                setTimeout(() => setXLSXLoading(false), 1000);
+            }
+        }
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const isDataLink = this.getAttribute('onclick');
+                if (isDataLink) return; // Skip for links with onclick handlers
+
+                e.preventDefault();
+                const aboutContent = document.getElementById('aboutContent');
+                const sheetFrame = document.querySelector('.flex-1.p-6');
+
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-brand-mint', 'text-white');
+                    l.classList.add('text-gray-600', 'hover:bg-gray-100');
+                });
+                
+                this.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                this.classList.add('bg-brand-mint', 'text-white');
+
+                if (this.getAttribute('href') === '#about') {
+                    aboutContent.style.display = 'block';
+                    sheetFrame.style.display = 'none';
+                } else {
+                    aboutContent.style.display = 'none';
+                    sheetFrame.style.display = 'block';
+                }
+            });
+        });
+
+        // Function to set about content
+        function setAboutContent(content) {
+            const aboutContent = document.getElementById('aboutContent');
+            aboutContent.innerHTML = content;
+        }
+
+        // Function to set URLs
+        function setUrls(technicalNoteUrl, vectorDataUrl) {
+            TECHNICAL_NOTE_URL = technicalNoteUrl;
+            VECTOR_DATA_URL = vectorDataUrl;
+        }
+    </script>
+</body>
+</html>
