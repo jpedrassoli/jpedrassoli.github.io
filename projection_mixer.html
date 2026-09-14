@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparador de Projeções Cartográficas</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, Segoe UI, sans-serif; background:#f3f4f6; color:#17202a; }
+  header { background:#17202a; color:white; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
+  header h1 { margin:0; font-size:20px; font-weight:650; }
+  header span { font-size:12px; opacity:.75; }
+  main { display:grid; grid-template-columns:310px 1fr; height:calc(100vh - 54px); }
+  aside { background:white; border-right:1px solid #d7dbe0; padding:18px; overflow:auto; }
+  .section { margin-bottom:20px; }
+  .section h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; margin:0 0 10px; color:#66717d; }
+  .projection { border:1px solid #d9dde2; border-radius:8px; padding:10px; margin-bottom:8px; }
+  .projection label { display:flex; gap:8px; align-items:center; font-size:14px; font-weight:600; }
+  .projection input[type=range] { width:100%; margin-top:8px; }
+  .range-row { display:flex; justify-content:space-between; font-size:11px; color:#69737d; }
+  select, button { width:100%; border:1px solid #c9ced4; border-radius:7px; background:white; padding:8px 9px; font:inherit; }
+  button { cursor:pointer; font-weight:600; }
+  button:hover { background:#f2f4f6; }
+  .button-row { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+  .hint { font-size:12px; line-height:1.45; color:#68727c; }
+  #map-area { position:relative; overflow:hidden; background:#dce7ef; }
+  #map { width:100%; height:100%; display:block; }
+  .status { position:absolute; left:14px; bottom:12px; background:rgba(255,255,255,.92); border:1px solid #d4d8dc; border-radius:7px; padding:7px 10px; font-size:12px; }
+  .legend { position:absolute; right:14px; top:12px; background:rgba(255,255,255,.94); border:1px solid #d4d8dc; border-radius:7px; padding:10px; font-size:12px; min-width:150px; }
+  .legend-item { display:flex; align-items:center; gap:7px; margin:4px 0; }
+  .swatch { width:13px; height:13px; border:1px solid #555; border-radius:2px; }
+  .error { color:#9b2c2c; background:#fff1f1; border:1px solid #efb2b2; padding:9px; border-radius:7px; font-size:12px; }
+  @media(max-width:800px) { main { grid-template-columns:1fr; grid-template-rows:auto 1fr; height:auto; } aside { border-right:0; border-bottom:1px solid #d7dbe0; } #map-area { height:70vh; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Comparador de Projeções</h1>
+  <span>compare visualmente diferentes projeções cartográficas</span>
+</header>
+
+<main>
+<aside>
+  <div class="section">
+    <h2>Projeções</h2>
+    <div id="controls"></div>
+  </div>
+
+  <div class="section">
+    <h2>Visualização</h2>
+    <select id="focus">
+      <option value="world">Mundo</option>
+      <option value="south-america">América do Sul</option>
+      <option value="brazil">Brasil</option>
+    </select>
+    <br><br>
+    <label style="font-size:13px;display:flex;gap:8px;align-items:center">
+      <input id="graticule" type="checkbox" checked> Grade de coordenadas
+    </label>
+  </div>
+
+  <div class="section">
+    <h2>Ações</h2>
+    <div class="button-row">
+      <button id="all">Todas</button>
+      <button id="none">Nenhuma</button>
+    </div>
+    <br>
+    <button id="reset">Restaurar vista</button>
+  </div>
+
+  <div class="section hint">
+    <b>Como usar:</b> selecione duas ou mais projeções e altere a opacidade. A mesma geometria é reprojetada e desenhada no mesmo espaço de visualização, permitindo comparar diretamente suas diferenças. Use o seletor de visualização para focar em uma região específica do mapa.
+  </div>
+
+  <div id="msg"></div>
+</aside>
+
+<section id="map-area">
+  <svg id="map" aria-label="Mapa comparativo"></svg>
+  <div class="legend" id="legend"></div>
+  <div class="status" id="status">Carregando dados cartográficos…</div>
+</section>
+</main>
+
+<script>
+const defs = [
+  {id:"mercator", name:"Mercator", color:"#d1495b", projection:d3.geoMercator},
+  {id:"robinson", name:"Robinson", color:"#00798c", projection:d3.geoRobinson},
+  {id:"mollweide", name:"Mollweide", color:"#edae49", projection:d3.geoMollweide},
+  {id:"eckert4", name:"Eckert IV", color:"#30638e", projection:d3.geoEckert4},
+  {id:"equalEarth", name:"Equal Earth", color:"#5a9367", projection:d3.geoEqualEarth}
+];
+
+// Códigos numéricos ISO 3166-1 usados pelo atlas (world-atlas), para filtrar por região.
+const BRAZIL_ID = 76;
+const SOUTH_AMERICA_IDS = new Set([32,68,76,152,170,218,328,600,604,740,858,862]); // AR,BO,BR,CL,CO,EC,GY,PY,PE,SR,UY,VE
+
+const state = Object.fromEntries(defs.map((d,i)=>[d.id,{on:i<2, opacity: i<2 ? 0.55 : 0.35}]));
+const svg = d3.select("#map");
+let world, countries, projectionCenter = "world";
+let width, height;
+
+const controls = d3.select("#controls");
+defs.forEach(d=>{
+  const s = d3.select(document.createElement("div")).attr("class","projection");
+  s.html(`
+    <label><input type="checkbox" class="toggle" data-id="${d.id}" ${state[d.id].on?"checked":""}> ${d.name}</label>
+    <input type="range" class="opacity" data-id="${d.id}" min="0" max="1" step="0.01" value="${state[d.id].opacity}">
+    <div class="range-row"><span>opacidade</span><span class="value">${Math.round(state[d.id].opacity*100)}%</span></div>
+  `);
+  controls.node().appendChild(s.node());
+});
+
+async function loadData(){
+  try {
+    const res = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    if(!res.ok) throw new Error("Falha ao carregar o atlas.");
+    world = await res.json();
+    countries = topojson.feature(world, world.objects.countries);
+    document.getElementById("status").textContent = "Dados carregados • selecione as projeções";
+    draw();
+  } catch(e) {
+    document.getElementById("msg").innerHTML =
+      '<div class="error">Não foi possível carregar o mapa. Verifique sua conexão e recarregue a página.</div>';
+    document.getElementById("status").textContent = "Erro ao carregar dados";
+  }
+}
+
+// Constrói a projeção e a ajusta (fitSize) ao recorte geográfico atualmente exibido.
+// Retorna null se a função de projeção não estiver disponível (ex.: falha ao carregar
+// a biblioteca de projeções extras), em vez de travar todo o desenho do mapa.
+function baseProjection(d, feature){
+  if (typeof d.projection !== "function") return null;
+  try {
+    const p = d.projection();
+    p.fitSize([width, height], feature);
+    return p;
+  } catch (err) {
+    console.error("Falha ao construir a projeção:", d.id, err);
+    return null;
+  }
+}
+
+function getFeature(){
+  if(projectionCenter==="world") return countries;
+  if(projectionCenter==="brazil"){
+    return {
+      type:"FeatureCollection",
+      features: countries.features.filter(f => Number(f.id) === BRAZIL_ID)
+    };
+  }
+  return {
+    type:"FeatureCollection",
+    features: countries.features.filter(f => SOUTH_AMERICA_IDS.has(Number(f.id)))
+  };
+}
+
+function draw(){
+  if(!countries) return;
+  width = document.getElementById("map-area").clientWidth;
+  height = document.getElementById("map-area").clientHeight;
+  svg.attr("viewBox",`0 0 ${width} ${height}`).selectAll("*").remove();
+
+  let feature = getFeature();
+  let regionEmpty = false;
+  if(feature.features.length === 0){
+    feature = countries;
+    regionEmpty = true;
+  }
+
+  const missing = new Set();
+
+  // Fundo
+  svg.append("rect").attr("width",width).attr("height",height).attr("fill","#dce7ef");
+
+  // Grade de coordenadas (graticule)
+  if(document.getElementById("graticule").checked){
+    const g = d3.geoGraticule().step([15,15]);
+    const gr = svg.append("g").attr("class","graticule");
+    defs.forEach(d=>{
+      if(!state[d.id].on) return;
+      const p = baseProjection(d, feature);
+      if(!p){ missing.add(d.name); return; }
+      gr.append("path").datum(g()).attr("d",d3.geoPath(p))
+        .attr("fill","none").attr("stroke",d.color).attr("stroke-width",.65)
+        .attr("opacity",Math.min(.55,state[d.id].opacity));
+    });
+  }
+
+  // Cada projeção é calculada de forma independente e desenhada no mesmo viewport,
+  // o que permite comparar diretamente as diferenças entre elas.
+  defs.forEach(d=>{
+    if(!state[d.id].on) return;
+    const p = baseProjection(d, feature);
+    if(!p){ missing.add(d.name); return; }
+    const path = d3.geoPath(p);
+    svg.append("g")
+      .attr("class","projection-layer")
+      .attr("opacity",state[d.id].opacity)
+      .selectAll("path")
+      .data(feature.features)
+      .join("path")
+      .attr("d",path)
+      .attr("fill","white")
+      .attr("stroke",d.color)
+      .attr("stroke-width",1.15);
+  });
+
+  // Linha de referência do equador
+  const refP = d3.geoEquirectangular().fitSize([width,height],feature);
+  svg.append("path").datum({type:"LineString",coordinates:[[-180,0],[180,0]]})
+    .attr("d",d3.geoPath(refP)).attr("stroke","#555").attr("stroke-width",1)
+    .attr("stroke-dasharray","4 4").attr("opacity",.5).attr("fill","none");
+
+  updateLegend();
+  updateMessages(missing, regionEmpty);
+  updateStatus(feature);
+}
+
+function updateLegend(){
+  const items=defs.filter(d=>state[d.id].on);
+  document.getElementById("legend").innerHTML =
+    items.length ? items.map(d=>`<div class="legend-item"><span class="swatch" style="background:${d.color}"></span>${d.name}</div>`).join("") :
+    "<i>Nenhuma projeção ativa</i>";
+}
+
+function updateMessages(missing, regionEmpty){
+  const parts = [];
+  if(missing.size){
+    parts.push(`Não foi possível carregar: ${[...missing].join(", ")}. Verifique sua conexão e recarregue a página.`);
+  }
+  if(regionEmpty){
+    parts.push("Não foram encontrados países para esta região; exibindo o mundo todo.");
+  }
+  document.getElementById("msg").innerHTML = parts.length
+    ? `<div class="error">${parts.join(" ")}</div>`
+    : "";
+}
+
+function updateStatus(feature){
+  const focusLabels = {world:"Mundo", "south-america":"América do Sul", brazil:"Brasil"};
+  const ativos = defs.filter(d=>state[d.id].on).length;
+  document.getElementById("status").textContent =
+    `${focusLabels[projectionCenter]} • ${feature.features.length} país(es) • ${ativos} projeção(ões) ativa(s)`;
+}
+
+document.querySelectorAll(".toggle").forEach(el=>{
+  el.addEventListener("change",e=>{state[e.target.dataset.id].on=e.target.checked; draw();});
+});
+document.querySelectorAll(".opacity").forEach(el=>{
+  el.addEventListener("input",e=>{
+    const id=e.target.dataset.id, v=+e.target.value;
+    state[id].opacity=v;
+    e.target.parentElement.querySelector(".value").textContent=Math.round(v*100)+"%";
+    draw();
+  });
+});
+document.getElementById("graticule").addEventListener("change",draw);
+document.getElementById("focus").addEventListener("change",e=>{projectionCenter=e.target.value; draw();});
+
+document.getElementById("all").onclick=()=>{
+  defs.forEach(d=>state[d.id].on=true);
+  document.querySelectorAll(".toggle").forEach(e=>e.checked=true);
+  draw();
+};
+document.getElementById("none").onclick=()=>{
+  defs.forEach(d=>state[d.id].on=false);
+  document.querySelectorAll(".toggle").forEach(e=>e.checked=false);
+  draw();
+};
+document.getElementById("reset").onclick=()=>{
+  projectionCenter="world";
+  document.getElementById("focus").value="world";
+  document.getElementById("graticule").checked=true;
+  defs.forEach((d,i)=>{state[d.id].on=i<2; state[d.id].opacity=i<2?.55:.35;});
+  document.querySelectorAll(".toggle").forEach((e,i)=>e.checked=i<2);
+  document.querySelectorAll(".opacity").forEach((e,i)=>{
+    e.value=i<2?.55:.35;
+    e.parentElement.querySelector(".value").textContent=(i<2?"55":"35")+"%";
+  });
+  draw();
+};
+
+window.addEventListener("resize",draw);
+loadData();
+</script>
+</body>
+</html>
