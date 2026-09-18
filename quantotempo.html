@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanto vai demorar?</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ink: #17202a; --muted: #667085; --line: #e4e7ec; --soft: #f2f5f9;
+    --brand: #0f4c81; --dest: #d7263d;
+    --warn-bg: #fff6e5; --warn-ink: #8a5a00;
+    --err-bg: #fdecec; --err-ink: #a1211a;
+    --ok-bg: #e8f6ee; --ok-ink: #146c3a;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; margin: 0; }
+  body { font-family: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: #e9edf2; }
+
+  #map { position: fixed; inset: 0; }
+  .leaflet-tile-pane { filter: saturate(.7) contrast(.96); }
+  .leaflet-container { font-family: inherit; }
+
+  .panel {
+    position: absolute; z-index: 1100; top: 20px; left: 20px;
+    width: 376px; max-height: calc(100% - 40px); overflow: auto;
+    background: #fff; border-radius: 18px; padding: 24px;
+    box-shadow: 0 12px 36px rgba(16, 24, 40, .16), 0 1px 3px rgba(16, 24, 40, .1);
+  }
+  h1 { font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif; font-weight: 700; font-size: 1.9rem; line-height: 1.1; letter-spacing: -.02em; margin: 0 0 8px; }
+  .lead { margin: 0 0 20px; color: var(--muted); line-height: 1.5; font-size: .96rem; }
+
+  .legend { display: grid; gap: 10px; margin: 0; padding: 14px 16px; background: var(--soft); border-radius: 12px; font-size: .92rem; line-height: 1.4; }
+  .legend div { display: flex; align-items: center; gap: 10px; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.18); flex: none; }
+  .dot.you { background: var(--brand); }
+  .dot.sesc { background: var(--dest); }
+  .dot.mates { background: conic-gradient(#e6194b, #f58231, #3cb44b, #4363d8, #911eb4, #e6194b); }
+
+  .modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; background: var(--soft); border-radius: 12px; }
+  .mode { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 9px 4px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); font: 500 .8rem/1.15 "Figtree", system-ui, sans-serif; cursor: pointer; text-align: center; }
+  .mode svg { width: 20px; height: 20px; }
+  .mode[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(16, 24, 40, .14); }
+
+  .hero { margin: 22px 0 6px; }
+  .time { font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif; font-weight: 700; font-size: 3.4rem; line-height: 1; letter-spacing: -.03em; }
+  .time small { font-size: 1.4rem; font-weight: 600; letter-spacing: 0; margin-left: 2px; }
+  .sub { margin: 8px 0 0; color: var(--muted); font-size: .95rem; line-height: 1.45; }
+
+  .note { margin: 14px 0 0; padding: 11px 13px; border-radius: 10px; font-size: .88rem; line-height: 1.45; background: var(--warn-bg); color: var(--warn-ink); }
+  .note.err { background: var(--err-bg); color: var(--err-ink); }
+  .note.ok { background: var(--ok-bg); color: var(--ok-ink); }
+
+  .again { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: .86rem; color: var(--muted); }
+  .link { background: none; border: 0; padding: 4px 2px; font: 600 .86rem "Figtree", system-ui, sans-serif; color: var(--brand); cursor: pointer; }
+
+  .btn { width: 100%; padding: 11px 14px; border: 0; border-radius: 10px; background: var(--brand); color: #fff; font: 600 .93rem "Figtree", system-ui, sans-serif; cursor: pointer; }
+  .btn:disabled { opacity: .6; cursor: wait; }
+  .btn.ghost { background: #fff; color: var(--brand); border: 1px solid #c5d3e3; }
+  .mode:focus-visible, .link:focus-visible, .btn:focus-visible, input:focus-visible { outline: 3px solid #8db4d8; outline-offset: 2px; }
+
+  .field { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 12px; }
+  .field input[type=text], .field input[type=password] { width: 100%; margin-top: 6px; padding: 10px 11px; border: 1px solid #ccd3dc; border-radius: 9px; font: 500 .95rem "Figtree", system-ui, sans-serif; color: var(--ink); }
+  .chk { display: flex; gap: 8px; align-items: flex-start; font-size: .82rem; line-height: 1.4; color: var(--muted); margin: 0 0 12px; }
+  .chk input { margin-top: 2px; }
+
+  .loading { display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--soft); border-radius: 12px; color: var(--muted); font-size: .95rem; }
+  .spin { width: 18px; height: 18px; border: 3px solid #cfd8e3; border-top-color: var(--brand); border-radius: 50%; animation: spin .8s linear infinite; flex: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin { animation-duration: 2.4s; } }
+
+  #shared { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); display: grid; gap: 12px; }
+  .count { margin: 0; font-size: .92rem; color: var(--muted); }
+  .switch { display: flex; align-items: center; gap: 9px; font-size: .9rem; cursor: pointer; }
+
+  .dest { margin: 18px 0 0; font-size: .82rem; color: var(--muted); line-height: 1.45; }
+  .dest b { color: var(--ink); font-weight: 600; }
+
+  .leaflet-tooltip.pin-label { font: 600 .8rem "Figtree", system-ui, sans-serif; color: var(--ink); border: 0; border-radius: 8px; padding: 4px 8px; box-shadow: 0 2px 8px rgba(16, 24, 40, .22); }
+  .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .leaflet-popup-content { margin: 16px 18px; font-family: "Figtree", system-ui, sans-serif; line-height: 1.4; }
+  .pop { width: 250px; }
+  .pop .err { color: var(--err-ink); font-size: .84rem; margin: 10px 0 0; }
+  .mate-pop b { font-size: 1rem; }
+  .mate-pop div { margin-top: 4px; font-size: .88rem; color: var(--muted); }
+
+  @media (max-width: 720px) {
+    .panel { top: auto; left: 10px; right: 10px; bottom: 10px; width: auto; max-height: 52vh; padding: 18px; border-radius: 16px; }
+    h1 { font-size: 1.55rem; }
+    .lead { margin-bottom: 14px; font-size: .92rem; }
+    .time { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<main class="panel">
+  <h1>Quanto vai demorar?</h1>
+  <p class="lead">Marque no mapa onde você mora e descubra o tempo até o Sesc Itaquera.</p>
+  <div id="content" aria-live="polite"></div>
+  <div id="shared" hidden>
+    <p class="count" id="count"></p>
+    <label class="switch"><input type="checkbox" id="showRoutes" checked><span>Mostrar as rotas dos colegas</span></label>
+    <button class="btn ghost" id="btnDl" type="button">Baixar tabela (Excel)</button>
+  </div>
+  <p class="dest"><b>Destino: Sesc Itaquera</b><br>Av. Fernando do Espírito Santo Alves de Mattos, 1000, Itaquera, São Paulo/SP</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+/* ============================================================
+   CONFIGURAÇÃO (são as únicas linhas que você precisa editar)
+   ============================================================ */
+
+// 1) Chave da Geoapify, entre as aspas, sem espaços.
+const GEOAPIFY_KEY = "c539903ffe5d423eade78955646bfeee";
+
+// 2) Endereço do App da Web do Google Apps Script (termina em /exec).
+//    Enquanto estiver como "COLE_...", o app funciona em modo de teste (nada é enviado).
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9oQP017IvLOn-IhqNuDhoJy2s6ajiPx_JOBIdpH0KvHjuqqd7b3UtkmOq85C4pGY9/exec";
+
+// 3) Privacidade: a localização é arredondada para o centro de uma célula desse tamanho
+//    (em graus; 0.003 ≈ 300 m). Use 0 para desligar o arredondamento.
+const GRADE_GRAUS = 0.003;
+
+// 4) De quantos em quantos milissegundos o mapa busca os pontos dos colegas.
+const ATUALIZAR_MS = 30000;
+/* ============================================================ */
+
+const DEST = { lat: -23.5812, lon: -46.46949 };   // Sesc Itaquera (centro da unidade, segundo o OpenStreetMap)
+
+const ICONS = {
+  transit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14"/><path d="M9 14.5h.01M15 14.5h.01"/><path d="M8 21l2-4M16 21l-2-4"/></svg>',
+  walk: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4.5" r="1.8"/><path d="M12.5 8.5l-2.5 5 3 2v5.5M12.5 8.5l3 2.5 2 .5M10 13.5l-2.5 2"/></svg>',
+  drive: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3l2-5h12l2 5v3"/><path d="M4 15h16v3H4z"/><path d="M8 15h.01M16 15h.01"/></svg>'
+};
+
+const MODES = [
+  { id: "transit", label: "Transporte público", tail: "de transporte público", color: "#0f4c81", dash: null },
+  { id: "walk",    label: "A pé",               tail: "a pé",                  color: "#6b7a90", dash: "2 9" },
+  { id: "drive",   label: "De carro",           tail: "de carro",              color: "#39424e", dash: null }
+];
+
+const PALETTE = ["#e6194b", "#3cb44b", "#f58231", "#911eb4", "#008080", "#9a6324", "#f032e6", "#7a8f00", "#c2185b", "#00838f", "#6d4c41", "#ef6c00"];
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const keyOk = GEOAPIFY_KEY.trim().length > 0 && !GEOAPIFY_KEY.startsWith("COLE_");
+const backendOk = APPS_SCRIPT_URL.trim().length > 0 && !APPS_SCRIPT_URL.startsWith("COLE_");
+const isMobile = () => window.matchMedia("(max-width: 720px)").matches;
+
+/* ---------- Identidade local e código da turma ---------- */
+let clientId = "";
+try { clientId = localStorage.getItem("qvd_id") || ""; } catch (_) {}
+if (!clientId) {
+  clientId = "a" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  try { localStorage.setItem("qvd_id", clientId); } catch (_) {}
+}
+let codigo = "";
+try { codigo = sessionStorage.getItem("qvd_codigo") || ""; } catch (_) {}
+
+/* ---------- Mapa ---------- */
+const map = L.map("map", { zoomControl: false }).setView([-23.56, -46.56], 11);
+L.control.zoom({ position: "topright" }).addTo(map);
+
+if (keyOk) {
+  L.tileLayer("https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=" + encodeURIComponent(GEOAPIFY_KEY.trim()), {
+    maxZoom: 19,
+    attribution: 'Powered by <a href="https://www.geoapify.com/">Geoapify</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+}
+
+const pin = color => L.divIcon({
+  className: "",
+  html: '<div style="width:22px;height:22px;border-radius:50%;background:' + color + ';border:4px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.4)"></div>',
+  iconSize: [22, 22], iconAnchor: [11, 11]
+});
+
+L.marker([DEST.lat, DEST.lon], { icon: pin("#d7263d"), interactive: false, keyboard: false, zIndexOffset: 1000 })
+  .bindTooltip("Sesc Itaquera", { permanent: true, direction: "top", offset: [0, -12], className: "pin-label" })
+  .addTo(map);
+
+const sharedGroup = L.layerGroup().addTo(map);
+
+let originMarker = null, routeLayer = null, results = null, selected = "transit", straightKm = null;
+let token = 0, sessionOk = false, sharedRows = [], showRoutes = true, timer = null;
+let sendState = "none", lastPayload = null, popup = null, lastNome = "";
+
+/* ---------- Utilidades ---------- */
+function fmtTime(sec) {
+  const min = Math.max(1, Math.round(sec / 60));
+  if (min < 60) return '<span>' + min + '<small> min</small></span>';
+  const h = Math.floor(min / 60), m = min % 60;
+  return '<span>' + h + '<small> h</small>' + (m ? ' ' + m + '<small> min</small>' : '') + '</span>';
+}
+function fmtMinTxt(min) {
+  if (min === "" || min == null) return "sem dado";
+  const m = Math.round(Number(min));
+  return m < 60 ? m + " min" : Math.floor(m / 60) + " h" + (m % 60 ? " " + (m % 60) + " min" : "");
+}
+const fmtKm = m => (m / 1000).toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " km";
+
+function haversineKm(a, b) {
+  const R = 6371, rad = x => x * Math.PI / 180;
+  const dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+function snap(ll) {
+  if (!GRADE_GRAUS) return { lat: +ll.lat.toFixed(6), lon: +ll.lng.toFixed(6) };
+  const g = GRADE_GRAUS;
+  return { lat: +((Math.floor(ll.lat / g) + 0.5) * g).toFixed(6), lon: +((Math.floor(ll.lng / g) + 0.5) * g).toFixed(6) };
+}
+
+/* Simplificação da rota (Douglas-Peucker) para caber numa célula da planilha */
+function perp(p, a, b) {
+  const dx = b[0] - a[0], dy = b[1] - a[1];
+  if (!dx && !dy) return Math.hypot(p[0] - a[0], p[1] - a[1]);
+  const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy)));
+  return Math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy));
+}
+function dp(pts, tol) {
+  if (pts.length < 3) return pts;
+  const keep = new Uint8Array(pts.length);
+  keep[0] = keep[pts.length - 1] = 1;
+  const stack = [[0, pts.length - 1]];
+  while (stack.length) {
+    const [a, b] = stack.pop();
+    let maxD = 0, idx = -1;
+    for (let i = a + 1; i < b; i++) { const d = perp(pts[i], pts[a], pts[b]); if (d > maxD) { maxD = d; idx = i; } }
+    if (maxD > tol && idx > 0) { keep[idx] = 1; stack.push([a, idx], [idx, b]); }
+  }
+  return pts.filter((_, i) => keep[i]);
+}
+function packGeometry(feature) {
+  const g = feature.geometry;
+  const lines = g.type === "MultiLineString" ? g.coordinates : [g.coordinates];
+  let tol = 0.0002, out = "";
+  for (let k = 0; k < 6; k++) {
+    out = JSON.stringify(lines.map(l => dp(l, tol).map(c => [+c[0].toFixed(5), +c[1].toFixed(5)])));
+    if (out.length <= 40000) break;
+    tol *= 2;
+  }
+  return out.length <= 45000 ? out : "";
+}
+
+/* ---------- Telas do painel ---------- */
+function renderIntro() {
+  $("content").innerHTML =
+    '<div class="legend">' +
+      '<div><span class="dot you"></span>Você (clique no mapa para marcar)</div>' +
+      '<div><span class="dot sesc"></span>Sesc Itaquera</div>' +
+      (backendOk ? '<div><span class="dot mates"></span>Colegas que já marcaram (cada cor é uma pessoa)</div>' : '') +
+    '</div>' +
+    (GRADE_GRAUS ? '<p class="sub">Para proteger sua privacidade, o ponto é arredondado para uma área de cerca de ' + Math.round(GRADE_GRAUS * 102000 / 10) * 10 + ' m.</p>' : '') +
+    (!backendOk ? '<p class="note">Modo de teste: os dados não estão sendo enviados para ninguém.</p>' : '');
+}
+function renderNoKey() {
+  $("content").innerHTML = '<p class="note err">A chave da Geoapify ainda não foi configurada. Abra o arquivo <b>index.html</b> num editor e cole a chave na constante <b>GEOAPIFY_KEY</b>.</p>';
+}
+function renderLoading(text) {
+  $("content").innerHTML = '<div class="loading"><span class="spin"></span>' + esc(text) + '</div>';
+}
+function renderGate(msg) {
+  $("shared").hidden = true;
+  $("content").innerHTML =
+    '<label class="field" for="cod">Código da turma<input type="password" id="cod" autocomplete="off" placeholder="Informado pelo professor"></label>' +
+    '<button class="btn" id="btnEnter" type="button">Entrar</button>' +
+    (msg ? '<p class="note err">' + esc(msg) + '</p>' : '');
+  const go = () => enter($("cod").value.trim(), false);
+  $("btnEnter").onclick = go;
+  $("cod").addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+}
+function renderError(status) {
+  let msg = "Não foi possível calcular o trajeto agora. Tente marcar outro ponto.";
+  if (status === 401 || status === 403) msg = "A chave da Geoapify foi recusada. Verifique a chave e as restrições dela no painel da Geoapify.";
+  if (status === 429) msg = "Muitas consultas em pouco tempo. Aguarde um instante e tente de novo.";
+  $("content").innerHTML = '<p class="note err">' + msg + '</p>' + againBlock();
+  bindAgain();
+}
+function againBlock() {
+  return '<div class="again"><span>Clique em outro ponto para refazer.</span><button class="link" id="btnClear" type="button">Limpar</button></div>';
+}
+function bindAgain() { const b = $("btnClear"); if (b) b.onclick = clearAll; }
+
+function sendNote() {
+  if (!backendOk) return '<p class="note">Modo de teste: os dados não foram enviados.</p>';
+  if (sendState === "sending") return '<div class="loading" style="margin-top:14px"><span class="spin"></span>Enviando para a turma…</div>';
+  if (sendState === "sent") return '<p class="note ok">Enviado! Seu ponto já aparece para a turma.</p>';
+  if (sendState === "error") return '<p class="note err">Não conseguimos enviar seu resultado. <button class="link" id="btnRetry" type="button">Tentar de novo</button></p>';
+  return "";
+}
+
+function renderResult() {
+  const tabs = MODES.map(m =>
+    '<button class="mode" type="button" data-mode="' + m.id + '" aria-pressed="' + (m.id === selected) + '">' + ICONS[m.id] + '<span>' + m.label + '</span></button>'
+  ).join("");
+
+  const mode = MODES.find(m => m.id === selected);
+  const r = results[selected];
+  let body;
+  if (r.ok) {
+    body = '<div class="hero"><div class="time">' + fmtTime(r.timeS) + '</div>' +
+           '<p class="sub">' + fmtKm(r.distM) + ' ' + mode.tail + ' até o Sesc Itaquera.<br>Em linha reta: ' +
+           straightKm.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' km.</p></div>';
+    const walk = results.walk;
+    if (selected === "transit" && walk && walk.ok && Math.abs(r.timeS - walk.timeS) / walk.timeS < 0.1) {
+      body += '<p class="note">Nesse ponto não encontramos transporte público mais rápido que a caminhada. O tempo mostrado é praticamente o de ir a pé.</p>';
+    }
+  } else {
+    body = '<p class="note err">' + (selected === "transit"
+      ? "Não encontramos um trajeto de transporte público para esse ponto. Tente marcar um ponto mais próximo de uma rua ou avenida."
+      : "Não foi possível calcular esse trajeto para esse ponto.") + '</p>';
+  }
+
+  $("content").innerHTML = '<div class="modes" role="group" aria-label="Forma de deslocamento">' + tabs + '</div>' + body + sendNote() + againBlock();
+  document.querySelectorAll(".mode").forEach(b => b.onclick = () => { selected = b.dataset.mode; renderResult(); drawRoute(); });
+  const retry = $("btnRetry"); if (retry) retry.onclick = () => send(lastPayload);
+  bindAgain();
+}
+
+/* ---------- Rota própria no mapa ---------- */
+function drawRoute() {
+  if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+  const r = results && results[selected];
+  if (!r || !r.ok) return;
+  const mode = MODES.find(m => m.id === selected);
+  routeLayer = L.geoJSON(r.feature, { style: { color: mode.color, weight: 5, opacity: .9, dashArray: mode.dash, lineCap: "round", lineJoin: "round" } }).addTo(map);
+  const mobile = isMobile();
+  map.fitBounds(routeLayer.getBounds(), {
+    paddingTopLeft: [mobile ? 30 : 430, 50],
+    paddingBottomRight: [40, mobile ? Math.round(window.innerHeight * 0.5) : 50]
+  });
+}
+
+/* ---------- Colegas (camada compartilhada) ---------- */
+function colorFor(id) {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+  return PALETTE[h % PALETTE.length];
+}
+
+function drawShared() {
+  sharedGroup.clearLayers();
+  sharedRows.forEach(r => {
+    if (originMarker && String(r.id) === clientId) return;   // a própria rota já está desenhada
+    const lat = Number(r.lat), lon = Number(r.lon);
+    if (!isFinite(lat) || !isFinite(lon) || r.lat === "" || r.lon === "") return;
+    const color = colorFor(String(r.id));
+
+    if (showRoutes && r.geometria) {
+      try {
+        JSON.parse(r.geometria).forEach(line => {
+          const pl = L.polyline(line.map(c => [c[1], c[0]]), { color, weight: 3, opacity: .55, lineCap: "round", lineJoin: "round" }).addTo(sharedGroup);
+          pl.on("mouseover", () => pl.setStyle({ weight: 6, opacity: 1 }));
+          pl.on("mouseout", () => pl.setStyle({ weight: 3, opacity: .55 }));
+        });
+      } catch (_) { /* geometria inválida: ignora */ }
+    }
+
+    const mk = L.circleMarker([lat, lon], { radius: 7, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 }).addTo(sharedGroup);
+    mk.bindTooltip('<span class="swatch" style="background:' + color + '"></span>' + esc(r.nome), { permanent: true, direction: "top", offset: [0, -8], className: "pin-label" });
+    mk.bindPopup('<div class="mate-pop"><b>' + esc(r.nome) + '</b>' +
+      '<div>Transporte público: ' + fmtMinTxt(r.transit_min) + '</div>' +
+      '<div>De carro: ' + fmtMinTxt(r.drive_min) + '</div>' +
+      '<div>A pé: ' + fmtMinTxt(r.walk_min) + '</div></div>');
+  });
+  const n = sharedRows.length;
+  $("count").textContent = n === 0 ? "Ninguém marcou ainda." : n === 1 ? "1 pessoa já marcou." : n + " pessoas já marcaram.";
+}
+
+async function fetchAll(cod) {
+  const r = await fetch(APPS_SCRIPT_URL.trim() + "?codigo=" + encodeURIComponent(cod));
+  return r.json();
+}
+async function refresh() {
+  if (!backendOk || !sessionOk) return;
+  try {
+    const j = await fetchAll(codigo);
+    if (j && j.ok) { sharedRows = j.rows || []; drawShared(); }
+  } catch (_) { /* mantém o que já está no mapa */ }
+}
+
+async function enter(cod, silent) {
+  if (!cod) { renderGate("Digite o código da turma."); return; }
+  renderLoading("Entrando…");
+  try {
+    const j = await fetchAll(cod);
+    if (j && j.ok) {
+      codigo = cod; sessionOk = true; sharedRows = j.rows || [];
+      try { sessionStorage.setItem("qvd_codigo", cod); } catch (_) {}
+      $("shared").hidden = false;
+      renderIntro(); drawShared();
+      if (!timer) timer = setInterval(() => { if (!document.hidden) refresh(); }, ATUALIZAR_MS);
+      return;
+    }
+    try { sessionStorage.removeItem("qvd_codigo"); } catch (_) {}
+    renderGate(silent ? "" : "Código incorreto. Confira com o professor.");
+  } catch (e) {
+    renderGate("Não foi possível conectar ao servidor. Tente de novo.");
+  }
+}
+
+/* ---------- Download da tabela completa ---------- */
+function download() {
+  if (typeof XLSX === "undefined") { alert("Não foi possível carregar o gerador de Excel. Verifique a conexão e tente de novo."); return; }
+  const linhas = sharedRows.map(r => ({
+    "Nome": r.nome,
+    "Latitude": r.lat,
+    "Longitude": r.lon,
+    "Data e hora": r.data_hora,
+    "Distância em linha reta (km)": r.dist_reta_km,
+    "Transporte público - tempo (min)": r.transit_min,
+    "Transporte público - distância (km)": r.transit_km,
+    "A pé - tempo (min)": r.walk_min,
+    "A pé - distância (km)": r.walk_km,
+    "Carro - tempo (min)": r.drive_min,
+    "Carro - distância (km)": r.drive_km
+  }));
+  const ws = XLSX.utils.json_to_sheet(linhas);
+  ws["!cols"] = [{ wch: 24 }, { wch: 12 }, { wch: 12 }, { wch: 17 }, { wch: 26 }, { wch: 30 }, { wch: 32 }, { wch: 18 }, { wch: 22 }, { wch: 19 }, { wch: 22 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Respostas");
+  XLSX.writeFile(wb, "quanto-vai-demorar.xlsx");
+}
+
+/* ---------- Chamadas à Geoapify ---------- */
+async function callRoute(origin, mode) {
+  const waypoints = encodeURIComponent(origin.lat + "," + origin.lon + "|" + DEST.lat + "," + DEST.lon);
+  const url = "https://api.geoapify.com/v1/routing?waypoints=" + waypoints + "&mode=" + mode + "&apiKey=" + encodeURIComponent(GEOAPIFY_KEY.trim());
+  try {
+    const r = await fetch(url, { method: "GET" });
+    const json = await r.json().catch(() => null);
+    if (!r.ok || !json || !json.features || !json.features.length) return { ok: false, status: r.status };
+    const f = json.features[0];
+    return { ok: true, timeS: f.properties.time, distM: f.properties.distance, feature: f };
+  } catch (e) {
+    return { ok: false, status: 0 };
+  }
+}
+
+/* ---------- Envio para a planilha ---------- */
+async function send(payload) {
+  sendState = "sending"; renderResult();
+  try {
+    const r = await fetch(APPS_SCRIPT_URL.trim(), {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },   // evita pré-verificação CORS
+      body: JSON.stringify(payload)
+    });
+    const j = await r.json();
+    sendState = j && j.ok ? "sent" : "error";
+  } catch (e) {
+    sendState = "error";
+  }
+  renderResult();
+  if (sendState === "sent") refresh();
+}
+
+/* ---------- Popup no clique e cálculo ---------- */
+function popupHtml() {
+  return '<div class="pop">' +
+    (backendOk
+      ? '<label class="field">Seu nome<input type="text" id="popNome" maxlength="40" placeholder="Primeiro nome ou apelido" value="' + esc(lastNome) + '"></label>' +
+        '<label class="chk"><input type="checkbox" id="popOk"><span>Concordo em compartilhar meu nome e um ponto aproximado da minha residência com a turma.</span></label>'
+      : '<p class="sub" style="margin:0 0 12px">Modo de teste: nada será enviado.</p>') +
+    '<button class="btn" id="popGo" type="button">' + (backendOk ? 'Calcular e enviar' : 'Calcular') + '</button>' +
+    '<p class="err" id="popErr" hidden></p></div>';
+}
+
+map.on("click", e => {
+  if (!keyOk) { renderNoKey(); return; }
+  if (backendOk && !sessionOk) return;
+  const p = snap(e.latlng);
+  if (originMarker) originMarker.setLatLng([p.lat, p.lon]);
+  else originMarker = L.marker([p.lat, p.lon], { icon: pin("#0f4c81"), interactive: false, keyboard: false }).addTo(map);
+  drawShared();   // passa a esconder a própria entrada antiga, se houver
+
+  popup = L.popup({ closeOnClick: false, autoClose: false, minWidth: 274, offset: [0, -6] }).setLatLng([p.lat, p.lon]).setContent(popupHtml()).openOn(map);
+  $("popGo").onclick = () => submit(p);
+  const nome = $("popNome");
+  if (nome) nome.addEventListener("keydown", ev => { if (ev.key === "Enter") submit(p); });
+  if (nome) nome.focus();
+});
+
+async function submit(p) {
+  const err = $("popErr");
+  const fail = msg => { err.textContent = msg; err.hidden = false; };
+  err.hidden = true;
+
+  let nome = "";
+  if (backendOk) {
+    nome = $("popNome").value.trim();
+    if (!nome) return fail("Digite seu nome.");
+    if (!$("popOk").checked) return fail("Marque a caixa de consentimento para continuar.");
+    lastNome = nome;
+  }
+
+  const btn = $("popGo");
+  btn.disabled = true; btn.textContent = "Calculando…";
+  const my = ++token;
+  if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+
+  const list = await Promise.all(MODES.map(m => callRoute(p, m.id)));
+  if (my !== token) return;
+
+  if (list.every(r => !r.ok)) {
+    btn.disabled = false; btn.textContent = backendOk ? "Calcular e enviar" : "Calcular";
+    const s = list[0].status;
+    return fail(s === 401 || s === 403 ? "A chave da Geoapify foi recusada." : s === 429 ? "Muitas consultas. Aguarde um instante." : "Não foi possível calcular o trajeto. Tente outro ponto.");
+  }
+
+  results = {};
+  MODES.forEach((m, i) => results[m.id] = list[i]);
+  straightKm = haversineKm(p, DEST);
+  selected = results.transit.ok ? "transit" : (MODES.find(m => results[m.id].ok) || MODES[0]).id;
+  map.closePopup(popup);
+
+  const rt = results.transit, rw = results.walk, rd = results.drive;
+  const min = r => r.ok ? +(r.timeS / 60).toFixed(1) : "";
+  const km = r => r.ok ? +(r.distM / 1000).toFixed(2) : "";
+  const geoSrc = rt.ok ? rt : (rw.ok ? rw : (rd.ok ? rd : null));
+  lastPayload = {
+    codigo, id: clientId, nome,
+    lat: p.lat, lon: p.lon,
+    dist_reta_km: +straightKm.toFixed(2),
+    transit_min: min(rt), transit_km: km(rt),
+    walk_min: min(rw), walk_km: km(rw),
+    drive_min: min(rd), drive_km: km(rd),
+    geometria: geoSrc ? packGeometry(geoSrc.feature) : ""
+  };
+
+  drawRoute();
+  if (backendOk) send(lastPayload);
+  else { sendState = "none"; renderResult(); }
+}
+
+/* ---------- Limpar ---------- */
+function clearAll() {
+  token++;
+  results = null; sendState = "none";
+  map.closePopup();
+  if (originMarker) { map.removeLayer(originMarker); originMarker = null; }
+  if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+  renderIntro();
+  refresh();
+  drawShared();
+}
+
+/* ---------- Início ---------- */
+$("showRoutes").addEventListener("change", e => { showRoutes = e.target.checked; drawShared(); });
+$("btnDl").onclick = download;
+
+if (!keyOk) renderNoKey();
+else if (!backendOk) renderIntro();
+else if (codigo) enter(codigo, true);
+else renderGate("");
+</script>
+</body>
+</html>
