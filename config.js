@@ -12,5 +12,5 @@ window.APP_CONFIG = {
 
   // true  = mostra o painel "Modo de teste" (gerar pontos aleatórios).
   // false = versão final, sem o painel de teste.
-  TESTER: true
+  TESTER: false
 };
