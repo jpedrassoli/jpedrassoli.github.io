@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quão preciso é o GPS?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+<style>
+:root{
+  --ink:#17302c; --muted:#57696a; --panel:#ffffff; --field:#eef3f1; --line:#d3dcd9;
+  --pt:#1b7a8c; --me:#c9431b; --focus:#1b7a8c;
+  --peek:76px; --side:380px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0}
+body{font:16px/1.4 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--field);-webkit-text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);height:100vh;height:100dvh}
+.mapwrap{position:relative;min-width:0;min-height:0}
+#map{position:absolute;inset:0;z-index:0;background:#dfe6e3}
+
+/* ---------- painel ---------- */
+aside{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;z-index:1000}
+.handle{display:none}
+.panel-body{overflow:auto;padding:22px 22px calc(22px + var(--safe-b));display:flex;flex-direction:column;gap:24px;min-height:0}
+h1{font-size:1.5rem;line-height:1.15;margin:0 0 4px}
+h2{font-size:1.02rem;margin:0 0 10px}
+.lede{margin:0;color:var(--muted)}
+.empty{margin:0;color:var(--muted)}
+
+.stat-main{display:grid;gap:14px;margin-bottom:14px}
+.stat .k{font-size:.86rem;color:var(--muted)}
+.stat .v{font-size:1.7rem;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.coordrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-variant-numeric:tabular-nums}
+.coordrow span{font-size:.86rem;color:var(--muted)}
+.coordrow b{font-size:1.2rem}
+.stat-2{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0 0 14px;padding-top:14px;border-top:1px solid var(--line);font-size:.92rem}
+.stat-2 dt{color:var(--muted)}
+.stat-2 dd{margin:0;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;cursor:pointer}
+.check input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex:none}
+
+.plist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.plist button{width:100%;display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;min-height:52px;padding:8px 2px;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer}
+.plist button:hover{background:var(--field)}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--pt)}
+.dot.me{background:var(--me)}
+.pname{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.psub{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.pdist{font-size:.9rem;font-weight:700;font-variant-numeric:tabular-nums}
+
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.btn{min-height:44px;padding:0 18px;border-radius:10px;border:1.5px solid var(--ink);background:#fff;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--field)}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:#0f211e}
+.btn:disabled{opacity:.6;cursor:progress}
+.linkline{margin:12px 0 0;font-size:.92rem}
+.linkline a{color:var(--ink)}
+.sync{margin:0;font-size:.82rem;color:var(--muted)}
+.sync.err{color:#a8300a}
+.demo{border:1.5px dashed var(--line);border-radius:12px;padding:14px}
+.demo p{margin:0 0 10px;font-size:.9rem;color:var(--muted)}
+.demo .btn{min-height:40px;padding:0 12px;font-size:.9rem}
+
+/* ---------- botão principal e aviso sobre o mapa ---------- */
+.mark{position:absolute;z-index:500;left:50%;bottom:28px;transform:translateX(-50%);min-height:52px;padding:0 26px;border:0;border-radius:999px;background:var(--me);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 6px 20px rgba(0,0,0,.28);cursor:pointer;white-space:nowrap}
+.mark:hover{background:#b23a16}
+.mark:disabled{opacity:.75;cursor:progress}
+.notice-wrap{position:absolute;z-index:500;top:12px;left:64px;right:64px;display:flex;justify-content:center;pointer-events:none}
+.notice{pointer-events:auto;max-width:520px;padding:10px 14px;border-radius:12px;background:var(--ink);color:#fff;font-size:.95rem;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.notice.warn{background:#7a2a0c}
+
+/* ---------- elementos do mapa ---------- */
+.fit-btn{display:flex!important;align-items:center;justify-content:center;width:34px;height:34px}
+.dist-tip{background:#fff;border:1px solid var(--ink);color:var(--ink);font-weight:700;padding:2px 6px}
+.dist-tip::before{display:none}
+.centroid{background:none;border:0}
+.pop b{display:block;margin-bottom:2px}
+.pop div{font-variant-numeric:tabular-nums}
+
+/* ---------- janela do nome ---------- */
+dialog{border:0;border-radius:16px;padding:0;width:min(420px,calc(100vw - 32px));box-shadow:0 20px 60px rgba(0,0,0,.35);color:var(--ink)}
+dialog::backdrop{background:rgba(15,30,27,.55)}
+.dlg{padding:22px}
+.dlg h2{font-size:1.25rem;margin:0 0 6px}
+.dlg p{margin:0 0 14px;color:var(--muted)}
+.dlg label{display:block;font-weight:700;margin-bottom:6px}
+.dlg input[type=text]{width:100%;font-size:1rem;padding:12px 14px;border:1.5px solid var(--ink);border-radius:10px;background:#fff}
+.dlg .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.dlg .err{margin:12px 0 0;color:#a8300a;font-size:.92rem}
+
+/* ---------- celular ---------- */
+@media (max-width:820px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  aside{position:fixed;left:0;right:0;bottom:0;max-height:78vh;max-height:78dvh;border-right:0;border-top:1px solid var(--line);border-radius:18px 18px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.16);transform:translateY(calc(100% - var(--peek) - var(--safe-b)));transition:transform .25s ease}
+  aside.open{transform:none}
+  .handle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;flex:none;height:var(--peek);width:100%;background:none;border:0;cursor:pointer;font-weight:700}
+  .grip{width:44px;height:5px;border-radius:3px;background:var(--line)}
+  .mark{bottom:calc(var(--peek) + var(--safe-b) + 16px)}
+  h1{font-size:1.3rem}
+}
+@media (prefers-reduced-motion:reduce){aside{transition:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside id="panel" aria-label="Painel de resultados">
+    <button id="sheetToggle" class="handle" type="button" aria-expanded="false" aria-controls="panelBody">
+      <span class="grip" aria-hidden="true"></span>
+      <span id="peekText">Nenhum ponto marcado ainda</span>
+    </button>
+
+    <div class="panel-body" id="panelBody">
+      <header>
+        <h1>Quão preciso é o GPS?</h1>
+        <p class="lede">Marque sua posição e compare com a turma.</p>
+      </header>
+
+      <section id="demoBox" class="demo" hidden aria-labelledby="h-demo">
+        <h2 id="h-demo">Modo de teste</h2>
+        <p>Os pontos de teste ficam só neste navegador e não vão para a planilha. Eles aparecem junto com os pontos reais e entram nas estatísticas e nos downloads.</p>
+        <div class="btnrow">
+          <button class="btn" id="demoGen" type="button">Gerar 15 pontos de teste</button>
+          <button class="btn" id="demoClear" type="button">Limpar pontos de teste</button>
+          <button class="btn" id="demoClearAll" type="button" hidden>Limpar tudo (modo local)</button>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-res">
+        <h2 id="h-res">Resumo dos pontos</h2>
+        <p id="emptyMsg" class="empty">Nenhum ponto marcado ainda. Toque em Marcar minha posição.</p>
+        <div id="statsBox" hidden>
+          <div class="stat-main">
+            <div class="stat">
+              <div class="k">Coordenada média (<span id="sN">0</span> pontos)</div>
+              <div class="coordrow"><span>Latitude</span><b id="sLat">—</b></div>
+              <div class="coordrow"><span>Longitude</span><b id="sLon">—</b></div>
+            </div>
+            <div class="stat"><div class="k">Distância máxima entre dois pontos</div><div class="v" id="sMaxD">—</div></div>
+            <div class="stat"><div class="k">Raio máximo a partir da coordenada média</div><div class="v" id="sMaxR">—</div></div>
+          </div>
+          <dl class="stat-2">
+            <dt>Distância média até a coordenada média</dt><dd id="sMeanD">—</dd>
+            <dt>Erro quadrático médio (RMS)</dt><dd id="sRms">—</dd>
+            <dt>Metade dos pontos está a até</dt><dd id="sR50">—</dd>
+            <dt>95% dos pontos estão a até</dt><dd id="sR95">—</dd>
+            <dt>Precisão média informada pelos aparelhos</dt><dd id="sAcc">—</dd>
+          </dl>
+          <label class="check"><input type="checkbox" id="showGuides" checked> Mostrar no mapa o círculo do raio máximo e a distância máxima</label>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-list" id="listSection" hidden>
+        <h2 id="h-list">Pontos marcados</h2>
+        <ul class="plist" id="plist"></ul>
+      </section>
+
+      <section aria-labelledby="h-dl">
+        <h2 id="h-dl">Planilha</h2>
+        <div class="btnrow">
+          <button class="btn primary" id="dlXlsx" type="button">Baixar .xlsx</button>
+          <button class="btn" id="dlCsv" type="button">Baixar .csv</button>
+        </div>
+        <p class="linkline" id="sheetLink" hidden><a id="sheetA" target="_blank" rel="noopener">Abrir no Google Planilhas</a></p>
+      </section>
+
+
+      <p class="sync" id="syncText" role="status">Carregando pontos…</p>
+    </div>
+  </aside>
+
+  <div class="mapwrap">
+    <div id="map" role="application" aria-label="Mapa com os pontos marcados"></div>
+    <div class="notice-wrap"><div id="notice" class="notice" role="status" hidden></div></div>
+    <button class="mark" id="markBtn" type="button">Marcar minha posição</button>
+  </div>
+</div>
+
+<dialog id="nameDialog" aria-labelledby="dlgTitle">
+  <form class="dlg" id="nameForm" autocomplete="off">
+    <h2 id="dlgTitle">Qual é o seu nome?</h2>
+    <p id="dlgFix">Localização liberada.</p>
+    <label for="nameInput">Nome</label>
+    <input type="text" id="nameInput" maxlength="40" required autocomplete="given-name" enterkeyhint="done">
+    <p class="err" id="dlgErr" role="alert" hidden></p>
+    <div class="actions">
+      <button type="button" class="btn" id="dlgCancel">Cancelar</button>
+      <button type="submit" class="btn primary" id="dlgOk">OK</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="config.js"></script>
+<script>
+"use strict";
+
+/* =====================================================================
+   CONFIGURAÇÃO
+   SCRIPT_URL vazio  -> modo de teste local (dados no navegador).
+   SCRIPT_URL com a URL "/exec" do Apps Script -> usa a Planilha Google.
+   ===================================================================== */
+// Os valores vêm do arquivo config.js (edite lá). Estes são só os padrões.
+const CONFIG = Object.assign({
+  SCRIPT_URL: "",
+  SHEET_URL: "",
+  POLL_MS: 5000,
+  TESTER: false
+}, window.APP_CONFIG || {});
+
+const DEMO = !CONFIG.SCRIPT_URL;
+const INK = "#17302c", PT = "#1b7a8c", ME = "#c9431b";
+const $ = s => document.querySelector(s);
+
+/* ---------- armazenamento local (tolerante a navegadores restritos) ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v === null ? d : v; }catch(_){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, v); }catch(_){} }
+};
+const KEY_MY = "gpsclass_my_ids", KEY_NAME = "gpsclass_name", KEY_DEMO = "gpsclass_demo_points_v1";
+
+const state = {
+  points: new Map(),
+  pending: new Map(),
+  myIds: new Set(JSON.parse(store.get(KEY_MY, "[]"))),
+  lastFix: null,
+  didInitialFit: false,
+  didFirstFix: false,
+  draftId: null,
+  sheetOpen: false
+};
+
+/* ---------- utilidades ---------- */
+const uuid = () => (crypto.randomUUID ? crypto.randomUUID()
+  : "id-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 10));
+const el = (tag, text, cls) => { const e = document.createElement(tag); if(text != null) e.textContent = text; if(cls) e.className = cls; return e; };
+const num = (v, min, max, dec) => v.toLocaleString("pt-BR", {minimumFractionDigits:min, maximumFractionDigits:max});
+const fmtM = v => v == null || !isFinite(v) ? "—" : v >= 1000 ? num(v/1000, 0, 2) + " km" : num(v, 1, 1) + " m";
+const fmtT = ts => new Date(ts).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"});
+
+/* ---------- geodésia ---------- */
+const R_EARTH = 6371008.8, RAD = Math.PI / 180;
+function haversine(a, b){
+  const dLat = (b.lat - a.lat) * RAD, dLon = (b.lon - a.lon) * RAD;
+  const h = Math.sin(dLat/2)**2 + Math.cos(a.lat*RAD) * Math.cos(b.lat*RAD) * Math.sin(dLon/2)**2;
+  return 2 * R_EARTH * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+const mean = a => a.reduce((s, x) => s + x, 0) / a.length;
+function percentile(sorted, p){
+  if(sorted.length === 1) return sorted[0];
+  const i = (sorted.length - 1) * p, lo = Math.floor(i), hi = Math.ceil(i);
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (i - lo);
+}
+function computeStats(pts){
+  const n = pts.length;
+  if(!n) return null;
+  // Média aritmética das coordenadas: adequada para pontos a poucos metros/quilômetros uns dos outros.
+  const c = {lat: mean(pts.map(p => p.lat)), lon: mean(pts.map(p => p.lon))};
+  const d = pts.map(p => haversine(c, p));
+  const sorted = [...d].sort((a, b) => a - b);
+  let maxD = 0, pair = null;
+  for(let i = 0; i < n; i++) for(let j = i + 1; j < n; j++){
+    const dd = haversine(pts[i], pts[j]);
+    if(dd > maxD){ maxD = dd; pair = [pts[i], pts[j]]; }
+  }
+  const accs = pts.map(p => p.acc).filter(Number.isFinite);
+  return {
+    n, lat: c.lat, lon: c.lon,
+    maxR: sorted[n - 1], maxD, pair,
+    meanD: mean(d), rms: Math.sqrt(mean(d.map(x => x*x))),
+    r50: percentile(sorted, .5), r95: percentile(sorted, .95),
+    acc: accs.length ? mean(accs) : null,
+    distOf: p => haversine(c, p)
+  };
+}
+
+/* =====================================================================
+   MAPA
+   ===================================================================== */
+const map = L.map("map", {maxZoom: 22, worldCopyJump: true}).setView([-14.2, -51.9], 4);
+const osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 22, maxNativeZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+const sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 22, maxNativeZoom: 19, attribution: "Imagens &copy; Esri, Maxar, Earthstar Geographics"
+});
+L.control.layers({"Mapa": osm, "Satélite": sat}, null, {position: "topright"}).addTo(map);
+L.control.scale({imperial: false, position: "bottomleft"}).addTo(map);
+map.createPane("guides").style.zIndex = 380;
+
+const FitControl = L.Control.extend({
+  options: {position: "topleft"},
+  onAdd(){
+    const box = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+    const a = L.DomUtil.create("a", "fit-btn", box);
+    a.href = "#"; a.title = "Enquadrar todos os pontos";
+    a.setAttribute("role", "button"); a.setAttribute("aria-label", "Enquadrar todos os pontos");
+    a.innerHTML = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#17302c" stroke-width="2" stroke-linecap="round"><path d="M2 6V2h4M12 2h4v4M16 12v4h-4M6 16H2v-4"/></svg>';
+    L.DomEvent.on(a, "click", e => { L.DomEvent.stop(e); fitAll(); });
+    return box;
+  }
+});
+new FitControl().addTo(map);
+
+const guides = L.layerGroup().addTo(map);
+const markers = new Map();
+const centroidIcon = L.divIcon({
+  className: "centroid", iconSize: [34, 34], iconAnchor: [17, 17],
+  html: '<svg viewBox="0 0 34 34" width="34" height="34" aria-hidden="true">' +
+        '<g fill="none" stroke-linecap="round"><g stroke="#fff" stroke-width="6.5"><circle cx="17" cy="17" r="9"/><path d="M17 2v9M17 23v9M2 17h9M23 17h9"/></g>' +
+        '<g stroke="#17302c" stroke-width="2.5"><circle cx="17" cy="17" r="9"/><path d="M17 2v9M17 23v9M2 17h9M23 17h9"/></g></g></svg>'
+});
+
+let lastStats = null;
+
+function fitAll(includeFix = true){
+  const pts = [...state.points.values()].map(p => [p.lat, p.lon]);
+  if(includeFix && state.lastFix) pts.push([state.lastFix.lat, state.lastFix.lon]);
+  if(!pts.length) return;
+  const b = L.latLngBounds(pts);
+  if(lastStats && lastStats.n > 1 && $("#showGuides").checked){
+    const dLat = lastStats.maxR / 111320, dLon = lastStats.maxR / (111320 * Math.cos(lastStats.lat * RAD));
+    b.extend([lastStats.lat - dLat, lastStats.lon - dLon]);
+    b.extend([lastStats.lat + dLat, lastStats.lon + dLon]);
+  }
+  const mobile = mq.matches;
+  map.fitBounds(b, {maxZoom: 20, paddingTopLeft: [40, 70], paddingBottomRight: [40, 60 + (mobile ? 140 : 60)]});
+}
+
+/* =====================================================================
+   RENDERIZAÇÃO
+   ===================================================================== */
+function popupEl(p){
+  const box = el("div", null, "pop");
+  box.append(el("b", p.nome));
+  const s = lastStats;
+  box.append(el("div", "Precisão informada: " + (Number.isFinite(p.acc) ? "±" + num(p.acc, 0, 1) + " m" : "—")));
+  if(s) box.append(el("div", "Distância até a média: " + fmtM(s.distOf(p))));
+  box.append(el("div", "Marcado às " + new Date(p.ts).toLocaleTimeString("pt-BR")));
+  box.append(el("div", p.lat.toFixed(6) + ", " + p.lon.toFixed(6)));
+  return box;
+}
+
+function render(){
+  const pts = [...state.points.values()].sort((a, b) => a.ts - b.ts);
+  const s = lastStats = computeStats(pts);
+
+  // marcadores (atualização por diferença, para não piscar a cada consulta)
+  for(const [id, m] of markers) if(!state.points.has(id)){ m.remove(); markers.delete(id); }
+  for(const p of pts){
+    const mine = state.myIds.has(p.id);
+    let m = markers.get(p.id);
+    if(!m){
+      m = L.circleMarker([p.lat, p.lon], {radius: 8, weight: 2, color: "#fff", fillOpacity: .95}).addTo(map);
+      m.bindTooltip(() => el("span", p.nome), {direction: "top", offset: [0, -8]});
+      m.bindPopup(() => popupEl(state.points.get(p.id) || p));
+      markers.set(p.id, m);
+    }
+    m.setStyle({fillColor: mine ? ME : PT, radius: mine ? 9 : 8});
+    if(mine) m.bringToFront();
+  }
+
+  // coordenada média, círculo do raio máximo e diâmetro
+  guides.clearLayers();
+  if(s){
+    guides.addLayer(L.marker([s.lat, s.lon], {icon: centroidIcon, keyboard: false, zIndexOffset: 500})
+      .bindTooltip(() => el("span", "Coordenada média"), {direction: "top", offset: [0, -16]}));
+    if($("#showGuides").checked && s.n > 1){
+      guides.addLayer(L.circle([s.lat, s.lon], {pane: "guides", radius: s.maxR, color: INK, weight: 1.5,
+        dashArray: "6 6", fillColor: INK, fillOpacity: .05, interactive: false}));
+      guides.addLayer(L.polyline(s.pair.map(p => [p.lat, p.lon]), {pane: "guides", color: INK, weight: 2, opacity: .85})
+        .bindTooltip(() => el("span", fmtM(s.maxD)), {permanent: true, direction: "center", className: "dist-tip"}));
+    }
+  }
+
+  // painel
+  const has = !!s;
+  $("#emptyMsg").hidden = has;
+  $("#statsBox").hidden = !has;
+  $("#listSection").hidden = !has;
+  if(has){
+    $("#sN").textContent = s.n;
+    $("#sLat").textContent = s.lat.toFixed(6);
+    $("#sLon").textContent = s.lon.toFixed(6);
+    $("#sMaxD").textContent = s.n > 1 ? fmtM(s.maxD) : "—";
+    $("#sMaxR").textContent = s.n > 1 ? fmtM(s.maxR) : "—";
+    $("#sMeanD").textContent = fmtM(s.meanD);
+    $("#sRms").textContent = fmtM(s.rms);
+    $("#sR50").textContent = fmtM(s.r50);
+    $("#sR95").textContent = fmtM(s.r95);
+    $("#sAcc").textContent = s.acc == null ? "—" : "±" + num(s.acc, 0, 1) + " m";
+    $("#peekText").textContent = s.n + (s.n === 1 ? " ponto" : " pontos") + (s.n > 1 ? " · raio máx. " + fmtM(s.maxR) : "");
+  } else {
+    $("#peekText").textContent = "Nenhum ponto marcado ainda";
+  }
+
+  const ul = $("#plist");
+  ul.replaceChildren();
+  for(const p of [...pts].reverse()){
+    const mine = state.myIds.has(p.id);
+    const li = el("li"), b = el("button"); b.type = "button";
+    b.append(el("span", null, "dot" + (mine ? " me" : "")));
+    const mid = el("span");
+    mid.append(el("div", p.nome + (mine ? " (você)" : ""), "pname"));
+    mid.append(el("div", fmtT(p.ts) + (Number.isFinite(p.acc) ? " · ±" + num(p.acc, 0, 1) + " m" : ""), "psub"));
+    b.append(mid, el("span", fmtM(s.distOf(p)), "pdist"));
+    b.title = "Distância até a coordenada média";
+    b.addEventListener("click", () => {
+      map.flyTo([p.lat, p.lon], Math.max(map.getZoom(), 19));
+      const m = markers.get(p.id); if(m) setTimeout(() => m.openPopup(), 400);
+      if(mq.matches) setSheet(false);
+    });
+    li.append(b); ul.append(li);
+  }
+}
+$("#showGuides").addEventListener("change", render);
+
+/* =====================================================================
+   COMUNICAÇÃO COM OS DADOS (planilha ou modo local)
+   ===================================================================== */
+const remote = {
+  async list(){
+    const r = await fetch(CONFIG.SCRIPT_URL + (CONFIG.SCRIPT_URL.includes("?") ? "&" : "?") + "action=list&_=" + Date.now(), {cache: "no-store"});
+    const j = await r.json();
+    if(!j.ok) throw new Error(j.error || "Erro na planilha");
+    return j.rows;
+  },
+  async add(row){
+    // text/plain evita a requisição de pré-verificação (CORS) que o Apps Script não responde
+    const r = await fetch(CONFIG.SCRIPT_URL, {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(row)});
+    const j = await r.json();
+    if(!j.ok) throw new Error(j.error || "Erro na planilha");
+  }
+};
+const local = {
+  read(){ try{ return JSON.parse(store.get(KEY_DEMO, "[]")); }catch(_){ return []; } },
+  async list(){ return this.read(); },
+  async add(row){ const a = this.read(); a.push(row); store.set(KEY_DEMO, JSON.stringify(a)); },
+  addMany(rows){ store.set(KEY_DEMO, JSON.stringify(this.read().concat(rows))); },
+  clear(){ store.set(KEY_DEMO, "[]"); }
+};
+const KEY_TEST = "gpsclass_test_points_v1";
+const testStore = {
+  read(){ try{ return JSON.parse(store.get(KEY_TEST, "[]")); }catch(_){ return []; } },
+  add(rows){ store.set(KEY_TEST, JSON.stringify(this.read().concat(rows))); },
+  clear(){ store.set(KEY_TEST, "[]"); }
+};
+const backend = DEMO ? local : remote;
+
+function normalize(r){
+  const lat = Number(r.lat), lon = Number(r.lon);
+  if(!isFinite(lat) || !isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) return null;
+  const ts = typeof r.ts === "number" ? r.ts : Date.parse(r.ts);
+  const acc = r.acc === "" || r.acc == null ? NaN : Number(r.acc);
+  return {id: String(r.id), nome: String(r.nome || "Sem nome").slice(0, 60), lat, lon, acc, ts: isFinite(ts) ? ts : Date.now()};
+}
+
+function ingest(rows){
+  const next = new Map();
+  for(const r of rows){ const p = normalize(r); if(p) next.set(p.id, p); }
+  if(CONFIG.TESTER) for(const r of testStore.read()){ const p = normalize(r); if(p) next.set(p.id, p); }
+  for(const id of [...state.pending.keys()]) if(next.has(id)) state.pending.delete(id);
+  for(const [id, p] of state.pending) next.set(id, p);
+  state.points = next;
+  render();
+  if(!state.didInitialFit && next.size){ state.didInitialFit = true; fitAll(); }
+}
+
+let refreshing = false, pollTimer = null;
+async function refresh(){
+  if(refreshing) return;
+  refreshing = true;
+  try{
+    state.lastRows = await backend.list();
+    ingest(state.lastRows);
+    setSync(null);
+  }catch(err){
+    setSync(err);
+  }finally{ refreshing = false; }
+}
+function setSync(err){
+  const t = $("#syncText");
+  t.classList.toggle("err", !!err);
+  t.textContent = err
+    ? "Sem conexão com a planilha. Tentando de novo…"
+    : (DEMO ? "Modo de teste local. " : "") + "Atualizado às " + new Date().toLocaleTimeString("pt-BR");
+}
+function schedule(){
+  clearTimeout(pollTimer);
+  pollTimer = setTimeout(async () => { if(!document.hidden) await refresh(); schedule(); }, CONFIG.POLL_MS);
+}
+document.addEventListener("visibilitychange", () => { if(!document.hidden) refresh(); });
+window.addEventListener("storage", e => { if(e.key === KEY_DEMO || e.key === KEY_TEST) refresh(); });
+
+/* =====================================================================
+   GPS E JANELA DO NOME
+   ===================================================================== */
+const getPosition = opts => new Promise((res, rej) => {
+  if(!("geolocation" in navigator)) return rej({code: 0});
+  navigator.geolocation.getCurrentPosition(res, rej, opts);
+});
+const toFix = pos => ({lat: pos.coords.latitude, lon: pos.coords.longitude, acc: pos.coords.accuracy, time: pos.timestamp});
+function geoMessage(err){
+  if(!window.isSecureContext) return "O navegador só libera o GPS em páginas seguras (HTTPS ou localhost).";
+  switch(err && err.code){
+    case 1: return "O acesso à localização foi negado. Libere-o nas configurações do navegador e toque em Marcar minha posição.";
+    case 2: return "Não foi possível obter a posição agora. Confira se o GPS do aparelho está ligado e toque em Marcar minha posição.";
+    case 3: return "A busca pela posição demorou demais. Toque em Marcar minha posição para tentar de novo.";
+    default: return "Este navegador não oferece acesso à localização.";
+  }
+}
+
+let noticeTimer;
+function setNotice(msg, tone = "info", ms = 0){
+  const n = $("#notice");
+  clearTimeout(noticeTimer);
+  if(!msg){ n.hidden = true; return; }
+  n.textContent = msg;
+  n.className = "notice" + (tone === "warn" ? " warn" : "");
+  n.hidden = false;
+  if(ms) noticeTimer = setTimeout(() => { n.hidden = true; }, ms);
+}
+
+const dlg = $("#nameDialog"), nameInput = $("#nameInput"), okBtn = $("#dlgOk");
+
+function openDialog(){
+  if(!state.draftId) state.draftId = uuid();
+  const f = state.lastFix;
+  $("#dlgFix").textContent = "Localização liberada" + (f && Number.isFinite(f.acc) ? " (precisão estimada ±" + num(f.acc, 0, 0) + " m)." : ".") + " Digite seu nome e toque em OK para marcar o ponto.";
+  $("#dlgErr").hidden = true;
+  okBtn.disabled = false; okBtn.textContent = "OK";
+  nameInput.value = store.get(KEY_NAME, "");
+  if(!dlg.open) dlg.showModal();
+  nameInput.focus(); nameInput.select();
+}
+
+async function askLocation(){
+  const btn = $("#markBtn");
+  btn.disabled = true; btn.textContent = "Obtendo posição…";
+  setNotice("Aguardando a permissão de localização…");
+  try{
+    state.lastFix = toFix(await getPosition({enableHighAccuracy: true, timeout: 30000, maximumAge: 0}));
+    setNotice(null);
+    if(!state.didFirstFix){
+      state.didFirstFix = true;
+      if(state.points.size) fitAll(); else map.setView([state.lastFix.lat, state.lastFix.lon], 19);
+    }
+    openDialog();
+  }catch(err){
+    setNotice(geoMessage(err), "warn");
+  }finally{
+    btn.disabled = false; btn.textContent = "Marcar minha posição";
+  }
+}
+$("#markBtn").addEventListener("click", askLocation);
+$("#dlgCancel").addEventListener("click", () => dlg.close());
+
+$("#nameForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const nome = nameInput.value.trim();
+  if(!nome){ nameInput.focus(); return; }
+  okBtn.disabled = true; okBtn.textContent = "Obtendo posição…";
+  $("#dlgErr").hidden = true;
+
+  // a coordenada é capturada agora, no momento do OK
+  let fix;
+  try{ fix = toFix(await getPosition({enableHighAccuracy: true, timeout: 20000, maximumAge: 0})); state.lastFix = fix; }
+  catch(_){ fix = state.lastFix; }
+  if(!fix){ okBtn.disabled = false; okBtn.textContent = "OK"; $("#dlgErr").textContent = "Não foi possível obter a posição. Toque em OK para tentar de novo."; $("#dlgErr").hidden = false; return; }
+
+  const row = {id: state.draftId, nome, lat: fix.lat, lon: fix.lon, acc: Number.isFinite(fix.acc) ? fix.acc : null, ts: fix.time || Date.now()};
+  okBtn.textContent = "Enviando…";
+  try{
+    await backend.add(row);
+  }catch(err){
+    okBtn.disabled = false; okBtn.textContent = "OK";
+    $("#dlgErr").textContent = "Não foi possível enviar o ponto. Confira a conexão e toque em OK de novo.";
+    $("#dlgErr").hidden = false;
+    return;
+  }
+  store.set(KEY_NAME, nome);
+  state.myIds.add(row.id); store.set(KEY_MY, JSON.stringify([...state.myIds]));
+  const p = normalize(row); state.pending.set(p.id, p); state.points.set(p.id, p);
+  state.draftId = null;
+  dlg.close();
+  render();
+  fitAll();
+  setNotice("Ponto marcado" + (Number.isFinite(p.acc) ? " (precisão informada ±" + num(p.acc, 0, 1) + " m)." : "."), "info", 5000);
+});
+
+/* =====================================================================
+   DOWNLOAD
+   ===================================================================== */
+function tableRows(){
+  const pts = [...state.points.values()].sort((a, b) => a.ts - b.ts);
+  const s = computeStats(pts);
+  return {pts, s, rows: pts.map(p => ({
+    nome: p.nome, lat: p.lat, lon: p.lon,
+    acc: Number.isFinite(p.acc) ? p.acc : "",
+    dist: +s.distOf(p).toFixed(2), ts: new Date(p.ts)
+  }))};
+}
+const stamp = () => { const d = new Date(), z = n => String(n).padStart(2, "0"); return d.getFullYear() + "-" + z(d.getMonth()+1) + "-" + z(d.getDate()); };
+function saveBlob(blob, name){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+function downloadCsv(){
+  const {rows} = state.points.size ? tableRows() : {rows: []};
+  if(!rows.length){ setNotice("Ainda não há pontos para baixar.", "warn", 4000); return; }
+  const q = v => { let t = String(v); if(/^[=+\-@\t\r]/.test(t)) t = "'" + t; return '"' + t.replace(/"/g, '""') + '"'; };
+  const lines = [["nome", "latitude", "longitude", "precisao_m", "distancia_ate_media_m", "data_hora_utc"].join(",")];
+  for(const r of rows) lines.push([q(r.nome), r.lat.toFixed(7), r.lon.toFixed(7), r.acc === "" ? "" : r.acc, r.dist, r.ts.toISOString()].join(","));
+  saveBlob(new Blob(["\ufeff" + lines.join("\r\n")], {type: "text/csv;charset=utf-8"}), "gps-turma-" + stamp() + ".csv");
+}
+function downloadXlsx(){
+  if(!state.points.size){ setNotice("Ainda não há pontos para baixar.", "warn", 4000); return; }
+  if(!window.XLSX){ setNotice("Não foi possível carregar o gerador de .xlsx. Baixando em .csv.", "warn", 5000); downloadCsv(); return; }
+  const {rows, s} = tableRows();
+  const data = rows.map(r => ({
+    "Nome": r.nome, "Latitude": r.lat, "Longitude": r.lon,
+    "Precisão informada (m)": r.acc, "Distância até a coordenada média (m)": r.dist, "Data e hora": r.ts
+  }));
+  const ws = XLSX.utils.json_to_sheet(data, {cellDates: true});
+  ws["!cols"] = [{wch: 22}, {wch: 13}, {wch: 13}, {wch: 20}, {wch: 34}, {wch: 20}];
+  rows.forEach((_, i) => {
+    const r = i + 2;
+    if(ws["B" + r]) ws["B" + r].z = "0.000000";
+    if(ws["C" + r]) ws["C" + r].z = "0.000000";
+    if(ws["F" + r]) ws["F" + r].z = "dd/mm/yyyy hh:mm:ss";
+  });
+  const sum = XLSX.utils.aoa_to_sheet([
+    ["Indicador", "Valor"],
+    ["Número de pontos", s.n],
+    ["Latitude média", +s.lat.toFixed(7)],
+    ["Longitude média", +s.lon.toFixed(7)],
+    ["Distância máxima entre dois pontos (m)", +s.maxD.toFixed(2)],
+    ["Raio máximo a partir da coordenada média (m)", +s.maxR.toFixed(2)],
+    ["Distância média até a coordenada média (m)", +s.meanD.toFixed(2)],
+    ["Erro quadrático médio, RMS (m)", +s.rms.toFixed(2)],
+    ["Metade dos pontos está a até (m)", +s.r50.toFixed(2)],
+    ["95% dos pontos estão a até (m)", +s.r95.toFixed(2)],
+    ["Precisão média informada pelos aparelhos (m)", s.acc == null ? "" : +s.acc.toFixed(2)]
+  ]);
+  sum["!cols"] = [{wch: 46}, {wch: 16}];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Pontos");
+  XLSX.utils.book_append_sheet(wb, sum, "Resumo");
+  XLSX.writeFile(wb, "gps-turma-" + stamp() + ".xlsx");
+}
+$("#dlXlsx").addEventListener("click", downloadXlsx);
+$("#dlCsv").addEventListener("click", downloadCsv);
+
+/* =====================================================================
+   PAINEL NO CELULAR
+   ===================================================================== */
+const mq = window.matchMedia("(max-width: 820px)");
+function syncInert(){ $("#panelBody").inert = mq.matches && !state.sheetOpen; }
+function setSheet(open){
+  state.sheetOpen = open;
+  $("#panel").classList.toggle("open", open);
+  $("#sheetToggle").setAttribute("aria-expanded", String(open));
+  syncInert();
+}
+$("#sheetToggle").addEventListener("click", () => setSheet(!state.sheetOpen));
+map.on("click", () => { if(mq.matches && state.sheetOpen) setSheet(false); });
+mq.addEventListener("change", () => { syncInert(); map.invalidateSize(); });
+window.addEventListener("resize", () => map.invalidateSize());
+
+/* =====================================================================
+   MODO DE TESTE LOCAL
+   ===================================================================== */
+if(CONFIG.TESTER){
+  $("#demoBox").hidden = false;
+  const names = ["Ana","Bruno","Carla","Diego","Elisa","Fábio","Gabi","Hugo","Iara","João","Késia","Léo","Marina","Nuno","Olívia","Pedro"];
+  const gauss = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random());
+  $("#demoGen").addEventListener("click", () => {
+    const c = state.lastFix || (() => { const m = map.getCenter(); return {lat: m.lat, lon: m.lng}; })();
+    const now = Date.now();
+    testStore.add(Array.from({length: 15}, (_, i) => {
+      const dy = gauss() * 5, dx = gauss() * 5;
+      return {id: "teste-" + uuid(), nome: names[i % names.length] + " (teste)", lat: c.lat + dy / 111320,
+              lon: c.lon + dx / (111320 * Math.cos(c.lat * RAD)), acc: +(3 + Math.random() * 17).toFixed(1), ts: now - Math.floor(Math.random() * 600000)};
+    }));
+    state.didInitialFit = false;
+    ingest(state.lastRows || []);
+  });
+  $("#demoClear").addEventListener("click", () => { testStore.clear(); ingest(state.lastRows || []); });
+  if(DEMO){
+    $("#demoClearAll").hidden = false;
+    $("#demoClearAll").addEventListener("click", () => {
+      local.clear(); testStore.clear(); state.lastRows = []; state.pending.clear();
+      state.myIds.clear(); store.set(KEY_MY, "[]");
+      state.didInitialFit = false; ingest([]);
+    });
+  }
+}
+if(CONFIG.SHEET_URL){ $("#sheetLink").hidden = false; $("#sheetA").href = CONFIG.SHEET_URL; }
+
+/* =====================================================================
+   INÍCIO
+   ===================================================================== */
+syncInert();
+render();
+refresh().then(schedule);
+askLocation();   // pede a permissão de GPS assim que o mapa aparece
+</script>
+</body>
+</html>
