@@ -2,7 +2,7 @@
 window.APP_CONFIG = {
   // URL do Apps Script (termina em /exec), entre as aspas.
   // Vazio = modo local (os pontos ficam só neste navegador).
-  SCRIPT_URL: "",
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxKXAmzUagrZVVobmM6lZJzyw9ynQbV8kisumhYaxMG3ygE0LXzCCNyKiPuHs8oa1E5wQ/exec",
 
   // Opcional: link da Planilha Google, para o botão "Abrir no Google Planilhas".
   SHEET_URL: "",
