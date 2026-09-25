@@ -1,0 +1,72 @@
+{
+  "_help": "Add press items Google News misses under 'add'. Put a title (or URL) under 'hide' to remove an item from the site.",
+  "add": [
+    {
+      "date": "2026-03-06",
+      "title": "Um quarto da expansão urbana no Brasil avança sobre áreas com mais risco de faltar água",
+      "source": "Folhapress (via Acessa.com)",
+      "url": "https://www.acessa.com/noticias/2026/03/313830-um-quarto-da-expansao-urbana-no-brasil-avanca-sobre-areas-com-mais-risco-de-faltar-agua.html"
+    },
+    {
+      "date": "2026-03-04",
+      "title": "Área ocupada por favelas quase triplicou em 40 anos no Brasil",
+      "source": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/meio-ambiente/noticia/2026-03/area-ocupada-por-favelas-quase-triplicou-em-40-anos-no-brasil"
+    },
+    {
+      "date": "2026-03-04",
+      "title": "Area occupied by favelas in Brazil almost tripled in 40 years",
+      "source": "Agência Brasil (English)",
+      "url": "https://agenciabrasil.ebc.com.br/en/meio-ambiente/noticia/2026-03/area-occupied-favelas-brazil-almost-tripled-40-years"
+    },
+    {
+      "date": "2026-03-04",
+      "title": "Área de favelas no Brasil triplica em 40 anos, aponta estudo",
+      "source": "Jornal de Brasília",
+      "url": "https://jornaldebrasilia.com.br/noticias/brasil/area-de-favelas-no-brasil-triplica-em-40-anos-aponta-estudo/"
+    },
+    {
+      "date": "2026-03-04",
+      "title": "Brasil triplica ocupação urbana em áreas com risco de deslizamentos, aponta Mapbiomas",
+      "source": "Exame",
+      "url": "https://exame.com/esg/brasil-triplica-ocupacao-urbana-em-areas-com-risco-de-deslizamentos-aponta-mapbiomas/"
+    },
+    {
+      "date": "2024-11-11",
+      "title": "Cidades brasileiras crescem mais em encostas e áreas de risco",
+      "source": "ClimaInfo (via IHU Unisinos)",
+      "url": "https://www.ihu.unisinos.br/categorias/645876-cidades-brasileiras-crescem-mais-em-encostas-e-areas-de-risco"
+    },
+    {
+      "date": "2024-11-08",
+      "title": "Urbanização em áreas de risco de deslizamento triplicou nos últimos 38 anos no Brasil",
+      "source": "Agência Pública",
+      "url": "https://apublica.org/nota/urbanizacao-em-areas-de-risco-para-deslizamento-triplicou-nos-ultimos-38-anos-no-brasil/"
+    },
+    {
+      "date": "2024-07-20",
+      "title": "MapBiomas: Apenas 6,9% das áreas urbanas do país são cobertas por vegetação",
+      "source": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/nacional/mapbiomas-apenas-69-das-areas-urbanas-do-pais-sao-cobertas-por-vegetacao/"
+    },
+    {
+      "date": "2024-07-19",
+      "title": "Só 6,9% das áreas urbanas do país são cobertas por vegetação",
+      "source": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2024-07/so-69-das-areas-urbanas-do-pais-sao-cobertas-por-vegetacao"
+    },
+    {
+      "date": "2021-11-05",
+      "title": "Favelas brasileiras cresceram o equivalente a 95 mil campos de futebol nos últimos 36 anos",
+      "source": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2021/11/05/favelas-brasileiras-cresceram-o-equivalente-a-95-mil-campos-de-futebol-nos-ultimos-36-anos/"
+    },
+    {
+      "date": "2021-11-05",
+      "title": "Projeto MapBiomas apresenta os resultados do mapeamento de áreas urbanizadas no Brasil",
+      "source": "Portal USP São Carlos",
+      "url": "https://saocarlos.usp.br/projeto-mapbiomas-apresenta-os-resultados-do-mapeamento-de-areas-urbanizadas-no-brasil/"
+    }
+  ],
+  "hide": []
+}

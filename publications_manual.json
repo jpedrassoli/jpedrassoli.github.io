@@ -1,0 +1,5 @@
+{
+  "_help": "Add publications missing from ORCID/OpenAlex under 'add' (same fields as publications.json). Put a title or DOI under 'hide' to remove a wrong match.",
+  "add": [],
+  "hide": []
+}
