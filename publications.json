@@ -1,0 +1,664 @@
+{
+  "updated": "2026-09-25T19:36:44+00:00",
+  "source": "OpenAlex/ORCID 0000-0001-9762-102X",
+  "items": [
+    {
+      "year": 2026,
+      "title": "User and data-centric artificial intelligence for mapping and benchmarking urban deprivation for a global sample of cities",
+      "authors": [
+        "Bedru Tareke",
+        "Paulo Silva Filho",
+        "Claudio Persello",
+        "Monika Kuffer",
+        "Raian Vargas Maretto",
+        "Jon Wang",
+        "Ángela Abascal",
+        "Priam Pillai",
+        "Binti Singh",
+        "Juan Manuel D’Attoli",
+        "Caroline W. Kabaria",
+        "Julio Cesar Pedrassoli",
+        "Patrícia Lustosa Brito",
+        "Peter Elias",
+        "Elio Atenógenes",
+        "Andrea Ramírez Santiago",
+        "Jati Pratomo",
+        "Wahyu Mulyana",
+        "Marc Paganini",
+        "Dana R. Thomson",
+        "Dennis Mwaniki",
+        "Juan  Pablo Ospina"
+      ],
+      "venue": "Remote Sensing of Environment",
+      "doi": "https://doi.org/10.1016/j.rse.2026.115272",
+      "url": "https://doi.org/10.1016/j.rse.2026.115272",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2026,
+      "title": "The State of Brazilian Favelas: Infrastructural Regimes and Urban Inequality",
+      "authors": [
+        "João Paulo Rodrigues da Silva",
+        "João Porto de Albuquerque",
+        "Júlio César Pedrassoli",
+        "Gabriel Spadon",
+        "Jose Fernando Rodrigues Junior"
+      ],
+      "venue": "Research Square",
+      "doi": "https://doi.org/10.21203/rs.3.rs-9807561/v1",
+      "url": "https://doi.org/10.21203/rs.3.rs-9807561/v1",
+      "type": "preprint",
+      "oa": true
+    },
+    {
+      "year": 2026,
+      "title": "ADMINISTRAÇÃO POLÍTICA DO AGRONEGÓCIO BRASILEIRO: CAMINHOS PARA O DESENVOLVIMENTO SUSTENTÁVEL",
+      "authors": [
+        "Paula Cristina Pedroso Moi",
+        "Alecxander Marcelo da Costa",
+        "Gisele Pedroso Moi",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Revista Tópicos.",
+      "doi": "https://doi.org/10.70773/revistatopicos/782265599",
+      "url": "https://doi.org/10.70773/revistatopicos/782265599",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "A New Spectral Index for Mapping Water Surfaces in Urban Contexts",
+      "authors": [
+        "Eduardo Felix Justiniano",
+        "Fernando Shinjí Kawakubo",
+        "Edimilson Rodrigues dos Santos",
+        "Breno Malheiros de Melo",
+        "Gustavo Paixão Menezes",
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Marcos Roberto Martines",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+      "doi": "https://doi.org/10.1109/jstars.2025.3562089",
+      "url": "https://doi.org/10.1109/jstars.2025.3562089",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Innovative Data Solutions for Inclusive Cities: The IDEAtlas User Portal",
+      "authors": [
+        "Bedru Tareke",
+        "Paulo Silva Filho",
+        "Claudio Persello",
+        "Monika Kuffer",
+        "Raian Vargas Maretto",
+        "Jiong Wang",
+        "Ángela Abascal",
+        "Priam Pillai",
+        "Binti Singh",
+        "Juan Manuel D’Attoli",
+        "Caroline W. Kabaria",
+        "Júlio César Pedrassoli",
+        "Patrícia Lustosa Brito",
+        "Peter Eliaš",
+        "Elio Villaseñor",
+        "Andrea Ramírez Santiago",
+        "Wahyu Mulyana",
+        "Jati Pratomo",
+        "Ruth Leska",
+        "Jan Streitenberger",
+        "Dennis Mwaniki",
+        "Dana R. Thomson"
+      ],
+      "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+      "doi": "https://doi.org/10.5194/isprs-archives-xlviii-m-7-2025-237-2025",
+      "url": "https://doi.org/10.5194/isprs-archives-xlviii-m-7-2025-237-2025",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Towards a Spatial Measure of SDG 11.1.1: Open Data for Urban Deprivation Mapping",
+      "authors": [
+        "Sai Ganesh Veeravalli",
+        "Florencio Campomanes",
+        "Sebastian Häfner",
+        "Stefanos Georganos",
+        "Monika Kuffer",
+        "John W. Friesen",
+        "Dana R. Thomson",
+        "Robert Peter Ndugwa",
+        "Dennis Mwaniki",
+        "Ángela Abascal",
+        "Peter Elias",
+        "Tobi Eniolu Morakinyo",
+        "Júlio César Pedrassoli",
+        "Gabriel de Oliveira",
+        "Anthony Boanada-Fuchs",
+        "Boris Zerjav",
+        "Juan Manuel D’Attoli"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.1109/jurse60372.2025.11076033",
+      "url": "https://doi.org/10.1109/jurse60372.2025.11076033",
+      "type": "conference-paper",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Spatiotemporal Dynamics of Informal Settlements Across Argentine Cities: A National-Scale Analysis",
+      "authors": [
+        "José Manuel Comas Samper",
+        "Júlio César Pedrassoli",
+        "Malena Jaramillo Espinosa",
+        "Juan Manuel D’Attoli",
+        "Anthony Boanada-Fuchs",
+        "Monika Kuffer"
+      ],
+      "venue": "SSRN Electronic Journal",
+      "doi": "https://doi.org/10.2139/ssrn.5588589",
+      "url": "https://doi.org/10.2139/ssrn.5588589",
+      "type": "preprint",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Increasing food insecurity vulnerability in urban slums contrasts with regional improvements across the SãoPaulo Metropolitan Region, Brazil",
+      "authors": [
+        "Joice Genaro Gomes",
+        "Sílvia Helena Galvão de Miranda",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Research Square",
+      "doi": "https://doi.org/10.21203/rs.3.rs-6784990/v1",
+      "url": "https://doi.org/10.21203/rs.3.rs-6784990/v1",
+      "type": "preprint",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Measuring change and location of informal settlements at a national level: The Argentinian case",
+      "authors": [
+        "José Manuel Comas Samper",
+        "Júlio César Pedrassoli",
+        "Anthony Boanada-Fuchs",
+        "Monika Kuffer",
+        "Malena Jaramillo Espinosa",
+        "Juan Manuel D’Attoli"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.1109/jurse60372.2025.11076027",
+      "url": "https://doi.org/10.1109/jurse60372.2025.11076027",
+      "type": "conference-paper",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Increasing food insecurity vulnerability in urban slums contrasts with regional improvements across the São Paulo Metropolitan Region, Brazil",
+      "authors": [
+        "Joice Genaro Gomes",
+        "Sílvia Helena Galvão de Miranda",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Discover Sustainability",
+      "doi": "https://doi.org/10.1007/s43621-025-02296-1",
+      "url": "https://doi.org/10.1007/s43621-025-02296-1",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2024,
+      "title": "Extension and variability of impervious surface area revealed by nighttime light imagery",
+      "authors": [
+        "Fernando Shinjí Kawakubo",
+        "Guilherme Mataveli",
+        "Eduardo Felix Justiniano",
+        "João Vitor Roque Guerrero",
+        "Breno Malheiros de Melo",
+        "E. R. dos Santos Júnior",
+        "Renato Marinho",
+        "Marcos Roberto Martines",
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "International Journal of Environmental Science and Technology",
+      "doi": "https://doi.org/10.1007/s13762-024-06038-0",
+      "url": "https://doi.org/10.1007/s13762-024-06038-0",
+      "type": "article",
+      "oa": false
+    },
+    {
+      "year": 2024,
+      "title": "Cartographic Resources for Equitable University–Community Interaction in Slum Areas",
+      "authors": [
+        "Marbrisa N. R. das Virgens",
+        "Patrícia Lustosa Brito",
+        "Ricardo Lustosa",
+        "Júlio César Pedrassoli",
+        "Philipp Ulbrich",
+        "João Porto de Albuquerque",
+        "Marcos Rodrigo Maciel Ferreira",
+        "Fernando G. Severo",
+        "Alessandra da S. Figueiredo",
+        "Marcel Fantin",
+        "Hussein Khalil",
+        "Federico Costa"
+      ],
+      "venue": "Urban Science",
+      "doi": "https://doi.org/10.3390/urbansci8010020",
+      "url": "https://doi.org/10.3390/urbansci8010020",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2024,
+      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
+      "authors": [
+        "Júlio César Pedrassoli",
+        "Joice Genaro Gomes",
+        "Breno Malheiros de Melo",
+        "Edmilson Rodrigues dos Santos",
+        "Eduardo Felix Justiniano",
+        "Fernando Shinjí Kawakubo",
+        "Marcel Fantin",
+        "Marcos Roberto Martines",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "Remote sensing and digital image processing",
+      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "type": "book-chapter",
+      "oa": false
+    },
+    {
+      "year": 2023,
+      "title": "Capturing deprived areas using unsupervised machine learning and open data: a case study in São Paulo, Brazil",
+      "authors": [
+        "Lorraine Trento Oliveira",
+        "Monika Kuffer",
+        "Nina Schwarz",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "European Journal of Remote Sensing",
+      "doi": "https://doi.org/10.1080/22797254.2023.2214690",
+      "url": "https://doi.org/10.1080/22797254.2023.2214690",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2023,
+      "title": "Potentialities and challenges of land regularization in favelas and informal settlements: Exploring the use of unmanned aerial vehicles (UAVS)",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "William Nelli Zaratine",
+        "Ivan Langone Francioni Coelho",
+        "Breno Malheiros de Melo"
+      ],
+      "venue": "Seven Editora eBooks",
+      "doi": "https://doi.org/10.56238/connexpemultidisdevolpfut-028",
+      "url": "https://doi.org/10.56238/connexpemultidisdevolpfut-028",
+      "type": "book-chapter",
+      "oa": true
+    },
+    {
+      "year": 2023,
+      "title": "ANÁLISE CRÍTICA DAS CONSEQUÊNCIAS DA APROVAÇÃO DOS PROJETOS DE LEI FEDERAL 3.682/2012 E 571/2022: PREVISÃO DE RISCOS E IMPACTOS FUTUROS PARA AS UNIDADES DE CONSERVAÇÃO",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Ademir Fernando Morelli"
+      ],
+      "venue": "Editora Científica Digital eBooks",
+      "doi": "https://doi.org/10.37885/230713635",
+      "url": "https://doi.org/10.37885/230713635",
+      "type": "book-chapter",
+      "oa": true
+    },
+    {
+      "year": 2023,
+      "title": "Risco dos bairros de Salvador ao espalhamento da COVID-19 decorrente da circulação de pessoas e condições socioeconômicas",
+      "authors": [
+        "Patrícia Lustosa Brito",
+        "Jorge Ubirajara Pedreira",
+        "Vivian de Oliveira Fernandes",
+        "Marcella Sgura Viana",
+        "Júlio César Pedrassoli",
+        "Juan Moreno Delgado",
+        "Juan Moreno Delgado"
+      ],
+      "venue": "Revista Brasileira de Geomática",
+      "doi": "https://doi.org/10.3895/rbgeo.v11n2.16221",
+      "url": "https://doi.org/10.3895/rbgeo.v11n2.16221",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2023,
+      "title": "POTENCIALIDADES E LIMITAÇÕES DOS DADOS DE WEB SCRAPING PARA O MAPEAMENTO DOS PREÇOS DOS IMÓVEIS URBANOS",
+      "authors": [
+        "Thaís Góes de Souza",
+        "Vivian de Oliveira Fernandes",
+        "Júlio César Pedrassoli",
+        "Fernanda Doracy Rocha Fonseca"
+      ],
+      "venue": "Caminhos de Geografia",
+      "doi": "https://doi.org/10.14393/rcg249668395",
+      "url": "https://doi.org/10.14393/rcg249668395",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Proposal for an index of roads and structures for the mapping of non-vegetated urban surfaces using OSM and Sentinel-2 data",
+      "authors": [
+        "Eduardo Felix Justiniano",
+        "Edimilson Rodrigues dos Santos",
+        "Breno Malheiros de Melo",
+        "João Victor Nascimento Siqueira",
+        "Rúbia Gomes Morato",
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Marcos Roberto Martines",
+        "Fernando Shinjí Kawakubo"
+      ],
+      "venue": "International Journal of Applied Earth Observation and Geoinformation",
+      "doi": "https://doi.org/10.1016/j.jag.2022.102791",
+      "url": "https://doi.org/10.1016/j.jag.2022.102791",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Inteligência geográfica na construção de políticas públicas: rumo à plataforma de monitoramento de áreas verdes urbanas do Estado de São Paulo",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Breno Malheiros de Melo",
+        "Gustavo Paixão Menezes",
+        "Marcos Roberto Martines"
+      ],
+      "venue": "Interações (Campo Grande)",
+      "doi": "https://doi.org/10.20435/inter.v23i3.3533",
+      "url": "https://doi.org/10.20435/inter.v23i3.3533",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Proposal for an index of roads and structures for the mapping of non-vegetated urban surfaces using OSM and Sentinel data",
+      "authors": [
+        "Eduardo Felix Justiniano",
+        "Edimilson Santos",
+        "Breno Melo",
+        "João Marcos de Siqueira",
+        "Rúbia Gomes Morato",
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Marcos Roberto Martines",
+        "Fernando Shinjí Kawakubo"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.31223/x53s6j",
+      "url": "https://doi.org/10.31223/x53s6j",
+      "type": "preprint",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Detecção de mudanças a partir de imagens Landsat na Esec Raso da Catarina / Detection of changes from Landsat images in Esec Catarina Raso",
+      "authors": [
+        "Uldérico Rios Oliveira",
+        "Patrícia Lustosa Brito",
+        "Mauro José Alixandrini Júnior",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Brazilian Journal of Development",
+      "doi": "https://doi.org/10.34117/bjdv7n12-762",
+      "url": "https://doi.org/10.34117/bjdv7n12-762",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Geographical intelligence in the implementaton of public policies: towards a monitoring platorm of urban green areas in the State of São Paulo",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Breno Malheiros de Melo",
+        "Gustavo Paixão Menezes",
+        "Marcos Roberto Martines"
+      ],
+      "venue": "Figshare",
+      "doi": "https://doi.org/10.6084/m9.figshare.21744032",
+      "url": "https://doi.org/10.6084/m9.figshare.21744032",
+      "type": "dataset",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "QUALISalvador: qualidade do ambiente urbano na cidade da Bahia",
+      "authors": [
+        "Elisabete Santos",
+        "Tânia Moura Benevides",
+        "Patrícia Campos Borja",
+        "Luiz Roberto Santos Moraes",
+        "Nilce de Oliveira",
+        "Júlio César Pedrassoli",
+        "Joilson Souza",
+        "Cíntia Mendes Gama",
+        "Fátima Fróes"
+      ],
+      "venue": "",
+      "doi": "",
+      "url": "https://repositorio.ufba.br/ri/bitstream/ri/34177/1/a-qualidade-do-ambiente-urbano-DIGITAL%20%282%29.pdf",
+      "type": "article",
+      "oa": false
+    },
+    {
+      "year": 2021,
+      "title": "Estratégias de Produção da Cidade no Contexto da Neoliberalização: Salvador como Exemplo",
+      "authors": [
+        "Elisabete Santos",
+        "Patrícia Campos Borja",
+        "Júlio César Pedrassoli",
+        "Alei Santos"
+      ],
+      "venue": "Organizações & Sociedade",
+      "doi": "https://doi.org/10.1590/1984-92302021v28n9807pt",
+      "url": "https://doi.org/10.1590/1984-92302021v28n9807pt",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "EXPLORATORY SPATIAL ANALYSIS OF HOUSING PRICES OBTAINED FROM WEB SCRAPING TECHNIQUE",
+      "authors": [
+        "Thaís Góes de Souza",
+        "Fernanda Doracy Rocha Fonseca",
+        "Vivian de Oliveira Fernandes",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+      "doi": "https://doi.org/10.5194/isprs-archives-xliii-b4-2021-135-2021",
+      "url": "https://doi.org/10.5194/isprs-archives-xliii-b4-2021-135-2021",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "Survey of Slum Housing Characteristics Using Drones: An Experiment in the Alto das Pombas Community, Salvador de Bahia/Brazil",
+      "authors": [
+        "Joice Genaro Gomes",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Quaestiones Geographicae",
+      "doi": "https://doi.org/10.2478/quageo-2021-0031",
+      "url": "https://doi.org/10.2478/quageo-2021-0031",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "City Production Strategies in the Neoliberalization Context - Salvador as Example",
+      "authors": [
+        "Elisabete Santos",
+        "Patrícia Campos Borja",
+        "Júlio César Pedrassoli",
+        "Alei Santos"
+      ],
+      "venue": "Organizações & Sociedade",
+      "doi": "https://doi.org/10.1590/1984-92302021v28n9807en",
+      "url": "https://doi.org/10.1590/1984-92302021v28n9807en",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "PLATAFORMA DE MONITORAMENTO E SUPORTE À DECISÃO PARA O PLANEJAMENTO TERRITORIAL DO CIRCUITO DAS ÁGUAS PAULISTA",
+      "authors": [
+        "Juliana Campos Degenario Ribeiro",
+        "Breno Malheiros de Melo",
+        "Marcel Fantin",
+        "Jeferson Cristiano Tavares",
+        "Júlio César Pedrassoli",
+        "Marcos Roberto Martines"
+      ],
+      "venue": "Engenharia Urbana em Debate",
+      "doi": "https://doi.org/10.59550/engurbdebate.v2i1.13",
+      "url": "https://doi.org/10.59550/engurbdebate.v2i1.13",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2020,
+      "title": "The Spatial Dimension of COVID-19: The Potential of Earth Observation Data in Support of Slum Communities with Evidence from Brazil",
+      "authors": [
+        "Patrícia Lustosa Brito",
+        "Monika Kuffer",
+        "Mila Koeva",
+        "Júlio César Pedrassoli",
+        "Jiong Wang",
+        "Federico Costa",
+        "Anderson Dias de Freitas"
+      ],
+      "venue": "ISPRS International Journal of Geo-Information",
+      "doi": "https://doi.org/10.3390/ijgi9090557",
+      "url": "https://doi.org/10.3390/ijgi9090557",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2019,
+      "title": "USO DE IMAGENS DE SATÉLITE LANDSAT NO ESTUDO TEMPORAL DA COBERTURA DA TERRA NO RASO DA CATARINA",
+      "authors": [
+        "Uldérico Rios Oliveira",
+        "Patrícia Lustosa Brito",
+        "Mauro José Alixandrini Júnior",
+        "Júlio César Pedrassoli",
+        "Ricardo Lustosa Brito"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.22533/at.ed.3791923094",
+      "url": "https://doi.org/10.22533/at.ed.3791923094",
+      "type": "book-chapter",
+      "oa": false
+    },
+    {
+      "year": 2019,
+      "title": "O uso de RPA como ferramenta didática em disciplinas do curso de arquitetura e urbanismo",
+      "authors": [
+        "Augusto Cesar Oyama",
+        "Ivan Langone Francioni Coelho",
+        "Júlio César Pedrassoli",
+        "Marcel Fantin",
+        "Marcos Roberto Martines"
+      ],
+      "venue": "Biblioteca Digital da Memória Científica do INPE (National Institute for Space Research)",
+      "doi": "",
+      "url": "http://urlib.net/sid.inpe.br/marte2/2019/09.06.13.08",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2018,
+      "title": "The use of UAV for slums land regularization: potentialities, hindrances and challenges",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Guilherme Nelli Zaratine",
+        "Ivan Langone Francioni Coelho"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.5151/sigradi2018-1498",
+      "url": "https://doi.org/10.5151/sigradi2018-1498",
+      "type": "conference-paper",
+      "oa": true
+    },
+    {
+      "year": 2017,
+      "title": "Habitação e sensoriamento remoto: uma análise da expansão urbana na RMSP por meio de imagens de satélite aplicando o modelo linear de mistura espectral",
+      "authors": [
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.11606/t.8.2017.tde-13022017-124413",
+      "url": "https://doi.org/10.11606/t.8.2017.tde-13022017-124413",
+      "type": "dissertation",
+      "oa": true
+    },
+    {
+      "year": 2016,
+      "title": "Housing and remote sensing: an analysis of urban sprawl in the SPMR using satellite images and applying the linear spectral mixture model",
+      "authors": [
+        "Julio Cesar Pedrassoli"
+      ],
+      "venue": "LA Referencia (Red Federada de Repositorios Institucionales de Publicaciones Científicas)",
+      "doi": "",
+      "url": "https://doi.org/10.11606/T.8.2017.tde-13022017-124413",
+      "type": "dissertation",
+      "oa": false
+    },
+    {
+      "year": 2013,
+      "title": "COMPARAÇÃO VISUAL ENTRE FUSÃO DE IMAGENS CBERS II B/CCD E LANDSAT 5/TM UTILIZANDO A PANCROMÁTICA CBERS II B/HRC EM SOFTWARE LIVRE",
+      "authors": [
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "",
+      "doi": "",
+      "url": "http://facp.com.br/revista/index.php/reFACP/article/download/18/pdf",
+      "type": "article",
+      "oa": false
+    },
+    {
+      "year": 2011,
+      "title": "Análise orientada a objeto para detecção de favelas e classificação do uso do solo em Taboão da Serra/SP",
+      "authors": [
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "",
+      "doi": "https://doi.org/10.11606/d.8.2011.tde-03052012-085635",
+      "url": "https://doi.org/10.11606/d.8.2011.tde-03052012-085635",
+      "type": "dissertation",
+      "oa": true
+    },
+    {
+      "year": 2008,
+      "title": "Analise da desigualdade ambiental com apoio de geotecnologias; diagnosticos e subsidios as politicas publicas e planejamento socioambiental urbano nos municipios do medio Paranapanema - SP",
+      "authors": [
+        "Andréa Aparecida Zacharias",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Ciencia geografica",
+      "doi": "",
+      "url": "https://biblat.unam.mx/es/revista/ciencia-geografica/articulo/analise-da-desigualdade-ambiental-com-apoio-de-geotecnologias-diagnosticos-e-subsidios-as-politicas-publicas-e-planejamento-socioambiental-urbano-nos-municipios-do-medio-paranapanema-sp",
+      "type": "article",
+      "oa": false
+    }
+  ]
+}

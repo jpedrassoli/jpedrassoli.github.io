@@ -1,11 +1,35 @@
 window.__NEWS = {
-  "updated": "2026-09-25T19:14:22+00:00",
+  "updated": "2026-09-25T19:36:44+00:00",
   "items": [
+    {
+      "date": "2026-04-30",
+      "title": "Maps & America: The Arthur Holzheimer Lecture Series",
+      "source": "UW-Milwaukee",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iampPQURGMzA1Z0tBRlhxQU1XNlpVNUFBNmViU05CY0FsNExLcVlaaFp0WW9sSnhSeXR5ZnlvaV9UcFpMYjZBNXlNaElZNzZYZHB5Y2dfMDZSbURmbGk0?oc=5"
+    },
+    {
+      "date": "2026-04-10",
+      "title": "\"Mapping Brasil\"",
+      "source": "ArcGIS StoryMaps",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBwMkJrLWFNb2JkSlhxc1BxNms0YUc5YlU1c3hwbGZXWi1oUlhtTFJLcktmU29WZmFJaXU5NFZ6SzZVUW1hTHoyT0hNV2pDcnE5aXNJS2RxZlJkcjYzVlZrN3VHTDBMdzA4U3BxaUZ1cHo5RVZYQVZCcg?oc=5"
+    },
     {
       "date": "2026-03-06",
       "title": "Um quarto da expansão urbana no Brasil avança sobre áreas com mais risco de faltar água",
       "source": "Folhapress (via Acessa.com)",
       "url": "https://www.acessa.com/noticias/2026/03/313830-um-quarto-da-expansao-urbana-no-brasil-avanca-sobre-areas-com-mais-risco-de-faltar-agua.html"
+    },
+    {
+      "date": "2026-03-05",
+      "title": "Brazil: area occupied by favelas grows 2.75 times in 40 years",
+      "source": "Plataforma Media",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPc0gzelpZSzVaUEpsVHNjZE41ZjJSZnFkUC1VRUpUa1kzelFfcmhMUEFxSHVnZDZpOGYzODFLNDBObG5TbTZPVmR6SV9Wd1FuczJFTm80RkFINTZoRVhMWGhTcHlOWXdVN3ZXazhvNGxNSThEUTJ5UVNMbEl0N1dOZzFtZm13dWlHX0xMOUE3SzN5ekdlVk5wX1FRNXFLYm52S2xfdmZPaHUtZlU?oc=5"
+    },
+    {
+      "date": "2026-03-05",
+      "title": "Brazil: Area Occupied By Favelas Almost Tripled In 40 Years",
+      "source": "Eurasia Review",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQazUwakxlUEVyVTdNeXZpaDFKT2NQZ3V0UnJ4UUluSFEwbS0wVFhKVVNNdXNCN094c01RTjlZRDhaQmNaWEhVWXdmZlE5SzFMalhMbm90RHlneE10YVZsX3BiOFJVaHNYT3VPc19naW9tc0JjRUF2T1FqVFM4N2ZDQzR3dzZHNWNyNVpxak83RDV4S0xGbFVSVC1Qb01ZMUU?oc=5"
     },
     {
       "date": "2026-03-04",
@@ -32,6 +56,24 @@ window.__NEWS = {
       "url": "https://exame.com/esg/brasil-triplica-ocupacao-urbana-em-areas-com-risco-de-deslizamentos-aponta-mapbiomas/"
     },
     {
+      "date": "2026-03-04",
+      "title": "Minas Gerais lidera urbanização em áreas íngremes no Brasil, aponta estudo do MapBiomas",
+      "source": "CBN",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPM1RYdWdCMUNIYk42MXZyNExSaUNxUUZEaWNSVzJ6Qk91STZhQUdTS3hqdnhSU2hkb1ZSRG16LVNyeXlNbTJZRkYtYjhXMjctYkt1RlZHbXJVdmVZX24wNndHZ1J4WFd6UWFqaVl0bHh0aHlYMEF5MU5KY2JhSXVXRGtKQkpDb0laelhGdGx5WFh0NWxEM2UzQ0d3Wi12c0JsdzhYS1FNRzFxLXdONGVHcDZfTGJidG9SYXgwTnR5WjBjRHJncl9uTEExTTZFMURCTWRxYm1hZU9fM203cWY5UVhndWNmTEJ2aDNqRzg5b1NSUdIBgAJBVV95cUxPc1lpZk9mdlE0LTNzdm5KYlFVSVZQX1piVVpQWWZOZ2ZOTmxieVVubTVQcmtwSHRERzRkY09JbVJLcXM4OGhSM3dVMnI5QVNpYzVPTG82SUR1Zm0yMFJ3X0xRQ2docE01NXMxTFlRVENwVXhMU3lJcXpKQVhZSTRMbERmMEotV0ttOWVsZC11RXgzc2J3YzNzMGVYSW9fMzEzdXBFSkNWMlNiTVNxS0paYU56V2RUSkY4bDdyV0t3ei1Hc0o4RnFCNTJxSmplTmdWYWdBaG9fZFFLcnF5dDRUTEQtZFJOYkpEY19DQnJmQV80a1NRbXcwY004Z2txLTMw?oc=5"
+    },
+    {
+      "date": "2026-03-04",
+      "title": "Área de favelas no Brasil quase triplicou em 40 anos, aponta estudo do Mapbiomas",
+      "source": "Portal Manaus Alerta",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNN0tmb183MmNJcnkxa0R3cUpTVXUxYm92TUQ3Vl9GcXpZMUdMVjBlVE9EYUd1WEJudGpWTUc3amlCb1NCMW5UWEhQanA5SWk2dlFlOW9hbmIyS0pzNXVNbUI3S2JFRXNrTUNZS3E2WC1ldkZ3SlJxc0g0akFaeF9yT19SaHR6SFVuZmVxRVBvTnc5azNPV256RmEyYS1rdVZ2SEloRkE4Z3VQek9lV3ZmVFdRRXA?oc=5"
+    },
+    {
+      "date": "2024-11-22",
+      "title": "Boa Vista é 3ª capital que mais perdeu vegetação urbana em duas décadas",
+      "source": "REVISTA CENARIUM",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVDZZd1R1cmhiMWZ0djBTcXdfUjN4Wlo4ajRVVFZZX2gxOFBobGFJeHlHTjZhQzB1VVBPbmtSczYyNzV6OHg0SmlLNzJFX1U2MHZybk5LbnUzQlhHQVdUalExSjlVRmRXSGJqLVhCaUxleUxMTjZOMDVGQXZsYTVCU3ZDTm9xRTFNc1dsbFhIM3E1QWx6bllLRlAzaWp2QU0ta2c5bGRB?oc=5"
+    },
+    {
       "date": "2024-11-11",
       "title": "Cidades brasileiras crescem mais em encostas e áreas de risco",
       "source": "ClimaInfo (via IHU Unisinos)",
@@ -54,6 +96,30 @@ window.__NEWS = {
       "title": "Só 6,9% das áreas urbanas do país são cobertas por vegetação",
       "source": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2024-07/so-69-das-areas-urbanas-do-pais-sao-cobertas-por-vegetacao"
+    },
+    {
+      "date": "2023-11-10",
+      "title": "Urbanização em áreas de risco triplicou desde 1985 no país, diz MapBiomas",
+      "source": "Folha de S.Paulo",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNbGFzTG16WHhzMTJPX0g5WWx3UjBiWEJoYm9OQUc3MVY1TUZ6bUhNTzd2Zm1zQ0F5NGxnN3lFU0h1dkUyeHh4QzgxUmttMS1RVHJjSkhST0dER2VWRVp2ckt6SWdCcWpMUDByWlE4cEZlcElveHlydEJBU3VkQ1d6X2k4Rmd1ZXlHX2llNUNaclUzdGh0eFpaUVRUVkJhOW5ib1JnR1VNdTA3N3VoemNvNWhFcjE4R3dKalJWT1Bpc2lwNmN10gHKAUFVX3lxTE9lbktJS2FHeV9UNlcyeXVjdHlZaTB2ZC0wb2VobVVPb1NycHdLQWlxdTJ2dDAwa2w2VElXY2JEMkd0SG11WFdsU3YwbU9Gelh3TGVzU09KajM1X1lER3B2ZmNUWFlEQ096TFJlSkNQNWZJZkVWbFlIZm9XVE9adFJUbjdBVV9DQU5LeGMtQjRRR2ppY1FtYjVjcVNfLW5JaFVKa2NmRFVMVDE3dmVGX1lZbVFRV19LZ0dwdHRhNXIwUy04WW1JY2dLX0E?oc=5"
+    },
+    {
+      "date": "2023-02-23",
+      "title": "Tragédia no litoral de SP: construções irregulares cresceram 15 vezes em 35 anos, analisa especialista",
+      "source": "O GLOBO",
+      "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxNM2Nyb0FwaS1UZ29BSkZNWmQ4QjRDS0VlUDR0aF9fWUNQYnNaYWZPLVZVYjdsSllVYlE3MFYtdjV1RXdVRUtYX3BUY2ZUcF9OeHY5dURWa0ktREJpVXR4RHdwbDlTS0hsczhqS05mWS1tMHZLbm8wU0Ewc084RmpocXhmR3BZYjR1UlV4aGY5aEdXS2NwY25RNC1RdjdUUFdNQ1RkaVFvS3dyVlliLUFLOXB4aUY4QktFY2U1WTZfckV1V0JubTkyclFqSFE0YTBycVdjSWVNMFdqRW80VkFCem0tdFVsd3ByMVlfWWRwM3dQc0VUYXZNWnlmZ2cxVDlUSjNDZjVYZWxPcWoxdndwNjVvcGJuN2NsN3lNLXk2dHB0YjYy0gGzAkFVX3lxTFAwMWl5eVNmVzFKTlNmVVlPa1ctdUttYWZHZ3RkNzdrczRsY0dSMG1USE1QQVJtS3ZFb2EtcHpnVmhpUC1Sck56RF9MX096aC1oTXV4OXpGM2pJOXpJdWNJX1hIMmVYT2ktRy1ibTQyTnY0bkQxd3d3MjJFNFFQZlY5ajJtRzB5YnQxa3N1NXVHdVFTRlhEYTZ2YnB0OGtHaGt4MWhWWlZwR19mbG9kajRuaDdvQzh2ZVMwWlRCb0wzazAwTzZlZXpQU3p2NXpvSW5BSE5YYlVfVFlfRGc1RFlWLWNveDBSTkJYcTVxdWc1UFZXOTgtTDdkU3gydzJVeGcybzRGODNLazdWU0xtR3huU0h5RmtvYUhwSF9yVXRVUXBtOFZyTFhzdWtSSURBVFJxd0k?oc=5"
+    },
+    {
+      "date": "2022-11-04",
+      "title": "Ocupação urbana de favelas em áreas de risco triplica em 37 anos",
+      "source": "Folha de S.Paulo",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPaFNGa1U1ZXJzZnIyNTgwSjNrOHBHN2prVnRCY0t3ckdyaGJRTHU2alIxMG5fVWRtUzAzQ3NRampkT2NEc3d4eTFENDFVcDM3S1ZnbTJieXl3WHZIMHc2cVM1bHFNNUNNRWZKdWxZVi1NdF9NNVN1ejh4d0Zfa3BBSmVzY1hfalREN0JhMEl0TEJhME10X3MtZWE5N0JHVnMxSTg5WXc4QXFaLUl1UnFWWXRKRW5Tb0VwQlHSAb8BQVVfeXFMTUdHQW8taDJtMnpORHprWFozTDdXNEJJS0FIWGRpV0k2LU5UT1RneTZOTFphNF8zWFl5dUxkektjWk1CN0xzWTZjUTRqQnhINlByVkNyZTZGODliSXQwTzJRZWZnRVhObF9kS1ZudmdLODM2MTNKZm1TdlY3dW5qc1FqcjMxcE9KVzBINU9JTFN6SlpCbDdwNW9xYUlBRHRqcTFGNHNoWVBUc2dKeTZOM0ZJcVhjRUc0dHV2Vmxyems?oc=5"
+    },
+    {
+      "date": "2022-08-25",
+      "title": "Levantamento mostram um aumento na ocupação das margens de rios no Brasil",
+      "source": "SBT News",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOaWxaVmdGZzNQWVNpc0lmcVE1amVKa0NBWG1adDQ4YnBKTl80RlZlWDZhN3lOd3htSlRscF9ranlKVlhGWFpWVmNVSmtaczBQNy1vQ0d0TGtJS3QyblhEVGV5enB3Q3NEZm5KOFN6XzFvLS1xM0VRNDhqWTBXRkc1dmtzYlpCNVBPem5BTEhxaG9LTVE2SVljMU9HbFdGSTN5TS1vNjY3eURiT0ZzS2VNU1N2THM4ZDJLSVpiOGpPRQ?oc=5"
     },
     {
       "date": "2021-11-05",
