@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-09-25T19:36:44+00:00",
+  "updated": "2026-09-26T13:44:31+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -17,7 +17,7 @@ window.__PUBS = {
         "Binti Singh",
         "Juan Manuel D’Attoli",
         "Caroline W. Kabaria",
-        "Julio Cesar Pedrassoli",
+        "Júlio César Pedrassoli",
         "Patrícia Lustosa Brito",
         "Peter Elias",
         "Elio Atenógenes",
@@ -615,7 +615,7 @@ window.__PUBS = {
       "year": 2016,
       "title": "Housing and remote sensing: an analysis of urban sprawl in the SPMR using satellite images and applying the linear spectral mixture model",
       "authors": [
-        "Julio Cesar Pedrassoli"
+        "Júlio César Pedrassoli"
       ],
       "venue": "LA Referencia (Red Federada de Repositorios Institucionales de Publicaciones Científicas)",
       "doi": "",
