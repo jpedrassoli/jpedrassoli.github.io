@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-09-26T13:44:31+00:00",
+  "updated": "2026-09-27T14:41:05+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -10,7 +10,7 @@ window.__NEWS = {
     {
       "date": "2026-04-10",
       "title": "\"Mapping Brasil\"",
-      "source": "storymaps.arcgis.com",
+      "source": "ArcGIS StoryMaps",
       "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBwMkJrLWFNb2JkSlhxc1BxNms0YUc5YlU1c3hwbGZXWi1oUlhtTFJLcktmU29WZmFJaXU5NFZ6SzZVUW1hTHoyT0hNV2pDcnE5aXNJS2RxZlJkcjYzVlZrN3VHTDBMdzA4U3BxaUZ1cHo5RVZYQVZCcg?oc=5"
     },
     {
@@ -28,7 +28,7 @@ window.__NEWS = {
     {
       "date": "2026-03-05",
       "title": "Brazil: Area Occupied By Favelas Almost Tripled In 40 Years",
-      "source": "eurasiareview.com",
+      "source": "Eurasia Review",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQazUwakxlUEVyVTdNeXZpaDFKT2NQZ3V0UnJ4UUluSFEwbS0wVFhKVVNNdXNCN094c01RTjlZRDhaQmNaWEhVWXdmZlE5SzFMalhMbm90RHlneE10YVZsX3BiOFJVaHNYT3VPc19naW9tc0JjRUF2T1FqVFM4N2ZDQzR3dzZHNWNyNVpxak83RDV4S0xGbFVSVC1Qb01ZMUU?oc=5"
     },
     {
@@ -96,6 +96,12 @@ window.__NEWS = {
       "title": "Só 6,9% das áreas urbanas do país são cobertas por vegetação",
       "source": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2024-07/so-69-das-areas-urbanas-do-pais-sao-cobertas-por-vegetacao"
+    },
+    {
+      "date": "2024-05-20",
+      "title": "Pesquisa do MapBiomas mostra que o Amazonas tem 583 km² de áreas urbanas com risco de enchentes",
+      "source": "18horas.com.br",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQRlRNMlhXV0RoVU1hZFZTLXNHM0VvVmIwUUFFODlEeHQycUpqdDhIQWNwVVo4M1lhbHRVTUNWb3ZvRXpXMmJoVTJTeFlIeThseTNlcUtIZVhRSWpyU1ZZZC1fcHVqZXF6dUFhNF9ES3RKcVh6U19JSnR6TkhDTTdERnR5bHJ1QjlYMUhObHAwSnA2NkE5T2h0RzhMWURWZWNCbGZhLWlXc0x6c1JGeS1FY2Y1bGZHYk52SE1SRktPUnJUZ3ZSeDNr?oc=5"
     },
     {
       "date": "2023-11-10",
