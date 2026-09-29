@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-28T17:38:22+00:00",
+  "updated": "2026-09-29T15:48:59+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -10,7 +10,7 @@
     {
       "date": "2026-04-10",
       "title": "\"Mapping Brasil\"",
-      "source": "storymaps.arcgis.com",
+      "source": "ArcGIS StoryMaps",
       "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBwMkJrLWFNb2JkSlhxc1BxNms0YUc5YlU1c3hwbGZXWi1oUlhtTFJLcktmU29WZmFJaXU5NFZ6SzZVUW1hTHoyT0hNV2pDcnE5aXNJS2RxZlJkcjYzVlZrN3VHTDBMdzA4U3BxaUZ1cHo5RVZYQVZCcg?oc=5"
     },
     {
@@ -58,7 +58,7 @@
     {
       "date": "2026-03-04",
       "title": "Minas Gerais lidera urbanização em áreas íngremes no Brasil, aponta estudo do MapBiomas",
-      "source": "CBN",
+      "source": "cbn.globo.com",
       "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPM1RYdWdCMUNIYk42MXZyNExSaUNxUUZEaWNSVzJ6Qk91STZhQUdTS3hqdnhSU2hkb1ZSRG16LVNyeXlNbTJZRkYtYjhXMjctYkt1RlZHbXJVdmVZX24wNndHZ1J4WFd6UWFqaVl0bHh0aHlYMEF5MU5KY2JhSXVXRGtKQkpDb0laelhGdGx5WFh0NWxEM2UzQ0d3Wi12c0JsdzhYS1FNRzFxLXdONGVHcDZfTGJidG9SYXgwTnR5WjBjRHJncl9uTEExTTZFMURCTWRxYm1hZU9fM203cWY5UVhndWNmTEJ2aDNqRzg5b1NSUdIBgAJBVV95cUxPc1lpZk9mdlE0LTNzdm5KYlFVSVZQX1piVVpQWWZOZ2ZOTmxieVVubTVQcmtwSHRERzRkY09JbVJLcXM4OGhSM3dVMnI5QVNpYzVPTG82SUR1Zm0yMFJ3X0xRQ2docE01NXMxTFlRVENwVXhMU3lJcXpKQVhZSTRMbERmMEotV0ttOWVsZC11RXgzc2J3YzNzMGVYSW9fMzEzdXBFSkNWMlNiTVNxS0paYU56V2RUSkY4bDdyV0t3ei1Hc0o4RnFCNTJxSmplTmdWYWdBaG9fZFFLcnF5dDRUTEQtZFJOYkpEY19DQnJmQV80a1NRbXcwY004Z2txLTMw?oc=5"
     },
     {
@@ -106,8 +106,14 @@
     {
       "date": "2023-11-10",
       "title": "Urbanização em áreas de risco triplicou desde 1985 no país, diz MapBiomas",
-      "source": "folha.uol.com.br",
+      "source": "Folha de S.Paulo",
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNbGFzTG16WHhzMTJPX0g5WWx3UjBiWEJoYm9OQUc3MVY1TUZ6bUhNTzd2Zm1zQ0F5NGxnN3lFU0h1dkUyeHh4QzgxUmttMS1RVHJjSkhST0dER2VWRVp2ckt6SWdCcWpMUDByWlE4cEZlcElveHlydEJBU3VkQ1d6X2k4Rmd1ZXlHX2llNUNaclUzdGh0eFpaUVRUVkJhOW5ib1JnR1VNdTA3N3VoemNvNWhFcjE4R3dKalJWT1Bpc2lwNmN10gHKAUFVX3lxTE9lbktJS2FHeV9UNlcyeXVjdHlZaTB2ZC0wb2VobVVPb1NycHdLQWlxdTJ2dDAwa2w2VElXY2JEMkd0SG11WFdsU3YwbU9Gelh3TGVzU09KajM1X1lER3B2ZmNUWFlEQ096TFJlSkNQNWZJZkVWbFlIZm9XVE9adFJUbjdBVV9DQU5LeGMtQjRRR2ppY1FtYjVjcVNfLW5JaFVKa2NmRFVMVDE3dmVGX1lZbVFRV19LZ0dwdHRhNXIwUy04WW1JY2dLX0E?oc=5"
+    },
+    {
+      "date": "2023-10-31",
+      "title": "Ocupação de áreas de risco para moradia triplicou no país desde 1985",
+      "source": "Agência Brasil",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc2l4aU9UN25kTmpSNXpxTC1pNDVuenVPVFVyazB3QjhBQXpVU1FLd1F5Zjg2QV94ZkRRWGhTWDV0UTBHSFJlT0lUNElYZW9GczZJNWtKN18zWnpRYi1XUUtnZ3k4enNXZXhuc0pOSXNXVWxXUjk2bEgyVEpralBoeGthUVRKa1ZHaUNzSmxhNkE2UGhLZU5ZbjZMdUxFNV9EUjBxOEI2TkR0ZUV4QVR1TWd2Z2l6RnFlSWZkS0lKMXA?oc=5"
     },
     {
       "date": "2023-02-23",

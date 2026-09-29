@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-09-26T13:44:31+00:00",
+  "updated": "2026-09-29T15:48:59+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -128,7 +128,7 @@ window.__PUBS = {
         "Sebastian Häfner",
         "Stefanos Georganos",
         "Monika Kuffer",
-        "John W. Friesen",
+        "John Friesen",
         "Dana R. Thomson",
         "Robert Peter Ndugwa",
         "Dennis Mwaniki",
@@ -182,7 +182,7 @@ window.__PUBS = {
       "year": 2025,
       "title": "Measuring change and location of informal settlements at a national level: The Argentinian case",
       "authors": [
-        "José Manuel Comas Samper",
+        "Jota Samper",
         "Júlio César Pedrassoli",
         "Anthony Boanada-Fuchs",
         "Monika Kuffer",
