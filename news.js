@@ -1,10 +1,10 @@
 window.__NEWS = {
-  "updated": "2026-09-29T15:48:59+00:00",
+  "updated": "2026-09-30T15:54:20+00:00",
   "items": [
     {
       "date": "2026-04-30",
       "title": "Maps & America: The Arthur Holzheimer Lecture Series",
-      "source": "UW-Milwaukee",
+      "source": "uwm.edu",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iampPQURGMzA1Z0tBRlhxQU1XNlpVNUFBNmViU05CY0FsNExLcVlaaFp0WW9sSnhSeXR5ZnlvaV9UcFpMYjZBNXlNaElZNzZYZHB5Y2dfMDZSbURmbGk0?oc=5"
     },
     {
@@ -58,7 +58,7 @@ window.__NEWS = {
     {
       "date": "2026-03-04",
       "title": "Minas Gerais lidera urbanização em áreas íngremes no Brasil, aponta estudo do MapBiomas",
-      "source": "cbn.globo.com",
+      "source": "CBN",
       "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPM1RYdWdCMUNIYk42MXZyNExSaUNxUUZEaWNSVzJ6Qk91STZhQUdTS3hqdnhSU2hkb1ZSRG16LVNyeXlNbTJZRkYtYjhXMjctYkt1RlZHbXJVdmVZX24wNndHZ1J4WFd6UWFqaVl0bHh0aHlYMEF5MU5KY2JhSXVXRGtKQkpDb0laelhGdGx5WFh0NWxEM2UzQ0d3Wi12c0JsdzhYS1FNRzFxLXdONGVHcDZfTGJidG9SYXgwTnR5WjBjRHJncl9uTEExTTZFMURCTWRxYm1hZU9fM203cWY5UVhndWNmTEJ2aDNqRzg5b1NSUdIBgAJBVV95cUxPc1lpZk9mdlE0LTNzdm5KYlFVSVZQX1piVVpQWWZOZ2ZOTmxieVVubTVQcmtwSHRERzRkY09JbVJLcXM4OGhSM3dVMnI5QVNpYzVPTG82SUR1Zm0yMFJ3X0xRQ2docE01NXMxTFlRVENwVXhMU3lJcXpKQVhZSTRMbERmMEotV0ttOWVsZC11RXgzc2J3YzNzMGVYSW9fMzEzdXBFSkNWMlNiTVNxS0paYU56V2RUSkY4bDdyV0t3ei1Hc0o4RnFCNTJxSmplTmdWYWdBaG9fZFFLcnF5dDRUTEQtZFJOYkpEY19DQnJmQV80a1NRbXcwY004Z2txLTMw?oc=5"
     },
     {
