@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-01T16:25:27+00:00",
+  "updated": "2026-10-02T15:46:48+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -28,7 +28,7 @@ window.__NEWS = {
     {
       "date": "2026-03-05",
       "title": "Brazil: Area Occupied By Favelas Almost Tripled In 40 Years",
-      "source": "Eurasia Review",
+      "source": "eurasiareview.com",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQazUwakxlUEVyVTdNeXZpaDFKT2NQZ3V0UnJ4UUluSFEwbS0wVFhKVVNNdXNCN094c01RTjlZRDhaQmNaWEhVWXdmZlE5SzFMalhMbm90RHlneE10YVZsX3BiOFJVaHNYT3VPc19naW9tc0JjRUF2T1FqVFM4N2ZDQzR3dzZHNWNyNVpxak83RDV4S0xGbFVSVC1Qb01ZMUU?oc=5"
     },
     {
@@ -130,7 +130,7 @@ window.__NEWS = {
     {
       "date": "2022-08-25",
       "title": "Levantamento mostram um aumento na ocupação das margens de rios no Brasil",
-      "source": "SBT News",
+      "source": "sbtnews.sbt.com.br",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOaWxaVmdGZzNQWVNpc0lmcVE1amVKa0NBWG1adDQ4YnBKTl80RlZlWDZhN3lOd3htSlRscF9ranlKVlhGWFpWVmNVSmtaczBQNy1vQ0d0TGtJS3QyblhEVGV5enB3Q3NEZm5KOFN6XzFvLS1xM0VRNDhqWTBXRkc1dmtzYlpCNVBPem5BTEhxaG9LTVE2SVljMU9HbFdGSTN5TS1vNjY3eURiT0ZzS2VNU1N2THM4ZDJLSVpiOGpPRQ?oc=5"
     },
     {

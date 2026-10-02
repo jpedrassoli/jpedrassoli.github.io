@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-09-30T15:54:20+00:00",
+  "updated": "2026-10-02T15:46:48+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -349,6 +349,24 @@ window.__PUBS = {
       "venue": "Caminhos de Geografia",
       "doi": "https://doi.org/10.14393/rcg249668395",
       "url": "https://doi.org/10.14393/rcg249668395",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2023,
+      "title": "MAPEAMENTO COLABORATIVO DIGITAL NA ASSISTÊNCIA MULTIDISCIPLINAR A COMUNIDADES",
+      "authors": [
+        "Heliana Faria Mettig Rocha",
+        "Patrícia Lustosa Brito",
+        "Marcella Sgura Viana",
+        "Júlio César Pedrassoli",
+        "Tiago P. C. SILVA",
+        "Erica Ribeiro ANDRADE",
+        "Araton Costa CARDOSO"
+      ],
+      "venue": "Encontro Latino-americano e Europeu sobre Edificações e Comunidades Sustentáveis (euroELECS)",
+      "doi": "",
+      "url": "https://eventos.antac.org.br/euroelecs/article/view/2559",
       "type": "article",
       "oa": true
     },
