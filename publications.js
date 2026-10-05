@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-10-04T14:47:01+00:00",
+  "updated": "2026-10-05T18:24:46+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -141,7 +141,7 @@ window.__PUBS = {
         "Boris Zerjav",
         "Juan Manuel D’Attoli"
       ],
-      "venue": "",
+      "venue": "Joint Urban Remote Sensing Event (JURSE)",
       "doi": "https://doi.org/10.1109/jurse60372.2025.11076033",
       "url": "https://doi.org/10.1109/jurse60372.2025.11076033",
       "type": "conference-paper",
@@ -189,7 +189,7 @@ window.__PUBS = {
         "Malena Jaramillo Espinosa",
         "Juan Manuel D’Attoli"
       ],
-      "venue": "",
+      "venue": "Joint Urban Remote Sensing Event (JURSE)",
       "doi": "https://doi.org/10.1109/jurse60372.2025.11076027",
       "url": "https://doi.org/10.1109/jurse60372.2025.11076027",
       "type": "conference-paper",
