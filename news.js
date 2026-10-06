@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-05T18:24:46+00:00",
+  "updated": "2026-10-06T15:55:28+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -22,13 +22,13 @@ window.__NEWS = {
     {
       "date": "2026-03-05",
       "title": "Brazil: area occupied by favelas grows 2.75 times in 40 years",
-      "source": "Plataforma Media",
+      "source": "plataformamedia.com",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPc0gzelpZSzVaUEpsVHNjZE41ZjJSZnFkUC1VRUpUa1kzelFfcmhMUEFxSHVnZDZpOGYzODFLNDBObG5TbTZPVmR6SV9Wd1FuczJFTm80RkFINTZoRVhMWGhTcHlOWXdVN3ZXazhvNGxNSThEUTJ5UVNMbEl0N1dOZzFtZm13dWlHX0xMOUE3SzN5ekdlVk5wX1FRNXFLYm52S2xfdmZPaHUtZlU?oc=5"
     },
     {
       "date": "2026-03-05",
       "title": "Brazil: Area Occupied By Favelas Almost Tripled In 40 Years",
-      "source": "eurasiareview.com",
+      "source": "Eurasia Review",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQazUwakxlUEVyVTdNeXZpaDFKT2NQZ3V0UnJ4UUluSFEwbS0wVFhKVVNNdXNCN094c01RTjlZRDhaQmNaWEhVWXdmZlE5SzFMalhMbm90RHlneE10YVZsX3BiOFJVaHNYT3VPc19naW9tc0JjRUF2T1FqVFM4N2ZDQzR3dzZHNWNyNVpxak83RDV4S0xGbFVSVC1Qb01ZMUU?oc=5"
     },
     {
@@ -128,7 +128,7 @@ window.__NEWS = {
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPaFNGa1U1ZXJzZnIyNTgwSjNrOHBHN2prVnRCY0t3ckdyaGJRTHU2alIxMG5fVWRtUzAzQ3NRampkT2NEc3d4eTFENDFVcDM3S1ZnbTJieXl3WHZIMHc2cVM1bHFNNUNNRWZKdWxZVi1NdF9NNVN1ejh4d0Zfa3BBSmVzY1hfalREN0JhMEl0TEJhME10X3MtZWE5N0JHVnMxSTg5WXc4QXFaLUl1UnFWWXRKRW5Tb0VwQlHSAb8BQVVfeXFMTUdHQW8taDJtMnpORHprWFozTDdXNEJJS0FIWGRpV0k2LU5UT1RneTZOTFphNF8zWFl5dUxkektjWk1CN0xzWTZjUTRqQnhINlByVkNyZTZGODliSXQwTzJRZWZnRVhObF9kS1ZudmdLODM2MTNKZm1TdlY3dW5qc1FqcjMxcE9KVzBINU9JTFN6SlpCbDdwNW9xYUlBRHRqcTFGNHNoWVBUc2dKeTZOM0ZJcVhjRUc0dHV2Vmxyems?oc=5"
     },
     {
-      "date": "2022-08-25",
+      "date": "2022-08-26",
       "title": "Levantamento mostram um aumento na ocupação das margens de rios no Brasil",
       "source": "SBT News",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOaWxaVmdGZzNQWVNpc0lmcVE1amVKa0NBWG1adDQ4YnBKTl80RlZlWDZhN3lOd3htSlRscF9ranlKVlhGWFpWVmNVSmtaczBQNy1vQ0d0TGtJS3QyblhEVGV5enB3Q3NEZm5KOFN6XzFvLS1xM0VRNDhqWTBXRkc1dmtzYlpCNVBPem5BTEhxaG9LTVE2SVljMU9HbFdGSTN5TS1vNjY3eURiT0ZzS2VNU1N2THM4ZDJLSVpiOGpPRQ?oc=5"
