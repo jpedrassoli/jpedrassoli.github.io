@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-06T15:55:28+00:00",
+  "updated": "2026-10-07T16:25:58+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -22,7 +22,7 @@ window.__NEWS = {
     {
       "date": "2026-03-05",
       "title": "Brazil: area occupied by favelas grows 2.75 times in 40 years",
-      "source": "plataformamedia.com",
+      "source": "Plataforma Media",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPc0gzelpZSzVaUEpsVHNjZE41ZjJSZnFkUC1VRUpUa1kzelFfcmhMUEFxSHVnZDZpOGYzODFLNDBObG5TbTZPVmR6SV9Wd1FuczJFTm80RkFINTZoRVhMWGhTcHlOWXdVN3ZXazhvNGxNSThEUTJ5UVNMbEl0N1dOZzFtZm13dWlHX0xMOUE3SzN5ekdlVk5wX1FRNXFLYm52S2xfdmZPaHUtZlU?oc=5"
     },
     {
