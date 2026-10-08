@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T18:24:46+00:00",
+  "updated": "2026-10-08T16:26:49+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -161,20 +161,6 @@
       "venue": "SSRN Electronic Journal",
       "doi": "https://doi.org/10.2139/ssrn.5588589",
       "url": "https://doi.org/10.2139/ssrn.5588589",
-      "type": "preprint",
-      "oa": true
-    },
-    {
-      "year": 2025,
-      "title": "Increasing food insecurity vulnerability in urban slums contrasts with regional improvements across the SãoPaulo Metropolitan Region, Brazil",
-      "authors": [
-        "Joice Genaro Gomes",
-        "Sílvia Helena Galvão de Miranda",
-        "Júlio César Pedrassoli"
-      ],
-      "venue": "Research Square",
-      "doi": "https://doi.org/10.21203/rs.3.rs-6784990/v1",
-      "url": "https://doi.org/10.21203/rs.3.rs-6784990/v1",
       "type": "preprint",
       "oa": true
     },
