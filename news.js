@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-07T16:25:58+00:00",
+  "updated": "2026-10-09T16:09:50+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -66,6 +66,12 @@ window.__NEWS = {
       "title": "Área de favelas no Brasil quase triplicou em 40 anos, aponta estudo do Mapbiomas",
       "source": "Portal Manaus Alerta",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNN0tmb183MmNJcnkxa0R3cUpTVXUxYm92TUQ3Vl9GcXpZMUdMVjBlVE9EYUd1WEJudGpWTUc3amlCb1NCMW5UWEhQanA5SWk2dlFlOW9hbmIyS0pzNXVNbUI3S2JFRXNrTUNZS3E2WC1ldkZ3SlJxc0g0akFaeF9yT19SaHR6SFVuZmVxRVBvTnc5azNPV256RmEyYS1rdVZ2SEloRkE4Z3VQek9lV3ZmVFdRRXA?oc=5"
+    },
+    {
+      "date": "2025-06-23",
+      "title": "Climate change affects school access for 1.17 million students in Brazil",
+      "source": "REVISTA CENARIUM",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQeFg2RUhnVFhJd0VYUWIyUjE3QVNpZXdtWGUyUEcyLUl6ZUxycGtDSUxuNzFLbHFTeS1nNkhFbHVYejRVRDlLZkhHanFKWXZBcUo5aUtISWVxbTlFd2FnWThlaDFFcTlGOTNyckJFd2RsdjlIUXRkY0FtVFd0QWo5OHhLMkp1QWdRZnhRaDRIZk53MjNqU29aTXp6eXRzdUQ3d3hDcmx2UU80MFE?oc=5"
     },
     {
       "date": "2024-11-22",
