@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-10-08T16:26:49+00:00",
+  "updated": "2026-10-10T15:21:05+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -124,7 +124,7 @@ window.__PUBS = {
       "title": "Towards a Spatial Measure of SDG 11.1.1: Open Data for Urban Deprivation Mapping",
       "authors": [
         "Sai Ganesh Veeravalli",
-        "Florencio V Campomanes",
+        "Florencio Campomanes",
         "Sebastian Häfner",
         "Stefanos Georganos",
         "Monika Kuffer",
