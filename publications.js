@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-10-10T15:21:05+00:00",
+  "updated": "2026-10-12T19:00:14+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -32,6 +32,23 @@ window.__PUBS = {
       "venue": "Remote Sensing of Environment",
       "doi": "https://doi.org/10.1016/j.rse.2026.115272",
       "url": "https://doi.org/10.1016/j.rse.2026.115272",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2026,
+      "title": "Landslide susceptibility assessment using GIS and the infinite slope model in Salvador, Brazil",
+      "authors": [
+        "Luciana Silva",
+        "Lisdelys González‐Rodríguez",
+        "Priscila Barreto",
+        "Júlio César Pedrassoli",
+        "Jorge Jiménez",
+        "Ricardo Figueroa"
+      ],
+      "venue": "Annals of GIS",
+      "doi": "https://doi.org/10.1080/19475683.2026.2652260",
+      "url": "https://doi.org/10.1080/19475683.2026.2652260",
       "type": "article",
       "oa": true
     },
@@ -166,6 +183,25 @@ window.__PUBS = {
     },
     {
       "year": 2025,
+      "title": "ALAGAMENTOS E INUNDAÇÕES URBANAS E MUDANÇAS CLIMÁTICAS: DESENVOLVIMENTO DE UM MODELO DE PREVISÃO POTENCIAL PARA CIDADES BRASILEIRAS",
+      "authors": [
+        "Marcos Roberto Martines",
+        "Fernando Shinjí Kawakubo",
+        "Rogério Hartung Toppa",
+        "Júlio César Pedrassoli",
+        "Eduardo Felix Justiniano",
+        "Marcel Fantin",
+        "Marina Pannunzio Ribeiro",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "Aracê.",
+      "doi": "https://doi.org/10.56238/arev7n7-336",
+      "url": "https://doi.org/10.56238/arev7n7-336",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2025,
       "title": "Measuring change and location of informal settlements at a national level: The Argentinian case",
       "authors": [
         "Jota Samper",
@@ -192,6 +228,22 @@ window.__PUBS = {
       "venue": "Discover Sustainability",
       "doi": "https://doi.org/10.1007/s43621-025-02296-1",
       "url": "https://doi.org/10.1007/s43621-025-02296-1",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Percepção Ambiental de Resíduos Sólidos em Zonas Urbanas Heterogêneas",
+      "authors": [
+        "Marcos Roberto Martines",
+        "Anderson Roberto Lafon",
+        "Ricardo Vicente Ferreira",
+        "Júlio César Pedrassoli",
+        "Rogério Hartung Toppa"
+      ],
+      "venue": "Estudos Geográficos Revista Eletrônica de Geografia",
+      "doi": "",
+      "url": "https://www.periodicos.rc.biblioteca.unesp.br/index.php/estgeo/article/view/19390",
       "type": "article",
       "oa": true
     },
@@ -589,6 +641,25 @@ window.__PUBS = {
       "oa": true
     },
     {
+      "year": 2019,
+      "title": "Seleção de áreas de estudo através do IDHM e dos lançamentos residenciais verticais (1985-2013) para o município de São Paulo - SP",
+      "authors": [
+        "Milena Cristina Sartori",
+        "Rhuara Malachias Ferreira",
+        "Luiana Cardoso",
+        "Maíra Cristo Daitx",
+        "Renan Santos Gomez",
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Manoel Rodrigues Alves"
+      ],
+      "venue": "Biblioteca Digital da Memória Científica do INPE (National Institute for Space Research)",
+      "doi": "",
+      "url": "http://urlib.net/sid.inpe.br/marte2/2019/10.31.13.03",
+      "type": "article",
+      "oa": true
+    },
+    {
       "year": 2018,
       "title": "The use of UAV for slums land regularization: potentialities, hindrances and challenges",
       "authors": [
@@ -650,6 +721,18 @@ window.__PUBS = {
       "url": "https://doi.org/10.11606/d.8.2011.tde-03052012-085635",
       "type": "dissertation",
       "oa": true
+    },
+    {
+      "year": 2011,
+      "title": "Object based image analysis for detection of slums and classification of land use in Taboão da Serra/SP",
+      "authors": [
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "LA Referencia (Red Federada de Repositorios Institucionales de Publicaciones Científicas)",
+      "doi": "",
+      "url": "http://www.teses.usp.br/teses/disponiveis/8/8135/tde-03052012-085635/",
+      "type": "dissertation",
+      "oa": false
     },
     {
       "year": 2008,
