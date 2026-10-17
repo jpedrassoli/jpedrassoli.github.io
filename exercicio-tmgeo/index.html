@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercícios de GEE · Teoria e Método em Geoprocessamento</title>
+<style>
+  :root {
+    --bg:#f6f7f9; --card:#fff; --fg:#1d2330; --muted:#6a7385; --line:#dfe3ea;
+    --ok:#1b8a4b; --okbg:#e5f6ec; --bad:#c23a3a; --badbg:#fcebeb; --accent:#2a6df4; --infobg:#eef3ff;
+    --code:#10151f; --codefg:#e6edf7; --rev:#8a5a00; --revbg:#fff4de;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12151c; --card:#1a1f2a; --fg:#e8ecf3; --muted:#98a2b6; --line:#2b3242;
+            --ok:#4ccb86; --okbg:#173325; --bad:#ff7b7b; --badbg:#3a1f22; --accent:#6f9bff; --infobg:#1c2640;
+            --rev:#f0c36a; --revbg:#33290f; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  .wrap { max-width:780px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:1.3rem; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 16px; font-size:.95rem; }
+  .hidden { display:none !important; }
+  .top { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:.85rem; margin-bottom:8px; }
+  .top button { padding:2px 10px; font-size:.8rem; }
+  .bar { height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin:6px 0; }
+  .bar > div { height:100%; background:var(--accent); transition:width .3s; }
+  .resumo { display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:6px; gap:8px; flex-wrap:wrap; }
+  .niveis { display:flex; gap:6px; flex-wrap:wrap; margin:8px 0 16px; }
+  .niv { font-size:.78rem; padding:3px 10px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background:var(--card); }
+  .niv.cur { border-color:var(--accent); color:var(--accent); font-weight:600; }
+  .niv.done { border-color:var(--ok); color:var(--ok); background:var(--okbg); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px; }
+  .tag { display:inline-block; font-size:.75rem; padding:2px 8px; border-radius:999px;
+         background:var(--line); color:var(--muted); margin:0 6px 8px 0; }
+  .tag.rev { background:var(--revbg); color:var(--rev); }
+  .card h2 { font-size:1.1rem; margin:0 0 8px; }
+  .card p { margin:0 0 12px; }
+  pre, code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.88rem; }
+  pre { background:var(--code); color:var(--codefg); padding:12px 14px; border-radius:8px;
+        overflow-x:auto; margin:8px 0; white-space:pre-wrap; }
+  button { font:inherit; cursor:pointer; border-radius:8px; border:1px solid var(--line);
+           background:var(--card); color:var(--fg); padding:8px 14px; }
+  button:hover { border-color:var(--accent); }
+  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button:disabled { opacity:.55; cursor:default; }
+  .actions { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .opt { display:block; width:100%; text-align:left; margin:8px 0; }
+  .opt code { white-space:pre-wrap; word-break:break-word; }
+  .opt.ok { background:var(--okbg); border-color:var(--ok); opacity:1; }
+  .opt.bad { background:var(--badbg); border-color:var(--bad); opacity:1; }
+  .fb { margin-top:12px; padding:10px 12px; border-radius:8px; display:none; }
+  .fb.ok { display:block; background:var(--okbg); color:var(--ok); border:1px solid var(--ok); }
+  .fb.bad { display:block; background:var(--badbg); color:var(--bad); border:1px solid var(--bad); }
+  .fb.info { display:block; background:var(--infobg); border:1px solid var(--line); color:var(--fg); }
+  .fb ul { margin:6px 0 0 18px; padding:0; }
+  input.blank { font:inherit; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.88rem;
+                width:7.5em; padding:2px 6px; border-radius:6px; border:1px solid var(--line);
+                background:var(--card); color:var(--fg); }
+  input.blank.ok { border-color:var(--ok); background:var(--okbg); }
+  input.blank.bad { border-color:var(--bad); background:var(--badbg); }
+  .codebox { background:var(--code); color:var(--codefg); padding:12px 14px; border-radius:8px;
+             font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.88rem; line-height:1.9;
+             overflow-x:auto; white-space:pre-wrap; }
+  ul.lines { list-style:none; margin:8px 0; padding:0; }
+  ul.lines li { display:flex; align-items:center; gap:8px; background:var(--code); color:var(--codefg);
+                border:2px solid transparent; border-radius:8px; padding:6px 8px; margin:6px 0;
+                font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; }
+  ul.lines li.drag { opacity:.4; }
+  ul.lines li.bad { border-color:var(--bad); }
+  ul.lines li.ok { border-color:var(--ok); }
+  ul.lines li .txt { flex:1; word-break:break-word; cursor:grab; white-space:pre-wrap; }
+  ul.lines li button { padding:2px 8px; background:transparent; color:var(--codefg); border-color:#3a4358; }
+  ul.bug li { cursor:pointer; }
+  ul.bug li:hover { border-color:var(--accent); }
+  ul.bug.travada li { cursor:default; }
+  ul.bug.travada li:hover { border-color:transparent; }
+  ul.bug.travada li.ok:hover { border-color:var(--ok); }
+  ul.bug.travada li.bad:hover { border-color:var(--bad); }
+  .final { margin-top:16px; }
+  .final small { color:var(--muted); display:block; margin-top:4px; }
+  .expect { margin-top:10px; padding:10px 12px; border-radius:8px; border:1px dashed var(--line); font-size:.92rem; }
+  .expect ul { margin:6px 0 0 18px; padding:0; }
+  .erro { background:var(--badbg); color:var(--bad); border:1px solid var(--bad); border-radius:8px; padding:10px 12px; margin-bottom:12px; }
+  .erro.info { background:var(--infobg); color:var(--fg); border-color:var(--line); }
+  .score { font-size:2rem; font-weight:700; margin:8px 0; }
+  details.hist { margin-top:20px; }
+  details.hist summary { cursor:pointer; color:var(--muted); font-size:.9rem; }
+  .hist-list { display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+  .hist-list button { text-align:left; font-size:.85rem; padding:4px 10px; }
+  .hist-view { margin-top:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Teoria e Método em Geoprocessamento · Google Earth Engine</h1>
+  <p class="sub">Exercícios de código com correção imediata e nota. As respostas são conferidas no servidor.</p>
+
+  <div id="erro" class="erro hidden" role="alert"></div>
+
+  <!-- Entrada -->
+  <div id="login" class="card">
+    <h2 id="login-titulo">Entrar</h2>
+    <p id="login-msg">Entre com a mesma conta Google que você usa no Google Classroom. Seu progresso fica salvo e você retoma de onde parou, em qualquer aparelho.</p>
+    <div id="g-btn"></div>
+    <p class="sub" style="margin-top:12px">Ao entrar, seu nome, e-mail e suas respostas são registrados para fins de avaliação da disciplina.</p>
+  </div>
+
+  <!-- Aplicativo -->
+  <div id="app" class="hidden">
+    <div class="top"><span id="usuario"></span><button id="btn-sair" type="button">Sair</button></div>
+    <div class="resumo"><span id="resumo-acertos"></span><span id="resumo-rev"></span><b id="resumo-nota"></b></div>
+    <div class="bar"><div id="barfill"></div></div>
+    <div class="niveis" id="niveis"></div>
+    <div id="aviso-prazo" class="sub hidden"></div>
+    <div id="main"></div>
+    <details class="hist" id="hist">
+      <summary>Questões já acertadas (<span id="hist-n">0</span>) — rever o código</summary>
+      <div class="hist-list" id="hist-list"></div>
+      <div class="hist-view" id="hist-view"></div>
+    </details>
+  </div>
+</div>
+
+<script>
+/* ======================================================================
+   CONFIGURAÇÃO — preencha os dois valores (veja o LEIA-ME).
+   ====================================================================== */
+const CONFIG = window.GEE_CONFIG || {
+  CLIENT_ID: "COLE_AQUI.apps.googleusercontent.com",  // ID do cliente OAuth (Google Cloud)
+  API_URL: "COLE_AQUI"                                // URL do app da Web (Apps Script)
+};
+
+/* ======================================================================
+   MOTOR
+   ====================================================================== */
+const $ = (s) => document.querySelector(s);
+function el(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (k === "class") e.className = v;
+    else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v);
+  }
+  kids.flat().forEach(c => e.append(c));
+  return e;
+}
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+const NOMES_NIVEL = ["Fundamentos", "Listas, objetos e funções", "Objetos do Earth Engine", "Análise com Earth Engine", "Integração e depuração"];
+
+let idToken = null, pendingAuth = [];
+let U = null, CFG = null, RES = null, HIST = [];
+let Atual = null, Proxima = null, Concluido = false, respondida = false, busy = false, started = false;
+
+/* ---- autenticação (Google Identity Services) ---- */
+function jwtExp(t) { try { return JSON.parse(atob(t.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).exp || 0; } catch (e) { return 0; } }
+
+function onCredential(resp) {
+  idToken = resp.credential;
+  hideErro();
+  const waiting = pendingAuth; pendingAuth = [];
+  if (!started) iniciar(undefined, true);
+  else { $("#login").classList.add("hidden"); $("#app").classList.remove("hidden"); }
+  waiting.forEach(f => f());
+}
+function initGoogle() {
+  google.accounts.id.initialize({ client_id: CONFIG.CLIENT_ID, callback: onCredential, auto_select: true, cancel_on_tap_outside: false });
+  google.accounts.id.renderButton($("#g-btn"), { theme: "outline", size: "large", text: "signin_with", locale: "pt-BR" });
+  google.accounts.id.prompt();
+}
+function reauth() {
+  return new Promise(res => {
+    pendingAuth.push(res);
+    $("#login-titulo").textContent = "Sessão expirada";
+    $("#login-msg").textContent = "Entre novamente para continuar. Suas respostas já enviadas estão salvas.";
+    $("#login").classList.remove("hidden"); $("#app").classList.add("hidden");
+    try { google.accounts.id.prompt(); } catch (e) {}
+  });
+}
+
+/* ---- chamadas ao servidor ---- */
+async function apiUma(acao, dados) {
+  for (let tent = 0; tent < 2; tent++) {
+    if (!idToken || jwtExp(idToken) - Date.now() / 1000 < 30) { idToken = null; await reauth(); }
+    let r, j;
+    try { r = await fetch(CONFIG.API_URL, { method: "POST", body: JSON.stringify(Object.assign({ acao: acao, token: idToken }, dados || {})), redirect: "follow" }); }
+    catch (e) { throw { codigo: "REDE", mensagem: "Sem conexão com o servidor. Verifique sua internet e tente de novo." }; }
+    try { j = await r.json(); } catch (e) { throw { codigo: "RESP", mensagem: "O servidor está sobrecarregado ou respondeu algo inesperado. Tente de novo em instantes." }; }
+    if (j.erro) {
+      if (j.erro.codigo === "AUTH" && tent === 0) { idToken = null; continue; }
+      throw j.erro;
+    }
+    return j;
+  }
+  throw { codigo: "AUTH", mensagem: "Não foi possível autenticar. Entre novamente." };
+}
+/** Falhas passageiras (rede, servidor ocupado) são repetidas sozinhas, com espera crescente. Repetir uma resposta é seguro:
+ *  o servidor reconhece a mesma apresentação e não conta duas vezes. */
+const PASSAGEIRO = { REDE: 1, RESP: 1, OCUPADO: 1 };
+async function api(acao, dados, aviso) {
+  const base = CONFIG.ESPERA_MS === undefined ? 700 : CONFIG.ESPERA_MS;
+  let espera = base;
+  for (let n = 0; ; n++) {
+    try { return await apiUma(acao, dados); }
+    catch (e) {
+      if (!PASSAGEIRO[e.codigo] || n >= 4) throw e;
+      if (aviso) aviso("Servidor ocupado, tentando de novo (" + (n + 1) + " de 4)…");
+      await sleep(espera * (0.7 + Math.random() * 0.6)); espera *= 2;
+    }
+  }
+}
+
+function showErro(e) { const b = $("#erro"); b.classList.remove("info"); b.textContent = (e && e.mensagem) || "Erro inesperado."; b.classList.remove("hidden"); }
+function hideErro() { $("#erro").classList.add("hidden"); }
+
+/* ---- início / retomada ---- */
+async function iniciar(aviso, espalhar) {
+  try {
+    // Na hora em que a turma inteira entra, espalha as primeiras chamadas por ~1,5 s para não estourar o limite de execuções simultâneas do Google.
+    if (espalhar) await sleep(Math.random() * (CONFIG.ESPERA_MS === undefined ? 1500 : CONFIG.ESPERA_MS));
+    const j = await api("iniciar");
+    U = j.usuario; CFG = j.config; RES = j.resumo; HIST = j.historico || [];
+    Atual = j.atual; Proxima = null; Concluido = j.concluido; respondida = false;
+    started = true;
+    $("#login").classList.add("hidden"); $("#app").classList.remove("hidden");
+    $("#usuario").textContent = (U.nome ? U.nome + " · " : "") + U.email + (U.papel === "professor" ? " (professor)" : "");
+    if (CFG.prazo) { const a = $("#aviso-prazo"); a.classList.remove("hidden"); a.textContent = (CFG.prazoEncerrado ? "Prazo encerrado em " : "Prazo: ") + new Date(CFG.prazo).toLocaleString("pt-BR") + "."; }
+    if (aviso) showInfo(aviso);
+    render();
+  } catch (e) {
+    started = false;
+    if (e.codigo === "FORA_TURMA") {
+      $("#login-titulo").textContent = "Conta não encontrada na turma";
+      $("#login-msg").textContent = e.mensagem + " Você pode entrar com outra conta.";
+      idToken = null;
+      try { google.accounts.id.disableAutoSelect(); } catch (x) {}
+    } else showErro(e);
+  }
+}
+function showInfo(msg) { const b = $("#erro"); b.classList.add("info"); b.textContent = msg; b.classList.remove("hidden"); }
+
+/* ---- util de UI ---- */
+function setFb(box, kind, html) { box.className = "fb " + kind; box.innerHTML = html; }
+
+function showFinal(card, rev) {
+  if (!rev) return;
+  const kids = [];
+  if (rev.final) {
+    const note = el("small", {}, "Rode no Code Editor para ver o resultado de verdade (é preciso ter conta no Earth Engine).");
+    kids.push(
+      el("b", {}, "Código completo"),
+      el("pre", {}, rev.final),
+      el("div", { class: "actions" },
+        el("button", { onclick: () => (navigator.clipboard ? navigator.clipboard.writeText(rev.final) : Promise.reject())
+          .then(() => { note.textContent = "Código copiado. No Code Editor, cole (Ctrl+V) e clique em Run."; })
+          .catch(() => { note.textContent = "Não consegui copiar: selecione o código acima e copie manualmente."; }) }, "Copiar código"),
+        el("button", { class: "primary", onclick: () => window.open("https://code.earthengine.google.com/", "_blank") }, "Abrir Code Editor")),
+      note);
+    if (rev.esperado) kids.push(el("div", { class: "expect", html: "<b>Ao rodar, você deve ver:</b>" + rev.esperado }));
+  }
+  if (kids.length) card.append(el("div", { class: "final" }, kids));
+}
+
+/** Envia a resposta da apresentação atual. Devolve a resposta do servidor ou null. */
+async function enviar(q, payload, fb) {
+  if (busy || respondida) return null;
+  busy = true; setFb(fb, "info", "Verificando…"); hideErro();
+  try {
+    const r = await api("responder", { questao: q.id, pi: q.pi, resposta: payload }, (m) => setFb(fb, "info", m));
+    respondida = true;
+    RES = r.resumo; Proxima = r.proxima; Concluido = !!r.concluido;
+    if (r.correta && !HIST.some(h => h.id === q.id)) HIST.push({ id: q.id, titulo: q.titulo, nivel: q.nivel });
+    updateHeader();
+    return r;
+  } catch (e) {
+    fb.className = "fb"; fb.innerHTML = "";
+    if (e.codigo === "FORA_DE_ORDEM") { busy = false; await iniciar("Sua tela estava desatualizada; carreguei de novo a sua questão atual."); return null; }
+    showErro(e);
+    return null;
+  } finally { busy = false; }
+}
+
+/** Fecha a apresentação: feedback, código liberado (só se acertou) e botão para a próxima. */
+function concluir(card, fb, r) {
+  setFb(fb, r.correta ? "ok" : "bad", (r.correta ? "<b>Correto!</b> " : "<b>Não foi dessa vez.</b> ") + r.mensagem);
+  if (r.correta) showFinal(card, r.revelado);
+  else card.append(el("div", { class: "fb info", html: "Vamos trazer uma <b>nova questão</b>. Esta volta mais adiante para uma nova tentativa." }));
+  const prox = el("button", { class: "primary", onclick: () => { hideErro(); render(); } }, Concluido ? "Ver o resultado final →" : "Próxima questão →");
+  card.append(el("div", { class: "actions" }, prox));
+  prox.focus();
+}
+
+/* ---- renderers: cada tipo de questão monta o card; uma tentativa por apresentação ---- */
+function rChoice(q, card, fb) {
+  const wrap = el("div"), btns = [];
+  q.opcoes.forEach(o => {
+    const b = el("button", { class: "opt" }, q.prosa ? el("span", {}, o.codigo) : el("code", {}, o.codigo));
+    b.addEventListener("click", async () => {
+      const r = await enviar(q, { opcao: o.id }, fb); if (!r) return;
+      btns.forEach(x => { x.disabled = true; });
+      b.classList.add(r.correta ? "ok" : "bad");
+      concluir(card, fb, r);
+    });
+    btns.push(b); wrap.append(b);
+  });
+  card.append(wrap);
+}
+
+function rFill(q, card, fb) {
+  const box = el("div", { class: "codebox" }), inputs = [];
+  q.modelo.split(/(\{\{\d+\}\})/).forEach(part => {
+    const m = part.match(/^\{\{(\d+)\}\}$/);
+    if (m) { inputs[+m[1]] = el("input", { class: "blank", type: "text", spellcheck: "false", autocomplete: "off" }); box.append(inputs[+m[1]]); }
+    else box.append(document.createTextNode(part));
+  });
+  const btn = el("button", { class: "primary" }, "Verificar");
+  btn.addEventListener("click", async () => {
+    const r = await enviar(q, { valores: inputs.map(i => i.value) }, fb); if (!r) return;
+    const certos = (r.detalhes && r.detalhes.certos) || [];
+    inputs.forEach((inp, i) => { inp.classList.add(certos[i] ? "ok" : "bad"); inp.disabled = true; });
+    btn.disabled = true;
+    concluir(card, fb, r);
+  });
+  card.append(box, el("div", { class: "actions" }, btn));
+}
+
+function rOrder(q, card, fb) {
+  const byId = {}; q.linhas.forEach(l => { byId[l.id] = l; });
+  const order = q.linhas.map(l => l.id);
+  const ul = el("ul", { class: "lines" });
+  let dragIdx = null, travado = false;
+  function draw() {
+    ul.innerHTML = "";
+    order.forEach((id, pos) => {
+      const li = el("li", { draggable: "true" },
+        el("span", { class: "txt" }, byId[id].texto),
+        el("button", { title: "Subir", onclick: () => move(pos, -1) }, "↑"),
+        el("button", { title: "Descer", onclick: () => move(pos, 1) }, "↓"));
+      if (travado) li.querySelectorAll("button").forEach(b => { b.disabled = true; });
+      li.addEventListener("dragstart", () => { dragIdx = pos; li.classList.add("drag"); });
+      li.addEventListener("dragend", () => li.classList.remove("drag"));
+      li.addEventListener("dragover", (e) => e.preventDefault());
+      li.addEventListener("drop", (e) => {
+        e.preventDefault();
+        if (travado || dragIdx === null || dragIdx === pos) return;
+        const [m] = order.splice(dragIdx, 1); order.splice(pos, 0, m); dragIdx = null; draw();
+      });
+      ul.append(li);
+    });
+  }
+  function move(pos, d) {
+    if (travado) return;
+    const t = pos + d; if (t < 0 || t >= order.length) return;
+    [order[pos], order[t]] = [order[t], order[pos]]; draw();
+  }
+  draw();
+  const btn = el("button", { class: "primary" }, "Verificar");
+  btn.addEventListener("click", async () => {
+    if (travado) return;
+    const r = await enviar(q, { ordem: order.slice() }, fb); if (!r) return;
+    travado = true; btn.disabled = true; draw();
+    const ruins = new Set((r.detalhes && r.detalhes.ruins) || []);
+    [...ul.children].forEach((li, p) => li.classList.add(r.correta || !ruins.has(p) ? "ok" : "bad"));
+    concluir(card, fb, r);
+  });
+  card.append(ul, el("div", { class: "actions" }, btn));
+}
+
+function rBug(q, card, fb) {
+  const ul = el("ul", { class: "lines bug" });
+  q.linhas.forEach((txt, i) => {
+    const li = el("li", {}, el("span", { class: "txt" }, txt));
+    li.addEventListener("click", async () => {
+      if (respondida || busy) return;
+      const r = await enviar(q, { linha: i }, fb); if (!r) return;
+      ul.classList.add("travada");
+      li.classList.add(r.correta ? "ok" : "bad");
+      concluir(card, fb, r);
+    });
+    ul.append(li);
+  });
+  card.append(ul);
+}
+
+const RENDERERS = { choice: rChoice, fill: rFill, order: rOrder, bug: rBug };
+const LABELS = { choice: "Escolha a alternativa", fill: "Complete o código", order: "Ordene as linhas", bug: "Ache o erro" };
+
+/* ---- telas ---- */
+function render() {
+  const main = $("#main"); main.innerHTML = "";
+  if (respondida) { Atual = Proxima; respondida = false; }
+  updateHeader(); renderHist();
+  if (Concluido || !Atual) { renderFim(main); return; }
+  const q = Atual;
+  const card = el("div", { class: "card" });
+  const tags = [el("span", { class: "tag" }, "Nível " + q.nivel + " · " + NOMES_NIVEL[q.nivel - 1]), el("span", { class: "tag" }, LABELS[q.tipo])];
+  if (q.revisao) tags.push(el("span", { class: "tag rev" }, "↻ Revisão: você errou esta antes"));
+  card.append(el("div", {}, tags), el("h2", {}, q.titulo), el("p", { html: q.enunciado }));
+  const fb = el("div", { class: "fb" });
+  RENDERERS[q.tipo](q, card, fb);
+  card.append(fb);
+  main.append(card);
+}
+
+function renderFim(main) {
+  const nota = Number(RES.nota).toFixed(2).replace(".", ",");
+  main.append(el("div", { class: "card" },
+    el("h2", {}, "Exercício concluído"),
+    el("p", {}, "Você chegou a " + RES.acertos + " questões corretas em " + RES.respondidas + " respostas."),
+    el("div", { class: "score" }, "Nota: " + nota + " / " + RES.notaMaxima),
+    el("p", { class: "sub" }, "Sua nota é enviada ao Google Classroom. Abaixo, você pode rever o código de qualquer questão acertada.")));
+  $("#hist").open = true;
+}
+
+function updateHeader() {
+  if (!RES) return;
+  $("#resumo-acertos").textContent = RES.acertos + " de " + RES.meta + " corretas";
+  $("#resumo-rev").textContent = RES.pendentes ? "↻ " + RES.pendentes + " para rever" : "";
+  $("#resumo-nota").textContent = "Nota atual: " + Number(RES.nota).toFixed(2).replace(".", ",") + " / " + RES.notaMaxima;
+  $("#barfill").style.width = (RES.meta ? RES.acertos / RES.meta * 100 : 0) + "%";
+  const n = $("#niveis"); n.innerHTML = "";
+  RES.quotas.forEach((cota, i) => {
+    const feito = RES.porNivel[i] >= cota, atual = RES.nivel === i + 1;
+    n.append(el("span", { class: "niv" + (feito ? " done" : atual ? " cur" : ""), title: NOMES_NIVEL[i] }, "N" + (i + 1) + " · " + RES.porNivel[i] + "/" + cota));
+  });
+}
+
+function renderHist() {
+  $("#hist-n").textContent = String(HIST.length);
+  const l = $("#hist-list"); l.innerHTML = "";
+  HIST.forEach(h => l.append(el("button", { type: "button", onclick: () => verHist(h) }, "N" + h.nivel + " · " + h.titulo)));
+}
+async function verHist(h) {
+  const v = $("#hist-view"); v.innerHTML = "";
+  try {
+    const j = await api("ver", { questao: h.id });
+    const card = el("div", { class: "card" }, el("span", { class: "tag" }, "Nível " + j.nivel), el("h2", {}, j.titulo), el("p", { html: j.enunciado }),
+      el("div", { class: "fb ok", html: j.revelado.mensagem }));
+    showFinal(card, j.revelado);
+    v.append(card);
+  } catch (e) { showErro(e); }
+}
+
+$("#btn-sair").addEventListener("click", () => {
+  idToken = null; started = false; U = null;
+  try { google.accounts.id.disableAutoSelect(); } catch (e) {}
+  $("#app").classList.add("hidden"); $("#login").classList.remove("hidden");
+  $("#login-titulo").textContent = "Entrar";
+  $("#login-msg").textContent = "Você saiu. Entre novamente com sua conta Google quando quiser continuar.";
+});
+
+/* Se o script do Google não carregar (bloqueador, rede), avisa. */
+setTimeout(() => { if (typeof google === "undefined" && !idToken) showErro({ mensagem: "Não consegui carregar o login do Google. Verifique sua conexão ou desative bloqueadores de conteúdo nesta página." }); }, 6000);
+</script>
+<script src="https://accounts.google.com/gsi/client" async defer onload="initGoogle()"></script>
+</body>
+</html>
