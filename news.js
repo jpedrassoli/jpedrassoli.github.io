@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-12T19:00:14+00:00",
+  "updated": "2026-10-25T13:41:49+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -24,6 +24,12 @@ window.__NEWS = {
       "title": "Brazil: area occupied by favelas grows 2.75 times in 40 years",
       "source": "Plataforma Media",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPc0gzelpZSzVaUEpsVHNjZE41ZjJSZnFkUC1VRUpUa1kzelFfcmhMUEFxSHVnZDZpOGYzODFLNDBObG5TbTZPVmR6SV9Wd1FuczJFTm80RkFINTZoRVhMWGhTcHlOWXdVN3ZXazhvNGxNSThEUTJ5UVNMbEl0N1dOZzFtZm13dWlHX0xMOUE3SzN5ekdlVk5wX1FRNXFLYm52S2xfdmZPaHUtZlU?oc=5"
+    },
+    {
+      "date": "2026-03-05",
+      "title": "Juiz de Fora lidera em MG e ocupa 3º lugar no país de casas em áreas de encosta",
+      "source": "Rádio Itatiaia",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNeDFsWGZwdjhVWUJCMm5aa0dsNnhCbnZRMmVvRE5vcnRzekJoTU9ZX1R6TElWQ181QTJNX3RhQUFDZmZvdU9kVnlIazFJdDkyOWRURXV6dnIzcjFXYWtnS2J0dFVrbkNOdUF2QU9yaElrTEFxdF9uTUFGWi1ycDlWTG9Lc19NakVmWjItS3k3TzJ5RzFWbUdnYlhXckt6bTVwdUUwbXRzN2M2aUpqX0Ftem8tWFJLWVU?oc=5"
     },
     {
       "date": "2026-03-05",
