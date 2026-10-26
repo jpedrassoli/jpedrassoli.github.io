@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-25T13:41:49+00:00",
+  "updated": "2026-10-26T16:05:57+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -27,15 +27,15 @@ window.__NEWS = {
     },
     {
       "date": "2026-03-05",
-      "title": "Juiz de Fora lidera em MG e ocupa 3º lugar no país de casas em áreas de encosta",
-      "source": "Rádio Itatiaia",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNeDFsWGZwdjhVWUJCMm5aa0dsNnhCbnZRMmVvRE5vcnRzekJoTU9ZX1R6TElWQ181QTJNX3RhQUFDZmZvdU9kVnlIazFJdDkyOWRURXV6dnIzcjFXYWtnS2J0dFVrbkNOdUF2QU9yaElrTEFxdF9uTUFGWi1ycDlWTG9Lc19NakVmWjItS3k3TzJ5RzFWbUdnYlhXckt6bTVwdUUwbXRzN2M2aUpqX0Ftem8tWFJLWVU?oc=5"
-    },
-    {
-      "date": "2026-03-05",
       "title": "Brazil: Area Occupied By Favelas Almost Tripled In 40 Years",
       "source": "Eurasia Review",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQazUwakxlUEVyVTdNeXZpaDFKT2NQZ3V0UnJ4UUluSFEwbS0wVFhKVVNNdXNCN094c01RTjlZRDhaQmNaWEhVWXdmZlE5SzFMalhMbm90RHlneE10YVZsX3BiOFJVaHNYT3VPc19naW9tc0JjRUF2T1FqVFM4N2ZDQzR3dzZHNWNyNVpxak83RDV4S0xGbFVSVC1Qb01ZMUU?oc=5"
+    },
+    {
+      "date": "2026-03-05",
+      "title": "Juiz de Fora lidera em MG e ocupa 3º lugar no país de casas em áreas de encosta",
+      "source": "Rádio Itatiaia",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNeDFsWGZwdjhVWUJCMm5aa0dsNnhCbnZRMmVvRE5vcnRzekJoTU9ZX1R6TElWQ181QTJNX3RhQUFDZmZvdU9kVnlIazFJdDkyOWRURXV6dnIzcjFXYWtnS2J0dFVrbkNOdUF2QU9yaElrTEFxdF9uTUFGWi1ycDlWTG9Lc19NakVmWjItS3k3TzJ5RzFWbUdnYlhXckt6bTVwdUUwbXRzN2M2aUpqX0Ftem8tWFJLWVU?oc=5"
     },
     {
       "date": "2026-03-04",
