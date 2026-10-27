@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-10-26T16:05:57+00:00",
+  "updated": "2026-10-27T15:24:58+00:00",
   "items": [
     {
       "date": "2026-04-30",
@@ -82,7 +82,7 @@ window.__NEWS = {
     {
       "date": "2024-11-22",
       "title": "Boa Vista é 3ª capital que mais perdeu vegetação urbana em duas décadas",
-      "source": "REVISTA CENARIUM",
+      "source": "cenarium",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVDZZd1R1cmhiMWZ0djBTcXdfUjN4Wlo4ajRVVFZZX2gxOFBobGFJeHlHTjZhQzB1VVBPbmtSczYyNzV6OHg0SmlLNzJFX1U2MHZybk5LbnUzQlhHQVdUalExSjlVRmRXSGJqLVhCaUxleUxMTjZOMDVGQXZsYTVCU3ZDTm9xRTFNc1dsbFhIM3E1QWx6bllLRlAzaWp2QU0ta2c5bGRB?oc=5"
     },
     {
