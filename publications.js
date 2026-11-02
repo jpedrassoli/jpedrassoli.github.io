@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-10-28T15:59:13+00:00",
+  "updated": "2026-11-02T19:27:48+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -32,6 +32,23 @@ window.__PUBS = {
       "venue": "Remote Sensing of Environment",
       "doi": "https://doi.org/10.1016/j.rse.2026.115272",
       "url": "https://doi.org/10.1016/j.rse.2026.115272",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2026,
+      "title": "Spatiotemporal dynamics of informal settlements across argentine cities: A national-scale analysis",
+      "authors": [
+        "Jota Samper",
+        "Júlio César Pedrassoli",
+        "Malena Jaramillo Espinosa",
+        "Juan Manuel D’Attoli",
+        "Anthony Boanada-Fuchs",
+        "Monika Kuffer"
+      ],
+      "venue": "Cities",
+      "doi": "https://doi.org/10.1016/j.cities.2026.107774",
+      "url": "https://doi.org/10.1016/j.cities.2026.107774",
       "type": "article",
       "oa": true
     },
@@ -162,23 +179,6 @@ window.__PUBS = {
       "doi": "https://doi.org/10.1109/jurse60372.2025.11076033",
       "url": "https://doi.org/10.1109/jurse60372.2025.11076033",
       "type": "conference-paper",
-      "oa": true
-    },
-    {
-      "year": 2025,
-      "title": "Spatiotemporal Dynamics of Informal Settlements Across Argentine Cities: A National-Scale Analysis",
-      "authors": [
-        "Jose Samper",
-        "Júlio César Pedrassoli",
-        "Malena Jaramillo Espinosa",
-        "Juan Manuel D’Attoli",
-        "Anthony Boanada-Fuchs",
-        "Monika Kuffer"
-      ],
-      "venue": "SSRN Electronic Journal",
-      "doi": "https://doi.org/10.2139/ssrn.5588589",
-      "url": "https://doi.org/10.2139/ssrn.5588589",
-      "type": "preprint",
       "oa": true
     },
     {
