@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-11-06T16:44:05+00:00",
+  "updated": "2026-11-07T15:38:31+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -122,34 +122,6 @@ window.__PUBS = {
     },
     {
       "year": 2025,
-      "title": "Towards a Spatial Measure of SDG 11.1.1: Open Data for Urban Deprivation Mapping",
-      "authors": [
-        "Sai Ganesh Veeravalli",
-        "Florencio Campomanes",
-        "Sebastian Häfner",
-        "Stefanos Georganos",
-        "Monika Kuffer",
-        "John Friesen",
-        "Dana R. Thomson",
-        "Robert Peter Ndugwa",
-        "Dennis Mwaniki",
-        "Ángela Abascal",
-        "Peter Elias",
-        "Tobi Eniolu Morakinyo",
-        "Júlio César Pedrassoli",
-        "Gabriel de Oliveira",
-        "Anthony Boanada-Fuchs",
-        "Boris Zerjav",
-        "Juan Manuel D’Attoli"
-      ],
-      "venue": "Joint Urban Remote Sensing Event (JURSE)",
-      "doi": "https://doi.org/10.1109/jurse60372.2025.11076033",
-      "url": "https://doi.org/10.1109/jurse60372.2025.11076033",
-      "type": "conference-paper",
-      "oa": true
-    },
-    {
-      "year": 2025,
       "title": "Innovative Data Solutions for Inclusive Cities: The IDEAtlas User Portal",
       "authors": [
         "Bedru Tareke",
@@ -179,6 +151,34 @@ window.__PUBS = {
       "doi": "https://doi.org/10.5194/isprs-archives-xlviii-m-7-2025-237-2025",
       "url": "https://doi.org/10.5194/isprs-archives-xlviii-m-7-2025-237-2025",
       "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2025,
+      "title": "Towards a Spatial Measure of SDG 11.1.1: Open Data for Urban Deprivation Mapping",
+      "authors": [
+        "Sai Ganesh Veeravalli",
+        "Florencio Campomanes",
+        "Sebastian Häfner",
+        "Stefanos Georganos",
+        "Monika Kuffer",
+        "John Friesen",
+        "Dana R. Thomson",
+        "Robert Peter Ndugwa",
+        "Dennis Mwaniki",
+        "Ángela Abascal",
+        "Peter Elias",
+        "Tobi Eniolu Morakinyo",
+        "Júlio César Pedrassoli",
+        "Gabriel de Oliveira",
+        "Anthony Boanada-Fuchs",
+        "Boris Zerjav",
+        "Juan Manuel D’Attoli"
+      ],
+      "venue": "Joint Urban Remote Sensing Event (JURSE)",
+      "doi": "https://doi.org/10.1109/jurse60372.2025.11076033",
+      "url": "https://doi.org/10.1109/jurse60372.2025.11076033",
+      "type": "conference-paper",
       "oa": true
     },
     {
@@ -345,6 +345,21 @@ window.__PUBS = {
     },
     {
       "year": 2023,
+      "title": "POTENCIALIDADES E LIMITAÇÕES DOS DADOS DE WEB SCRAPING PARA O MAPEAMENTO DOS PREÇOS DOS IMÓVEIS URBANOS",
+      "authors": [
+        "Thaís Góes de Souza",
+        "Vivian de Oliveira Fernandes",
+        "Júlio César Pedrassoli",
+        "Fernanda Doracy Rocha Fonseca"
+      ],
+      "venue": "Caminhos de Geografia",
+      "doi": "https://doi.org/10.14393/rcg249668395",
+      "url": "https://doi.org/10.14393/rcg249668395",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2023,
       "title": "ANÁLISE CRÍTICA DAS CONSEQUÊNCIAS DA APROVAÇÃO DOS PROJETOS DE LEI FEDERAL 3.682/2012 E 571/2022: PREVISÃO DE RISCOS E IMPACTOS FUTUROS PARA AS UNIDADES DE CONSERVAÇÃO",
       "authors": [
         "Marcel Fantin",
@@ -372,21 +387,6 @@ window.__PUBS = {
       "venue": "Revista Brasileira de Geomática",
       "doi": "https://doi.org/10.3895/rbgeo.v11n2.16221",
       "url": "https://doi.org/10.3895/rbgeo.v11n2.16221",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2023,
-      "title": "POTENCIALIDADES E LIMITAÇÕES DOS DADOS DE WEB SCRAPING PARA O MAPEAMENTO DOS PREÇOS DOS IMÓVEIS URBANOS",
-      "authors": [
-        "Thaís Góes de Souza",
-        "Vivian de Oliveira Fernandes",
-        "Júlio César Pedrassoli",
-        "Fernanda Doracy Rocha Fonseca"
-      ],
-      "venue": "Caminhos de Geografia",
-      "doi": "https://doi.org/10.14393/rcg249668395",
-      "url": "https://doi.org/10.14393/rcg249668395",
       "type": "article",
       "oa": true
     },
