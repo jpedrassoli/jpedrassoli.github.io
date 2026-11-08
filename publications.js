@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-11-07T15:38:31+00:00",
+  "updated": "2026-11-08T15:56:56+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -272,6 +272,26 @@ window.__PUBS = {
     },
     {
       "year": 2024,
+      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
+      "authors": [
+        "Júlio César Pedrassoli",
+        "Joice Genaro Gomes",
+        "Breno Malheiros de Melo",
+        "Edmilson Rodrigues dos Santos",
+        "Eduardo Felix Justiniano",
+        "Fernando Shinjí Kawakubo",
+        "Marcel Fantin",
+        "Marcos Roberto Martines",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "Remote sensing and digital image processing",
+      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "type": "book-chapter",
+      "oa": false
+    },
+    {
+      "year": 2024,
       "title": "Extension and variability of impervious surface area revealed by nighttime light imagery",
       "authors": [
         "Fernando Shinjí Kawakubo",
@@ -290,26 +310,6 @@ window.__PUBS = {
       "doi": "https://doi.org/10.1007/s13762-024-06038-0",
       "url": "https://doi.org/10.1007/s13762-024-06038-0",
       "type": "article",
-      "oa": false
-    },
-    {
-      "year": 2024,
-      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
-      "authors": [
-        "Júlio César Pedrassoli",
-        "Joice Genaro Gomes",
-        "Breno Malheiros de Melo",
-        "Edmilson Rodrigues dos Santos",
-        "Eduardo Felix Justiniano",
-        "Fernando Shinjí Kawakubo",
-        "Marcel Fantin",
-        "Marcos Roberto Martines",
-        "Rúbia Gomes Morato"
-      ],
-      "venue": "Remote sensing and digital image processing",
-      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
-      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
-      "type": "book-chapter",
       "oa": false
     },
     {
@@ -527,19 +527,6 @@ window.__PUBS = {
     },
     {
       "year": 2021,
-      "title": "Survey of Slum Housing Characteristics Using Drones: An Experiment in the Alto das Pombas Community, Salvador de Bahia/Brazil",
-      "authors": [
-        "Joice Genaro Gomes",
-        "Júlio César Pedrassoli"
-      ],
-      "venue": "Quaestiones Geographicae",
-      "doi": "https://doi.org/10.2478/quageo-2021-0031",
-      "url": "https://doi.org/10.2478/quageo-2021-0031",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2021,
       "title": "City Production Strategies in the Neoliberalization Context - Salvador as Example",
       "authors": [
         "Elisabete Santos",
@@ -550,6 +537,19 @@ window.__PUBS = {
       "venue": "Organizações & Sociedade",
       "doi": "https://doi.org/10.1590/1984-92302021v28n9807en",
       "url": "https://doi.org/10.1590/1984-92302021v28n9807en",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "Survey of Slum Housing Characteristics Using Drones: An Experiment in the Alto das Pombas Community, Salvador de Bahia/Brazil",
+      "authors": [
+        "Joice Genaro Gomes",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Quaestiones Geographicae",
+      "doi": "https://doi.org/10.2478/quageo-2021-0031",
+      "url": "https://doi.org/10.2478/quageo-2021-0031",
       "type": "article",
       "oa": true
     },
