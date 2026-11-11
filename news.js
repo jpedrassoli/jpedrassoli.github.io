@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-11-09T19:46:04+00:00",
+  "updated": "2026-11-11T17:05:23+00:00",
   "items": [
     {
       "date": "2026-11-04",
@@ -168,6 +168,12 @@ window.__NEWS = {
       "title": "Levantamento mostram um aumento na ocupação das margens de rios no Brasil",
       "source": "SBT News",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOaWxaVmdGZzNQWVNpc0lmcVE1amVKa0NBWG1adDQ4YnBKTl80RlZlWDZhN3lOd3htSlRscF9ranlKVlhGWFpWVmNVSmtaczBQNy1vQ0d0TGtJS3QyblhEVGV5enB3Q3NEZm5KOFN6XzFvLS1xM0VRNDhqWTBXRkc1dmtzYlpCNVBPem5BTEhxaG9LTVE2SVljMU9HbFdGSTN5TS1vNjY3eURiT0ZzS2VNU1N2THM4ZDJLSVpiOGpPRQ?oc=5"
+    },
+    {
+      "date": "2022-02-23",
+      "title": "Crescimento de áreas irregulares em Petrópolis mais que dobrou em 35 anos",
+      "source": "band.com.br",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPdWhrM2ZNN2ZkUlkxR2pCWjZ5Q2xrY3c2VWhHODBnRG1obzNQZkhubXl4Vmk1cFF5QllHdEtMWTZJR3lkYnRLcDd4RllzMHpSYlNBMUJud2RXVXdDMnVBbk5kQUM3Q2ZPNGptcW1LbERPRXFhUjFZUXNoeUhQTnk4VWxnWVctUktQN0loX1VVd1hpUjNtWDRtTy1aSDZNMWlCNklmdXg2WFBPQ2VTeENJZXFkRHU0TThSV2c?oc=5"
     },
     {
       "date": "2021-11-05",
