@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-11-14T15:47:29+00:00",
+  "updated": "2026-11-15T16:19:05+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -249,6 +249,26 @@ window.__PUBS = {
     },
     {
       "year": 2024,
+      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
+      "authors": [
+        "Júlio César Pedrassoli",
+        "Joice Genaro Gomes",
+        "Breno Malheiros de Melo",
+        "Edmilson Rodrigues dos Santos",
+        "Eduardo Felix Justiniano",
+        "Fernando Shinjí Kawakubo",
+        "Marcel Fantin",
+        "Marcos Roberto Martines",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "Remote sensing and digital image processing",
+      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "type": "book-chapter",
+      "oa": false
+    },
+    {
+      "year": 2024,
       "title": "Cartographic Resources for Equitable University–Community Interaction in Slum Areas",
       "authors": [
         "Marbrisa N. R. das Virgens",
@@ -269,26 +289,6 @@ window.__PUBS = {
       "url": "https://doi.org/10.3390/urbansci8010020",
       "type": "article",
       "oa": true
-    },
-    {
-      "year": 2024,
-      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
-      "authors": [
-        "Júlio César Pedrassoli",
-        "Joice Genaro Gomes",
-        "Breno Malheiros de Melo",
-        "Edmilson Rodrigues dos Santos",
-        "Eduardo Felix Justiniano",
-        "Fernando Shinjí Kawakubo",
-        "Marcel Fantin",
-        "Marcos Roberto Martines",
-        "Rúbia Gomes Morato"
-      ],
-      "venue": "Remote sensing and digital image processing",
-      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
-      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
-      "type": "book-chapter",
-      "oa": false
     },
     {
       "year": 2024,
