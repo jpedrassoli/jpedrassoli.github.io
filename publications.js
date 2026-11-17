@@ -1,5 +1,5 @@
 window.__PUBS = {
-  "updated": "2026-11-15T16:19:05+00:00",
+  "updated": "2026-11-17T18:31:54+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -94,7 +94,7 @@ window.__PUBS = {
         "Gisele Pedroso Moi",
         "Júlio César Pedrassoli"
       ],
-      "venue": "Revista Tópicos.",
+      "venue": "Revista Tópicos",
       "doi": "https://doi.org/10.70773/revistatopicos/782265599",
       "url": "https://doi.org/10.70773/revistatopicos/782265599",
       "type": "article",
@@ -249,26 +249,6 @@ window.__PUBS = {
     },
     {
       "year": 2024,
-      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
-      "authors": [
-        "Júlio César Pedrassoli",
-        "Joice Genaro Gomes",
-        "Breno Malheiros de Melo",
-        "Edmilson Rodrigues dos Santos",
-        "Eduardo Felix Justiniano",
-        "Fernando Shinjí Kawakubo",
-        "Marcel Fantin",
-        "Marcos Roberto Martines",
-        "Rúbia Gomes Morato"
-      ],
-      "venue": "Remote sensing and digital image processing",
-      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
-      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
-      "type": "book-chapter",
-      "oa": false
-    },
-    {
-      "year": 2024,
       "title": "Cartographic Resources for Equitable University–Community Interaction in Slum Areas",
       "authors": [
         "Marbrisa N. R. das Virgens",
@@ -289,6 +269,26 @@ window.__PUBS = {
       "url": "https://doi.org/10.3390/urbansci8010020",
       "type": "article",
       "oa": true
+    },
+    {
+      "year": 2024,
+      "title": "Reconstructing 36 Years of Spatiotemporal Dynamics of Slums in Brazil by Integrating EO and Census Data",
+      "authors": [
+        "Júlio César Pedrassoli",
+        "Joice Genaro Gomes",
+        "Breno Malheiros de Melo",
+        "Edmilson Rodrigues dos Santos",
+        "Eduardo Felix Justiniano",
+        "Fernando Shinjí Kawakubo",
+        "Marcel Fantin",
+        "Marcos Roberto Martines",
+        "Rúbia Gomes Morato"
+      ],
+      "venue": "Remote sensing and digital image processing",
+      "doi": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "url": "https://doi.org/10.1007/978-3-031-49183-2_10",
+      "type": "book-chapter",
+      "oa": false
     },
     {
       "year": 2024,
@@ -345,6 +345,24 @@ window.__PUBS = {
     },
     {
       "year": 2023,
+      "title": "Risco dos bairros de Salvador ao espalhamento da COVID-19 decorrente da circulação de pessoas e condições socioeconômicas",
+      "authors": [
+        "Patrícia Lustosa Brito",
+        "Jorge Ubirajara Pedreira",
+        "Vivian de Oliveira Fernandes",
+        "Marcella Sgura Viana",
+        "Júlio César Pedrassoli",
+        "Juan Moreno Delgado",
+        "Juan Moreno Delgado"
+      ],
+      "venue": "Revista Brasileira de Geomática",
+      "doi": "https://doi.org/10.3895/rbgeo.v11n2.16221",
+      "url": "https://doi.org/10.3895/rbgeo.v11n2.16221",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2023,
       "title": "POTENCIALIDADES E LIMITAÇÕES DOS DADOS DE WEB SCRAPING PARA O MAPEAMENTO DOS PREÇOS DOS IMÓVEIS URBANOS",
       "authors": [
         "Thaís Góes de Souza",
@@ -374,24 +392,6 @@ window.__PUBS = {
     },
     {
       "year": 2023,
-      "title": "Risco dos bairros de Salvador ao espalhamento da COVID-19 decorrente da circulação de pessoas e condições socioeconômicas",
-      "authors": [
-        "Patrícia Lustosa Brito",
-        "Jorge Ubirajara Pedreira",
-        "Vivian de Oliveira Fernandes",
-        "Marcella Sgura Viana",
-        "Júlio César Pedrassoli",
-        "Juan Moreno Delgado",
-        "Juan Moreno Delgado"
-      ],
-      "venue": "Revista Brasileira de Geomática",
-      "doi": "https://doi.org/10.3895/rbgeo.v11n2.16221",
-      "url": "https://doi.org/10.3895/rbgeo.v11n2.16221",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2023,
       "title": "MAPEAMENTO COLABORATIVO DIGITAL NA ASSISTÊNCIA MULTIDISCIPLINAR A COMUNIDADES",
       "authors": [
         "Heliana Faria Mettig Rocha",
@@ -405,6 +405,22 @@ window.__PUBS = {
       "venue": "Encontro Latino-americano e Europeu sobre Edificações e Comunidades Sustentáveis (euroELECS)",
       "doi": "",
       "url": "https://eventos.antac.org.br/euroelecs/article/view/2559",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Inteligência geográfica na construção de políticas públicas: rumo à plataforma de monitoramento de áreas verdes urbanas do Estado de São Paulo",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Breno Malheiros de Melo",
+        "Gustavo Paixão Menezes",
+        "Marcos Roberto Martines"
+      ],
+      "venue": "Interações (Campo Grande)",
+      "doi": "https://doi.org/10.20435/inter.v23i3.3533",
+      "url": "https://doi.org/10.20435/inter.v23i3.3533",
       "type": "article",
       "oa": true
     },
@@ -425,22 +441,6 @@ window.__PUBS = {
       "venue": "International Journal of Applied Earth Observation and Geoinformation",
       "doi": "https://doi.org/10.1016/j.jag.2022.102791",
       "url": "https://doi.org/10.1016/j.jag.2022.102791",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2022,
-      "title": "Inteligência geográfica na construção de políticas públicas: rumo à plataforma de monitoramento de áreas verdes urbanas do Estado de São Paulo",
-      "authors": [
-        "Marcel Fantin",
-        "Júlio César Pedrassoli",
-        "Breno Malheiros de Melo",
-        "Gustavo Paixão Menezes",
-        "Marcos Roberto Martines"
-      ],
-      "venue": "Interações (Campo Grande)",
-      "doi": "https://doi.org/10.20435/inter.v23i3.3533",
-      "url": "https://doi.org/10.20435/inter.v23i3.3533",
       "type": "article",
       "oa": true
     },
@@ -477,21 +477,6 @@ window.__PUBS = {
     },
     {
       "year": 2021,
-      "title": "EXPLORATORY SPATIAL ANALYSIS OF HOUSING PRICES OBTAINED FROM WEB SCRAPING TECHNIQUE",
-      "authors": [
-        "Thaís Góes de Souza",
-        "Fernanda Doracy Rocha Fonseca",
-        "Vivian de Oliveira Fernandes",
-        "Júlio César Pedrassoli"
-      ],
-      "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
-      "doi": "https://doi.org/10.5194/isprs-archives-xliii-b4-2021-135-2021",
-      "url": "https://doi.org/10.5194/isprs-archives-xliii-b4-2021-135-2021",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2021,
       "title": "QUALISalvador: qualidade do ambiente urbano na cidade da Bahia",
       "authors": [
         "Elisabete Santos",
@@ -512,6 +497,21 @@ window.__PUBS = {
     },
     {
       "year": 2021,
+      "title": "EXPLORATORY SPATIAL ANALYSIS OF HOUSING PRICES OBTAINED FROM WEB SCRAPING TECHNIQUE",
+      "authors": [
+        "Thaís Góes de Souza",
+        "Fernanda Doracy Rocha Fonseca",
+        "Vivian de Oliveira Fernandes",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "The international archives of the photogrammetry, remote sensing and spatial information sciences/International archives of the photogrammetry, remote sensing and spatial information sciences",
+      "doi": "https://doi.org/10.5194/isprs-archives-xliii-b4-2021-135-2021",
+      "url": "https://doi.org/10.5194/isprs-archives-xliii-b4-2021-135-2021",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
       "title": "Estratégias de Produção da Cidade no Contexto da Neoliberalização: Salvador como Exemplo",
       "authors": [
         "Elisabete Santos",
@@ -527,19 +527,6 @@ window.__PUBS = {
     },
     {
       "year": 2021,
-      "title": "Survey of Slum Housing Characteristics Using Drones: An Experiment in the Alto das Pombas Community, Salvador de Bahia/Brazil",
-      "authors": [
-        "Joice Genaro Gomes",
-        "Júlio César Pedrassoli"
-      ],
-      "venue": "Quaestiones Geographicae",
-      "doi": "https://doi.org/10.2478/quageo-2021-0031",
-      "url": "https://doi.org/10.2478/quageo-2021-0031",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2021,
       "title": "City Production Strategies in the Neoliberalization Context - Salvador as Example",
       "authors": [
         "Elisabete Santos",
@@ -550,6 +537,19 @@ window.__PUBS = {
       "venue": "Organizações & Sociedade",
       "doi": "https://doi.org/10.1590/1984-92302021v28n9807en",
       "url": "https://doi.org/10.1590/1984-92302021v28n9807en",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "Survey of Slum Housing Characteristics Using Drones: An Experiment in the Alto das Pombas Community, Salvador de Bahia/Brazil",
+      "authors": [
+        "Joice Genaro Gomes",
+        "Júlio César Pedrassoli"
+      ],
+      "venue": "Quaestiones Geographicae",
+      "doi": "https://doi.org/10.2478/quageo-2021-0031",
+      "url": "https://doi.org/10.2478/quageo-2021-0031",
       "type": "article",
       "oa": true
     },
