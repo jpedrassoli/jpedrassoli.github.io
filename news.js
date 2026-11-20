@@ -1,17 +1,29 @@
 window.__NEWS = {
-  "updated": "2026-11-17T18:31:54+00:00",
+  "updated": "2026-11-20T17:45:59+00:00",
   "items": [
     {
       "date": "2026-11-04",
-      "title": "Em 40 anos, urbanização de favelas cresce e vegetação cai 34%",
+      "title": "Favelas de MS: área urbanizada cresce 272% e verde cai 77%",
+      "source": "Campo Grande News",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNdlhocFhBTFo2amxWaXoyN3NzWWZBcVI5Vmh3MHlGNnNnaFd3SlFNallTclZ4TzFKbVVxclNUVW14elhydFZxWW4wSmMweDZmWjhiSE5DNkNEZ0loQ2M0SlU0LXQ4UGc3VmZNeGJKUGR6UTJCWU5XREhRaWp5dXRhczU3U0M2bjdKVkM2V2ZDeU5BSmllOG91cDJwUGhlQUpkWV8yX3l6Z3k1TkZZRTVERDI2d1FBdnRIb3BYcGt0NnlkczRzTk800gHHAUFVX3lxTE8yOUVfUzQ3OTEyOEtKcndZR1ZUVE1iUjhNTTRVQTBaZzB0Z1BiVE9KYWhnQl92VnlWMGlFV1hmUFlNQWxZZEN5Tkp0UTlWWDdJbVBjSTNaS0hiaVRvaEJRSWpwVTBVdEc2aVF4SlFELTRLa29adWdUSkNfZU9FcVJuLTI3eTBUTUNXZjQyZzdUZGwtREFQZHlPYjNGQW1ZcFI4eEpaUmFqUFBWUVlnQUMxcHRxcUhTOUZ0NndwUG15OHhRX0N0TWM?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "title": "Urbanização em favelas quase triplicou e vegetação diminuiu em 40 anos",
       "source": "Agência Brasil",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNZlU0WnNkNlZzZmg3SlZjclFXM0F1b3hYVVRiZEJjUUlWc1dYc1RSMFJ4bGtMczctZ0Q5MkszbHFVSjB2bWFsZFFfc2tJWHVJdHpZQTdoaDVuSVpSNmloRVRZTHMtLVJXVEE1VldyaU9EaVlkZjdhQnEzS3hBSUVCTWMzaHV6cUhzTllMdVhXZmtJVGVhN2RJUzBGQTBHcWRlSFFEMUJ1TkZERTR0LUVicVFxQVNjZS1WZ2RtTzRSWENVSXZ3cWhRbFYxdkZzWUU?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNYUxkWWp3ZU56Yy1lS0tIWFJzRXZNa1RhOXNmeHBzWC1Pam43YkZIZjRlaXFqT01welhYSzdxUEF2NGotNzVSSGVXMFE3OTY5akUtMzdpTEdoYlQxRUhMc3BSbGZqZWg1NHFhQ2RNNkNBeENXT0x1U1lDeUctNV9OdmFwd21Ga3F0TWluTGZRb2dVb0tVYkVWSXFrd1AydllOcVVmd2l1aVdZa3FsM1FFSmNpWlZiQmNmMHUyZ3RXNUFuMkVUdTN0VnpzY0J3QQ?oc=5"
     },
     {
       "date": "2026-11-04",
       "title": "Friburgo é a 3ª cidade do Brasil com maior risco de deslizamentos de encostas",
       "source": "Nova Friburgo em Foco",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPS0o0Z2FGNUN0V3M0eThDdnZCektMZ2M0eGMwUHEtUy1XMWd6Z0lvLWs1djI1N3M0QjZsbmt0OU93WjEzcVFqeXplYnRRZHRNYnhaMzlMY3l4dDJxNDB2WTJxMEpMa3lsT2dnUEt5Y2oyZmpCZzluYTl6RURqR0x1MnV6UHZVNmRjOFJkRlRnbU1qVnZzUF96MHhrZ0dEcXRkSC05dWhYOWpaemN5UEZIWEJB?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "title": "Em 40 anos, urbanização de favelas cresce e vegetação cai 34%",
+      "source": "Agência Brasil",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNZlU0WnNkNlZzZmg3SlZjclFXM0F1b3hYVVRiZEJjUUlWc1dYc1RSMFJ4bGtMczctZ0Q5MkszbHFVSjB2bWFsZFFfc2tJWHVJdHpZQTdoaDVuSVpSNmloRVRZTHMtLVJXVEE1VldyaU9EaVlkZjdhQnEzS3hBSUVCTWMzaHV6cUhzTllMdVhXZmtJVGVhN2RJUzBGQTBHcWRlSFFEMUJ1TkZERTR0LUVicVFxQVNjZS1WZ2RtTzRSWENVSXZ3cWhRbFYxdkZzWUU?oc=5"
     },
     {
       "date": "2026-11-04",
