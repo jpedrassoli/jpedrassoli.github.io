@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T18:31:54+00:00",
+  "updated": "2026-11-21T16:45:59+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -410,22 +410,6 @@
     },
     {
       "year": 2022,
-      "title": "Inteligência geográfica na construção de políticas públicas: rumo à plataforma de monitoramento de áreas verdes urbanas do Estado de São Paulo",
-      "authors": [
-        "Marcel Fantin",
-        "Júlio César Pedrassoli",
-        "Breno Malheiros de Melo",
-        "Gustavo Paixão Menezes",
-        "Marcos Roberto Martines"
-      ],
-      "venue": "Interações (Campo Grande)",
-      "doi": "https://doi.org/10.20435/inter.v23i3.3533",
-      "url": "https://doi.org/10.20435/inter.v23i3.3533",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2022,
       "title": "Proposal for an index of roads and structures for the mapping of non-vegetated urban surfaces using OSM and Sentinel-2 data",
       "authors": [
         "Eduardo Felix Justiniano",
@@ -441,6 +425,22 @@
       "venue": "International Journal of Applied Earth Observation and Geoinformation",
       "doi": "https://doi.org/10.1016/j.jag.2022.102791",
       "url": "https://doi.org/10.1016/j.jag.2022.102791",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2022,
+      "title": "Inteligência geográfica na construção de políticas públicas: rumo à plataforma de monitoramento de áreas verdes urbanas do Estado de São Paulo",
+      "authors": [
+        "Marcel Fantin",
+        "Júlio César Pedrassoli",
+        "Breno Malheiros de Melo",
+        "Gustavo Paixão Menezes",
+        "Marcos Roberto Martines"
+      ],
+      "venue": "Interações (Campo Grande)",
+      "doi": "https://doi.org/10.20435/inter.v23i3.3533",
+      "url": "https://doi.org/10.20435/inter.v23i3.3533",
       "type": "article",
       "oa": true
     },
