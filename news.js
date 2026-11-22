@@ -1,5 +1,5 @@
 window.__NEWS = {
-  "updated": "2026-11-21T16:45:59+00:00",
+  "updated": "2026-11-22T17:07:14+00:00",
   "items": [
     {
       "date": "2026-11-04",
@@ -15,15 +15,15 @@ window.__NEWS = {
     },
     {
       "date": "2026-11-04",
-      "title": "Urbanização em favelas quase triplicou e vegetação diminuiu em 40 anos",
-      "source": "Agência Brasil",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNYUxkWWp3ZU56Yy1lS0tIWFJzRXZNa1RhOXNmeHBzWC1Pam43YkZIZjRlaXFqT01welhYSzdxUEF2NGotNzVSSGVXMFE3OTY5akUtMzdpTEdoYlQxRUhMc3BSbGZqZWg1NHFhQ2RNNkNBeENXT0x1U1lDeUctNV9OdmFwd21Ga3F0TWluTGZRb2dVb0tVYkVWSXFrd1AydllOcVVmd2l1aVdZa3FsM1FFSmNpWlZiQmNmMHUyZ3RXNUFuMkVUdTN0VnpzY0J3QQ?oc=5"
-    },
-    {
-      "date": "2026-11-04",
       "title": "Friburgo é a 3ª cidade do Brasil com maior risco de deslizamentos de encostas",
       "source": "Nova Friburgo em Foco",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPS0o0Z2FGNUN0V3M0eThDdnZCektMZ2M0eGMwUHEtUy1XMWd6Z0lvLWs1djI1N3M0QjZsbmt0OU93WjEzcVFqeXplYnRRZHRNYnhaMzlMY3l4dDJxNDB2WTJxMEpMa3lsT2dnUEt5Y2oyZmpCZzluYTl6RURqR0x1MnV6UHZVNmRjOFJkRlRnbU1qVnZzUF96MHhrZ0dEcXRkSC05dWhYOWpaemN5UEZIWEJB?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "title": "Urbanização em favelas quase triplicou e vegetação diminuiu em 40 anos",
+      "source": "Agência Brasil",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNYUxkWWp3ZU56Yy1lS0tIWFJzRXZNa1RhOXNmeHBzWC1Pam43YkZIZjRlaXFqT01welhYSzdxUEF2NGotNzVSSGVXMFE3OTY5akUtMzdpTEdoYlQxRUhMc3BSbGZqZWg1NHFhQ2RNNkNBeENXT0x1U1lDeUctNV9OdmFwd21Ga3F0TWluTGZRb2dVb0tVYkVWSXFrd1AydllOcVVmd2l1aVdZa3FsM1FFSmNpWlZiQmNmMHUyZ3RXNUFuMkVUdTN0VnpzY0J3QQ?oc=5"
     },
     {
       "date": "2026-11-04",
