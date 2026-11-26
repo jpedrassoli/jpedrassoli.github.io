@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:07:56+00:00",
+  "updated": "2026-11-26T18:58:33+00:00",
   "source": "OpenAlex/ORCID 0000-0001-9762-102X",
   "items": [
     {
@@ -512,21 +512,6 @@
     },
     {
       "year": 2021,
-      "title": "City Production Strategies in the Neoliberalization Context - Salvador as Example",
-      "authors": [
-        "Elisabete Santos",
-        "Patrícia Campos Borja",
-        "Júlio César Pedrassoli",
-        "Alei Santos"
-      ],
-      "venue": "Organizações & Sociedade",
-      "doi": "https://doi.org/10.1590/1984-92302021v28n9807en",
-      "url": "https://doi.org/10.1590/1984-92302021v28n9807en",
-      "type": "article",
-      "oa": true
-    },
-    {
-      "year": 2021,
       "title": "Estratégias de Produção da Cidade no Contexto da Neoliberalização: Salvador como Exemplo",
       "authors": [
         "Elisabete Santos",
@@ -537,6 +522,21 @@
       "venue": "Organizações & Sociedade",
       "doi": "https://doi.org/10.1590/1984-92302021v28n9807pt",
       "url": "https://doi.org/10.1590/1984-92302021v28n9807pt",
+      "type": "article",
+      "oa": true
+    },
+    {
+      "year": 2021,
+      "title": "City Production Strategies in the Neoliberalization Context - Salvador as Example",
+      "authors": [
+        "Elisabete Santos",
+        "Patrícia Campos Borja",
+        "Júlio César Pedrassoli",
+        "Alei Santos"
+      ],
+      "venue": "Organizações & Sociedade",
+      "doi": "https://doi.org/10.1590/1984-92302021v28n9807en",
+      "url": "https://doi.org/10.1590/1984-92302021v28n9807en",
       "type": "article",
       "oa": true
     },
